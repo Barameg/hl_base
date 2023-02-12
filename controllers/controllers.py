@@ -31,11 +31,11 @@ class StudentPortal(CustomerPortal):
             ('session', '=', session)
         ])
         if partner:
-            return request.redirect('/portal')
+            return request.redirect('/')
         else:
-            return request.redirect('/portal')
+            return request.redirect('/')
 
-    @http.route(['/portal'], type='http', auth="none", website=True, csrf=False)
+    @http.route(['/'], type='http', auth="none", website=True, csrf=False)
     def portal(self, **kw):
         return request.redirect('/login')
 
