@@ -11,7 +11,7 @@
 		</record>
 
         <record id="hl_base_application_service_document_tree_action_window_view" model="ir.actions.act_window.view">
-			<field name="act_window_id" ref="hl_base_pplication_service_document_action_window" />
+			<field name="act_window_id" ref="hl_base_application_service_document_action_window" />
 			<field name="view_id" ref="hl_base_application_service_document_tree_view" />
 			<field name="view_mode">tree</field>
 			<field name="sequence" eval="1"/>
