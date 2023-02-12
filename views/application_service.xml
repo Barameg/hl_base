@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="application_service_form_view">
+            <field name="name">application_service_form_view</field>
+            <field name="model">application.service</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button type="object" string="Test Token"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="documents" string="Required Documents">
+                                <field name="documents">
+                                    <tree>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="application_service_tree_view">
+            <field name="name">application_service_tree_view</field>
+            <field name="model">application.service</field>
+            <field name="priority" eval="60"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

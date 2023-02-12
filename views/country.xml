@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hl_country_form_view">
+            <field name="name">hl_country_form_view</field>
+            <field name="model">res.country</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button type="object" string="Test Token"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="currency_id"/>
+                                <field name="image_url"/>
+                                <field name="phone_code"/>
+                                <field name="state_required"/>
+                                <field name="vat_label"/>
+                                <field name="zip_required"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="States" name="states">
+                                <field name="state_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hl_country_tree_view">
+            <field name="name">hl_country_tree_view</field>
+            <field name="model">res.country</field>
+            <field name="priority" eval="60"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
