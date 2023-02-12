@@ -35,14 +35,10 @@ class StudentPortal(CustomerPortal):
         else:
             return request.redirect('/')
 
-    @http.route(['/'], type='http', auth="none", website=True, csrf=False)
-    def portal(self, **kw):
-        return request.redirect('/login')
-
     @http.route('/', type='http', auth="none", website=True, csrf=False)
     def index(self, **kw):
         print(request.__dict__)
-        return "Future Website"
+        return request.redirect('/login')
 
     @http.route('/<str>', type='http', auth="none", website=True, csrf=False)
     def catchall(self, **kw):
