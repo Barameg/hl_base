@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record model="ir.ui.view" id="university_program_form_view">
-            <field name="name">university_program_form_view</field>
+        <record model="ir.ui.view" id="hl_base_university_program_form_view">
+            <field name="name">hl_base_university_program_form_view</field>
             <field name="model">university.program</field>
             <field name="arch" type="xml">
                 <form>
@@ -28,8 +28,8 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="university_program_tree_view">
-            <field name="name">university_program_tree_view</field>
+        <record model="ir.ui.view" id="hl_base_university_program_tree_view">
+            <field name="name">hl_base_university_program_tree_view</field>
             <field name="model">university.program</field>
             <field name="priority" eval="60"/>
             <field name="arch" type="xml">

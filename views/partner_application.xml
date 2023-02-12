@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record model="ir.ui.view" id="partner_application_form_view">
-            <field name="name">partner_application_form_view</field>
+        <record model="ir.ui.view" id="hl_base_partner_application_form_view">
+            <field name="name">hl_base_partner_application_form_view</field>
             <field name="model">partner.application</field>
             <field name="arch" type="xml">
                 <form>
@@ -117,8 +117,8 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="partner_application_tree_view">
-            <field name="name">partner_application_tree_view</field>
+        <record model="ir.ui.view" id="hl_base_partner_application_tree_view">
+            <field name="name">hl_base_partner_application_tree_view</field>
             <field name="model">partner.application</field>
             <field name="priority" eval="60"/>
             <field name="arch" type="xml">

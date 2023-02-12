@@ -2,11 +2,11 @@
     <data>
 		<menuitem name="HL Management" id="hl_management_root_menu"/>
 		<!-- menu categories -->
-		<menuitem name="Applications" id="hl_manage_applications_menu" parent="hl_management_root_menu" action="partner_application_action_window" sequence="1"/>
+		<menuitem name="Applications" id="hl_manage_applications_menu" parent="hl_management_root_menu" action="hl_base_partner_application_action_window" sequence="1"/>
 		<menuitem name="Master Data" id="hl_manage_master_data_menu" parent="hl_management_root_menu" sequence="2"/>
-		<menuitem name="Services" id="hl_manage_services_menu" parent="hl_manage_master_data_menu" action="application_service_action_window" sequence="1"/>
-		<menuitem name="Universities" id="hl_manage_universities_menu" parent="hl_manage_master_data_menu" action="university_action_window" sequence="1"/>
-		<menuitem name="Countries" id="hl_manage_countries_menu" parent="hl_manage_master_data_menu" action="hl_country_action_window" sequence="1"/>
+		<menuitem name="Services" id="hl_manage_services_menu" parent="hl_manage_master_data_menu" action="hl_base_application_service_action_window" sequence="1"/>
+		<menuitem name="Universities" id="hl_manage_universities_menu" parent="hl_manage_master_data_menu" action="hl_base_university_action_window" sequence="1"/>
+		<menuitem name="Countries" id="hl_manage_countries_menu" parent="hl_manage_master_data_menu" action="hl_base_country_action_window" sequence="1"/>
 <!--		<menuitem name="Products" id="salla_products" parent="manage_salla_products" action="salla_products_action_window" sequence="1"/>-->
 <!--		<menuitem name="Variants" id="salla_product_variats" parent="manage_salla_products" action="salla_product_variants_action_window" sequence="1"/>-->
 <!--		<menuitem name="Orders" id="salla_orders" parent="hl_management_root_menu" action="salla_orders_action_window" sequence="1"/>-->

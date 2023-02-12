@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record model="ir.ui.view" id="application_service_document_form_view">
-            <field name="name">application_service_document_form_view</field>
+        <record model="ir.ui.view" id="hl_base_application_service_document_form_view">
+            <field name="name">hl_base_application_service_document_form_view</field>
             <field name="model">application.service.document</field>
             <field name="arch" type="xml">
                 <form>
@@ -32,8 +32,8 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="application_service_document_tree_view">
-            <field name="name">application_service_document_tree_view</field>
+        <record model="ir.ui.view" id="hl_base_application_service_document_tree_view">
+            <field name="name">hl_base_application_service_document_tree_view</field>
             <field name="model">application.service.document</field>
             <field name="priority" eval="60"/>
             <field name="arch" type="xml">
