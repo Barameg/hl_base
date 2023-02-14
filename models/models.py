@@ -150,7 +150,7 @@ class ResPartner(models.Model):
         verificationCode = ''.join(
             (random.choice(source) for _ in range(32))
         )
-        return self.create({
+        new_partner = self.create({
             'name': name,
             'email': email,
             'password': password,
@@ -158,6 +158,20 @@ class ResPartner(models.Model):
             'verificationCode': verificationCode,
             'company_type': 'person'
         })
+        if new_partner:
+            mail_values = {
+                'email_from': 'registration@optimaforma.co',
+                'email_to': new_partner.email,
+                'subject': 'Welcome to our site!',
+                'body_html': f'<p>Dear {new_partner.email},</p><p>Welcome to our site! your verification code is {new_partner.verificationCode} </p>',
+                'body': f'Dear {new_partner.email}, Welcome to our site! your verification code is {new_partner.verificationCode}',
+            }
+            mail_id = self.env['mail.mail'].create(mail_values)
+            print(mail_id)
+            mail_id.send()
+            return new_partner
+        else:
+            raise exceptions.UserError("Server Error")
 
     @api.model
     def verifyAccount(self, verificationCode=None):
