@@ -10,3 +10,6 @@
     background: white;
     z-index: 2;
 }
+button *{
+    pointer-events: none;
+}

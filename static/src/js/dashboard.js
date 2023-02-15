@@ -42,6 +42,18 @@
     }
 
     document.addEventListener('click', async function(event){
+        if (event.target.matches('#closeSidebar')) {
+            let offCanvasMenuBackdrop = document.querySelector('#offCanvasMenuBackdrop')
+            let offCanvasMenu = document.querySelector('#offCanvasMenu')
+            offCanvasMenuBackdrop.classList.add('hidden')
+            offCanvasMenu.classList.add('hidden')
+        }
+        if (event.target.matches('#openSidebar')) {
+            let offCanvasMenuBackdrop = document.querySelector('#offCanvasMenuBackdrop')
+            let offCanvasMenu = document.querySelector('#offCanvasMenu')
+            offCanvasMenuBackdrop.classList.remove('hidden')
+            offCanvasMenu.classList.remove('hidden')
+        }
         if(event.target.matches('.logoutButton')){
             event.preventDefault()
             document.cookie.split(";").forEach(function(c) {
