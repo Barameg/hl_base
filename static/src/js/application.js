@@ -309,18 +309,18 @@
         if(event.target.matches('input[type="file"]')){
             console.log(event.target.files)
             if(event.target.files.length > 0 ){
+                let exceedsLimit = false
                 if(event.target.files[0].size > docs[event.target.name].allowed_size * 1024 * 1024){
-                    event.target.value = ''
+                    exceedsLimit = true
                     alert(`file exceeds limit of ${docs[event.target.name].allowed_size} MB`)
                 }
                 let typeFound = false
                 for(const type of docs[event.target.name].allowed_types.split(',')){
                     if(event.target.files[0].type.includes(type.trim())) typeFound = true
                 }
-                if(!typeFound){
-                    event.target.value = ''
-                    alert(`Only ${docs[event.target.name].allowed_types} are allowed`)
-                }        
+                if(!typeFound || exceedsLimit){
+                    alert(`Only files not exceeding ${docs[event.target.name].allowed_types} MB and of type ${docs[event.target.name].allowed_types} are allowed`)
+                }
             }
         }
 
