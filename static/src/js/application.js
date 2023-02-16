@@ -312,7 +312,6 @@
                 let exceedsLimit = false
                 if(event.target.files[0].size > docs[event.target.name].allowed_size * 1024 * 1024){
                     exceedsLimit = true
-                    alert(`file exceeds limit of ${docs[event.target.name].allowed_size} MB`)
                 }
                 let typeFound = false
                 for(const type of docs[event.target.name].allowed_types.split(',')){
@@ -320,7 +319,7 @@
                 }
                 if(!typeFound || exceedsLimit){
                     event.target.value = ''
-                    alert(`Only files not exceeding ${docs[event.target.name].allowed_types} MB and of type ${docs[event.target.name].allowed_types} are allowed`)
+                    alert(`Only files not exceeding ${docs[event.target.name].allowed_size} MB and of type ${docs[event.target.name].allowed_types} are allowed`)
                 }
             }
         }
