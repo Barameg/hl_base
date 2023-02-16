@@ -319,6 +319,7 @@
                     if(event.target.files[0].type.includes(type.trim())) typeFound = true
                 }
                 if(!typeFound || exceedsLimit){
+                    event.target.value = ''
                     alert(`Only files not exceeding ${docs[event.target.name].allowed_types} MB and of type ${docs[event.target.name].allowed_types} are allowed`)
                 }
             }
