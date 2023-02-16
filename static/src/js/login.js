@@ -24,6 +24,7 @@
     document.addEventListener('click', async function(event){
         if(event.target.id == 'loginButton'){
             event.preventDefault()
+            event.target.classList.add('disabled')
             const email = document.querySelector('#email').value
             const password = document.querySelector('#password').value
             const stayLoggedIn = document.querySelector('#remember-me').checked
@@ -42,6 +43,7 @@
                 }
                 window.location.href = '/dashboard'
             } else if(login.result && !login.result.success){
+                event.target.classList.remove('disabled')
                 alert(login.result.message)
             }
         }

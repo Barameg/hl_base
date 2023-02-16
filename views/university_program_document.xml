@@ -12,6 +12,9 @@
                         <group>
                             <group>
                                 <field name="name"/>
+                                <field name="allowed_size"/>
+                                <field name="allowed_types"/>
+                                <field name="required"/>
                             </group>
                         </group>
                     </sheet>

@@ -295,7 +295,7 @@ class StudentPortalApi(CustomerPortal):
             documents = request.env['university.program.document'].sudo()
             documents = documents.search_read([
                 ('program', '=', int(program))
-            ], ['name'])
+            ], ['name', 'allowed_size', 'allowed_types', 'required'])
             return {
                 'success': True,
                 'message': 'Request processed successfully',

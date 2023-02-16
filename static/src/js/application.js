@@ -1,4 +1,5 @@
 (async () => {
+    let docs = {}
     let session = getCookie('session')
     let partner_id = getCookie('partner')
     if (session && partner_id) {
@@ -68,13 +69,18 @@
             let programDocumentsRequest = await postData('/api/documents', {
                 program: programsDropdown.options[programsDropdown.selectedIndex].id
             })
-            for (const document of programDocumentsRequest.result.data.documents) {
+            for (const doc of programDocumentsRequest.result.data.documents) {                
+                docs[toCamelCase(doc.name)] = {
+                    allowed_size: doc.allowed_size,
+                    allowed_types: doc.allowed_types
+                }
+                console.log(docs)
                 const documentElementHTML = `
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label for="${toCamelCase(document.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${document.name}</label>
-                    <input required="true" type="file" name="${toCamelCase(document.name)}" id="${toCamelCase(document.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
+                    <label for="${toCamelCase(doc.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${doc.name}</label>
+                    <input ${doc.required ? 'required' : ''} type="file" name="${toCamelCase(doc.name)}" id="${toCamelCase(doc.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
                 </div>`
-                programDocumentsWrapper.insertAdjacentHTML('beforeend',documentElementHTML)
+                programDocumentsWrapper.insertAdjacentHTML('beforeend', documentElementHTML)
             }
 
             if(applicationId){
@@ -83,7 +89,6 @@
                 })
                 if(applicationRequest.result.data.applications.length > 0){
                     let application = applicationRequest.result.data.applications[0]
-                    console.log(application)
                     document.querySelector('#firstName').value = application.first_name
                     document.querySelector('#middleName').value = application.middle_name
                     document.querySelector('#lastName').value = application.last_name
@@ -147,6 +152,7 @@
         }
         if (event.target.matches('#saveApplication')) {
             event.preventDefault()
+            event.target.classList.add('disabled')
             let form = event.target.closest('form')
             if(form.checkValidity()){
                 let first_name = document.querySelector('#firstName').value
@@ -223,9 +229,11 @@
                     window.location.href = '/dashboard'
                 } else {
                     alert(applicationRequest.message)
+                    event.target.classList.remove('disabled')
                 }
             } else {
                 form.reportValidity()
+                event.target.classList.remove('disabled')
             }
         }
         
@@ -236,7 +244,6 @@
         event.stopPropagation()
         if(event.target.matches('#country')){
             let countriesDropdown = event.target
-
             let statesDropdown = document.querySelector('#state')
             let stateWrapper = document.querySelector('#stateWrapper')
             statesDropdown.innerHTML = ''
@@ -274,11 +281,11 @@
             })
             let programDocumentsWrapper = document.querySelector('#programDocuments')
             programDocumentsWrapper.innerHTML = ''
-            for (const document of programDocumentsRequest.result.data.documents) {
+            for (const doc of programDocumentsRequest.result.data.documents) {
                 const documentElementHTML = `
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label for="${toCamelCase(document.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${document.name}</label>
-                    <input required="true" type="file" name="${toCamelCase(document.name)}" id="${toCamelCase(document.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
+                    <label for="${toCamelCase(doc.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${doc.name}</label>
+                    <input required="true" type="file" name="${toCamelCase(doc.name)}" id="${toCamelCase(doc.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
                 </div>`
                 programDocumentsWrapper.insertAdjacentHTML('beforeend',documentElementHTML)
             }
@@ -290,13 +297,28 @@
             })
             let programDocumentsWrapper = document.querySelector('#programDocuments')
             programDocumentsWrapper.innerHTML = ''
-            for (const document of programDocumentsRequest.result.data.documents) {
+            for (const doc of programDocumentsRequest.result.data.documents) {
                 const documentElementHTML = `
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label for="${toCamelCase(document.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${document.name}</label>
-                    <input required="true" type="file" name="${toCamelCase(document.name)}" id="${toCamelCase(document.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
+                    <label for="${toCamelCase(doc.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${doc.name}</label>
+                    <input required="true" type="file" name="${toCamelCase(doc.name)}" id="${toCamelCase(doc.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
                 </div>`
                 programDocumentsWrapper.insertAdjacentHTML('beforeend',documentElementHTML)
+            }
+        }
+        if(event.target.matches('input[type="file"]')){
+            console.log(event.target.files)
+            if(event.target.files.length > 0 && event.target.files[0].size > docs[event.target.name].allowed_size * 1024 * 1024){
+                event.target.value = ''
+                alert(`file exceeds limit of ${docs[event.target.name].allowed_size} MB`)
+            }
+            let typeFound = false
+            for(const type of docs[event.target.name].allowed_types.split(',')){
+                if(event.target.files[0].type.includes(type.trim())) typeFound = true
+            }
+            if(!typeFound){
+                event.target.value = ''
+                alert(`Only ${docs[event.target.name].allowed_types} are allowed`)
             }
         }
 

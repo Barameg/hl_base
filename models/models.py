@@ -100,6 +100,9 @@ class UniversityProgramDocument(models.Model):
     _description = 'University Program Document'
 
     name = fields.Char()
+    allowed_size = fields.Integer(string='Size in MB')
+    allowed_types = fields.Char()
+    required = fields.Boolean(default=True)
     program = fields.Many2one('university.program')
 
 
@@ -167,7 +170,6 @@ class ResPartner(models.Model):
                 'body': f'Dear {new_partner.email}, Welcome to our site! your verification code is {new_partner.verificationCode}',
             }
             mail_id = self.env['mail.mail'].create(mail_values)
-            print(mail_id)
             mail_id.send()
             return new_partner
         else:
