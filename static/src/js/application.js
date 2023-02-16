@@ -74,7 +74,6 @@
                     allowed_size: doc.allowed_size,
                     allowed_types: doc.allowed_types
                 }
-                console.log(docs)
                 const documentElementHTML = `
                 <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label for="${toCamelCase(doc.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${doc.name}</label>
@@ -107,7 +106,7 @@
 
                 }
             } else {
-                console.log('wooooooo')
+
             }
 
 
@@ -123,7 +122,7 @@
     }
 
     document.addEventListener('submit', function(event){
-        console.log(event.target)
+
     })
     document.addEventListener('click', async function (event) {
         if (event.target.matches('#closeSidebar')) {
@@ -307,7 +306,6 @@
             }
         }
         if(event.target.matches('input[type="file"]')){
-            console.log(event.target.files)
             if(event.target.files.length > 0 ){
                 let exceedsLimit = false
                 if(event.target.files[0].size > docs[event.target.name].allowed_size * 1024 * 1024){
