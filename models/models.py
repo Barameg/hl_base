@@ -164,7 +164,7 @@ class ResPartner(models.Model):
         })
         if new_partner:
             mail_values = {
-                'email_from': 'noreply@studyandworkinportugal.com',
+                'email_from': 'support@studyandworkinportugal.com',
                 'email_to': new_partner.email,
                 'subject': 'Your verification code! | Studay & work in portugal',
                 'body_html': f'<p>Dear {new_partner.email},</p><p>Welcome to study and work in portugal! your '
