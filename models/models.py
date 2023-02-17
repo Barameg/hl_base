@@ -150,8 +150,9 @@ class ResPartner(models.Model):
         session = ''.join(
             (random.choice(source) for _ in range(32))
         )
+        digits = string.digits
         verificationCode = ''.join(
-            (random.choice(source) for _ in range(32))
+            (random.choice(digits) for _ in range(6))
         )
         new_partner = self.create({
             'name': name,
