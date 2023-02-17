@@ -164,11 +164,12 @@ class ResPartner(models.Model):
         })
         if new_partner:
             mail_values = {
-                'email_from': 'registration@optimaforma.co',
                 'email_to': new_partner.email,
-                'subject': 'Welcome to our site!',
-                'body_html': f'<p>Dear {new_partner.email},</p><p>Welcome to our site! your verification code is {new_partner.verificationCode} </p>',
-                'body': f'Dear {new_partner.email}, Welcome to our site! your verification code is {new_partner.verificationCode}',
+                'subject': 'Your verification code! | Studay & work in portugal',
+                'body_html': f'<p>Dear {new_partner.email},</p><p>Welcome to study and work in portugal! your '
+                             f'verification code is {new_partner.verificationCode} </p>',
+                'body': f'Dear {new_partner.email}, '
+                        f'Welcome to our site! your verification code is {new_partner.verificationCode}',
             }
             mail_id = self.env['mail.mail'].create(mail_values)
             mail_id.send()
