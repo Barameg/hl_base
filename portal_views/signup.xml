@@ -12,7 +12,7 @@
 			<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
 				<div class="sm:mx-auto sm:w-full sm:max-w-md">
 					<img class="mx-auto h-12 w-auto"
-						src="https://tailwindui.com/img/logos/mark.svg?color=green&amp;shade=600" alt="Your Company" />
+					src="https://static.wixstatic.com/media/69838d_6bb87d2a9e4542339582c2405c2381f6~mv2.png/v1/fill/w_924,h_332,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Screen%20Shot%202022-05-06%20at%2011_57_03%20AM.png" alt="Harmonia Laboriosa"/>
 					<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create new account
 					</h2>
 				</div>
@@ -45,19 +45,6 @@
 										<kbd
 											class="inline-flex items-center rounded border border-gray-200 px-2 font-sans text-sm font-medium text-gray-400">⌘K</kbd>
 									</div>
-								</div>
-							</div>
-							<div class="flex items-center justify-between">
-								<div class="flex items-center">
-									<input id="remember-me" name="remember-me" type="checkbox"
-										class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500" />
-									<label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember
-										me</label>
-								</div>
-
-								<div class="text-sm">
-									<a href="#" class="font-medium text-green-600 hover:text-green-500">Forgot your
-										password?</a>
 								</div>
 							</div>
 
