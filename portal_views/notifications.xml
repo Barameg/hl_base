@@ -57,7 +57,7 @@
           From: "translate-x-0"
           To: "-translate-x-full"
       -->
-      <div class="relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4">
+      <div class="relative flex w-full max-w-xs flex-1 flex-col bg-green-700 pt-5 pb-4">
         <!--
           Close button, show/hide based on off-canvas menu state.
 
@@ -79,27 +79,27 @@
         </div>
 
         <div class="flex flex-shrink-0 items-center px-4">
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=300" alt="Harmonia Laboriosa"/>
+          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&amp;shade=300" alt="Harmonia Laboriosa"/>
         </div>
         <div class="mt-5 h-0 flex-1 overflow-y-auto">
           <nav class="space-y-1 px-2">
-            <!-- Current: "bg-indigo-800 text-white", Default: "text-indigo-100 hover:bg-indigo-600" -->
+            <!-- Current: "bg-green-800 text-white", Default: "text-green-100 hover:bg-green-600" -->
 
-            <a href="#" class="text-indigo-100 hover:bg-indigo-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+            <a href="#" class="text-green-100 hover:bg-green-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
 				</svg>&amp;nbsp;&amp;nbsp;
               	Application
             </a>
 
-            <a href="#" class="text-indigo-100 hover:bg-indigo-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+            <a href="#" class="text-green-100 hover:bg-green-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
 				</svg>&amp;nbsp;&amp;nbsp;
 				Notifications
             </a>
 
-            <a href="#" class="text-indigo-100 hover:bg-indigo-600 group flex items-center px-2 py-2 text-base font-medium rounded-md logoutButton">
+            <a href="#" class="text-green-100 hover:bg-green-600 group flex items-center px-2 py-2 text-base font-medium rounded-md logoutButton">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
 				</svg>&amp;nbsp;&amp;nbsp;
@@ -118,27 +118,27 @@
   <!-- Static sidebar for desktop -->
   <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
-    <div class="flex flex-grow flex-col overflow-y-auto bg-indigo-700 pt-5">
+    <div class="flex flex-grow flex-col overflow-y-auto bg-green-700 pt-5">
       <div class="flex flex-shrink-0 items-center px-4">
-        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=300" alt="Your Company"/>
+        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&amp;shade=300" alt="Your Company"/>
       </div>
       <div class="mt-5 flex flex-1 flex-col">
         <nav class="flex-1 space-y-1 px-2 pb-4">
-            <a href="#" class="text-indigo-100 hover:bg-indigo-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+            <a href="#" class="text-green-100 hover:bg-green-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
 				</svg>&amp;nbsp;&amp;nbsp;
               	Application
             </a>
 
-            <a href="#" class="text-indigo-100 hover:bg-indigo-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+            <a href="#" class="text-green-100 hover:bg-green-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
 				</svg>&amp;nbsp;&amp;nbsp;
 				Notifications
             </a>
 
-            <a href="#" class="text-indigo-100 hover:bg-indigo-600 group flex items-center px-2 py-2 text-base font-medium rounded-md logoutButton">
+            <a href="#" class="text-green-100 hover:bg-green-600 group flex items-center px-2 py-2 text-base font-medium rounded-md logoutButton">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
 				</svg>&amp;nbsp;&amp;nbsp;
@@ -150,7 +150,7 @@
   </div>
   <div class="flex flex-1 flex-col md:pl-64">
     <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-      <button type="button" class="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
+      <button type="button" class="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 md:hidden">
         <span class="sr-only">Open sidebar</span>
         <!-- Heroicon name: outline/bars-3-bottom-left -->
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -173,7 +173,7 @@
           </form>
         </div>
         <div class="ml-4 flex items-center md:ml-6">
-          <button type="button" class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <button type="button" class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
             <span class="sr-only">View notifications</span>
             <!-- Heroicon name: outline/bell -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -184,7 +184,7 @@
           <!-- Profile dropdown -->
           <div class="relative ml-3">
             <div>
-              <button type="button" class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+              <button type="button" class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt=""/>
               </button>
@@ -221,7 +221,7 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
           <!-- Replace with your content -->
           <div class="py-4">
-			<button type="button" class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+			<button type="button" class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
 				</svg>
