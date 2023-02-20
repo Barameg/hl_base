@@ -11,7 +11,7 @@
 		<body class="hidden">
 			<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
 				<div class="sm:mx-auto sm:w-full sm:max-w-md">
-					<img class="mx-auto h-12 w-auto"
+					<img class="mx-auto h-25 w-auto"
 					src="https://static.wixstatic.com/media/69838d_6bb87d2a9e4542339582c2405c2381f6~mv2.png/v1/fill/w_924,h_332,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Screen%20Shot%202022-05-06%20at%2011_57_03%20AM.png" alt="Harmonia Laboriosa"/>
 					<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create new account
 					</h2>
