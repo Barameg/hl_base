@@ -79,7 +79,7 @@
         </div>
 
         <div class="flex flex-shrink-0 items-center px-4">
-                <img class="h-8 w-auto" src="/hl_base/static/src/img/harmonia_logo_white.png" alt="Harmonia Laboriosa"/>
+                <img class="h-25 w-auto" src="/hl_base/static/src/img/harmonia_logo_white.png" alt="Harmonia Laboriosa"/>
         </div>
         <div class="mt-5 h-0 flex-1 overflow-y-auto">
           <nav class="space-y-1 px-2">
@@ -120,7 +120,7 @@
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex flex-grow flex-col overflow-y-auto bg-green-700 pt-5">
       <div class="flex flex-shrink-0 items-center px-4">
-        <img class="h-8 w-auto" src="/hl_base/static/src/img/harmonia_logo_white.png" alt="Harmonia Laboriosa"/>
+        <img class="h-25 w-auto" src="/hl_base/static/src/img/harmonia_logo_white.png" alt="Harmonia Laboriosa"/>
       </div>
       <div class="mt-5 flex flex-1 flex-col">
         <nav class="flex-1 space-y-1 px-2 pb-4">
