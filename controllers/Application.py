@@ -36,6 +36,7 @@ class ApplicationController(http.Controller):
         agent_uuid = cookies.get('agent_uuid')
         student_session = cookies.get('student_session')
         verificationEmail = cookies.get('verificationEmail')
+        application_uuid = cookies.get('application_uuid')
 
         partners = request.env['res.partner'].sudo()
         agent = partners.search([
@@ -54,39 +55,66 @@ class ApplicationController(http.Controller):
             return response
 
         if agent_uuid and student_session:
-            applications = request.env['partner.application'].sudo()
-            application = applications.search([
-                ('partner', '=', student.id),
-                ('name', '=', application_uuid)
-            ], limit=1)
-            student = partners.search([
-                ('agent', '=', agent.id),
-                ('student_session', '=', student_session),
-            ])
-            universities = partners.search([
-                ('is_university', '=', True)
-            ])
-            programs = request.env['university.program'].sudo().search([])
-            countries = request.env['res.country'].sudo().search([])
-            states = request.env['res.country.state'].sudo().search([])
-            data = {
-                'logo': agent.image_128.decode() if agent.image_128 else '',
-                'agent': partners.browse(agent.id),
-                'student': partners.browse(student.id),
-                'universities': universities,
-                'countries': countries,
-                'states': states,
-                'programs': programs,
-                'application': applications.browse(application.id)
-            }   
-            response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-#            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
-            response.set_cookie('email', expires=0, path='/%s/' % subdomain)
-            template = request.env['ir.ui.view']._render_template("hl_base.application", data)
-            response.set_data(template)
-            return response
-
+            if application_uuid:
+                applications = request.env['partner.application'].sudo()
+                student = partners.search([
+                    ('agent', '=', agent.id),
+                    ('student_session', '=', student_session),
+                ])
+                application = applications.search([
+                    ('partner', '=', student.id),
+                    ('name', '=', application_uuid)
+                ], limit=1)
+                universities = partners.search([
+                    ('is_university', '=', True)
+                ])
+                programs = request.env['university.program'].sudo().search([])
+                countries = request.env['res.country'].sudo().search([])
+                states = request.env['res.country.state'].sudo().search([])
+                data = {
+                    'logo': agent.image_128.decode() if agent.image_128 else '',
+                    'agent': partners.browse(agent.id),
+                    'student': partners.browse(student.id),
+                    'universities': universities,
+                    'countries': countries,
+                    'states': states,
+                    'programs': programs,
+                    'application': applications.browse(application.id)
+                }   
+                response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+    #            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
+                response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
+                response.set_cookie('email', expires=0, path='/%s/' % subdomain)
+                template = request.env['ir.ui.view']._render_template("hl_base.application", data)
+                response.set_data(template)
+                return response
+            else:
+                student = partners.search([
+                    ('agent', '=', agent.id),
+                    ('student_session', '=', student_session),
+                ])
+                universities = partners.search([
+                    ('is_university', '=', True)
+                ])
+                programs = request.env['university.program'].sudo().search([])
+                countries = request.env['res.country'].sudo().search([])
+                states = request.env['res.country.state'].sudo().search([])
+                data = {
+                    'logo': agent.image_128.decode() if agent.image_128 else '',
+                    'agent': partners.browse(agent.id),
+                    'student': partners.browse(student.id),
+                    'universities': universities,
+                    'countries': countries,
+                    'states': states,
+                    'programs': programs,
+                }   
+                response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+    #            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
+                response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
+                response.set_cookie('email', expires=0, path='/%s/' % subdomain)
+                template = request.env['ir.ui.view']._render_template("hl_base.application", data)
+                response.set_data(template)
+                return response
         for cookie in cookies:
             response.delete_cookie(cookie)
         response = request.redirect('/%s/login' % subdomain)
