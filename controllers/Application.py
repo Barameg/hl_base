@@ -54,6 +54,11 @@ class ApplicationController(http.Controller):
             return response
 
         if agent_uuid and student_session:
+            applications = request.env['partner.application'].sudo()
+            application = applications.search([
+                ('partner', '=', student.id),
+                ('name', '=', application_uuid)
+            ], limit=1)
             student = partners.search([
                 ('agent', '=', agent.id),
                 ('student_session', '=', student_session),
@@ -71,9 +76,9 @@ class ApplicationController(http.Controller):
                 'universities': universities,
                 'countries': countries,
                 'states': states,
-                'programs': programs
+                'programs': programs,
+                'application': applications.browse(application.id)
             }   
-            response = Response()
             response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
 #            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
             response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
@@ -89,11 +94,7 @@ class ApplicationController(http.Controller):
         # response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
         return response
     
-        # applications = request.env['partner.application'].sudo()
-        # application = applications.search([
-        #     ('partner', '=', student.id),
-        #     ('name', '=', application_uuid)
-        # ], limit=1)
+
         # if not application:
         #     universities = partners.search([
         #         ('is_university', '=', True)
