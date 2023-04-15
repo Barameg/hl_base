@@ -69,6 +69,7 @@ class ApplicationController(http.Controller):
                     ('is_university', '=', True)
                 ])
                 programs = request.env['university.program'].sudo().search([])
+                documents = request.env['university.program.document'].sudo().search([])
                 countries = request.env['res.country'].sudo().search([])
                 states = request.env['res.country.state'].sudo().search([])
                 data = {
@@ -79,12 +80,12 @@ class ApplicationController(http.Controller):
                     'countries': countries,
                     'states': states,
                     'programs': programs,
+                    'documents': documents,
                     'application': applications.browse(application.id)
                 }   
                 response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
     #            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
                 response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
-                response.set_cookie('email', expires=0, path='/%s/' % subdomain)
                 template = request.env['ir.ui.view']._render_template("hl_base.application", data)
                 response.set_data(template)
                 return response
