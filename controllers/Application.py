@@ -98,6 +98,7 @@ class ApplicationController(http.Controller):
                     ('is_university', '=', True)
                 ])
                 programs = request.env['university.program'].sudo().search([])
+                documents = request.env['university.program.document'].sudo().search([])
                 countries = request.env['res.country'].sudo().search([])
                 states = request.env['res.country.state'].sudo().search([])
                 data = {
@@ -108,6 +109,7 @@ class ApplicationController(http.Controller):
                     'countries': countries,
                     'states': states,
                     'programs': programs,
+                    'documents': documents,
                 }   
                 response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
     #            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
