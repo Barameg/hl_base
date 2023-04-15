@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="error" name="Error Page">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<script src="https://cdn.tailwindcss.com" />
+            <link href="/hl_base/static/src/css/style.css" rel="stylesheet"/>
+		</head>
+		<body>
+            <section class="flex items-center h-full sm:p-16 dark:bg-gray-900 dark:text-gray-100">
+                <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
+                    <div class="ui-error">
+                        <svg version="1.1" id="Capa_1" viewBox="0 0 50 50" >
+                            <circle style="fill:#D75A4A;" cx="25" cy="25" r="25"/>
+                            <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" points="16,34 25,25 34,16   "/>
+                            <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" points="16,16 25,25 34,34   "/>
+                        </svg>
+                    </div>
+                    <p class="text-3xl"><t t-esc="message"/></p>
+                    <a rel="noopener noreferrer" t-att-href="url" class="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"><t t-esc="buttonText"/></a>
+                </div>
+            </section>
+		</body>
+	</template>
+</odoo>

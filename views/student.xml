@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <!-- <record model="ir.ui.view" id="hl_base_student_form_view">
+            <field name="name">hl_base_student_form_view</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="student_uuid" attrs="{'invisible':[('subdomain', '=', False)]}"/>
+                                <field name="subdomain"/>
+                                <field name="student_color"/>
+                                <field name="student_shade"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="students" string="Students">
+                                <field name="students" context="{'tree_view_ref': 'hl_base.student_tree_view', 'form_view_ref': 'hl_base.student_form_view'}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record> -->
+        <record model="ir.ui.view" id="student_tree_view">
+            <field name="name">student_tree_view</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="60"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="verificationCode"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

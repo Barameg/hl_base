@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="module_category_hl_base" model="ir.module.category">
+        <field name="name">HL</field>
+        <field name="sequence">17</field>
+    </record>
+
+
+<!--    <record id="hl_base_management_group_user" model="res.groups">-->
+<!--        <field name="name">User</field>-->
+<!--        <field name="category_id" ref="hl_base.module_category_hl_base"/>-->
+<!--        <field name="implied_ids" eval="[(4, ref('hl_base.hl_base_management_group_user'))]"/>-->
+<!--    </record>-->
+    <record id="hl_base_group_admin" model="res.groups">
+        <field name="name">HL Administrator</field>
+<!--        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>-->
+        <field name="category_id" ref="hl_base.module_category_hl_base"/>
+    </record>
+</odoo>

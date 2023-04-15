@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hl_base_university_form_view">
+            <field name="name">hl_base_university_form_view</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button type="object" string="Test Token"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="programs" string="Programs">
+                                <field name="programs" context="{'tree_view_ref': 'hl_base.university_program_tree_view', 'form_view_ref': 'hl_base.university_program_form_view'}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hl_base_university_tree_view">
+            <field name="name">hl_base_university_tree_view</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="60"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hl_base_application_service_document_form_view">
+            <field name="name">hl_base_application_service_document_form_view</field>
+            <field name="model">application.service.document</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button type="object" string="Test Token"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+<!--                        <notebook>-->
+<!--                            <page name="general_properties" string="General Properties">-->
+<!--                                <group>-->
+<!--                                    <group>-->
+
+<!--                                    </group>-->
+<!--                                </group>-->
+<!--                            </page>-->
+<!--                            <page name="notes" string="Notes">-->
+<!--                                <form>-->
+<!--                                    <field name="notes"/>-->
+<!--                                </form>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hl_base_application_service_document_tree_view">
+            <field name="name">hl_base_application_service_document_tree_view</field>
+            <field name="model">application.service.document</field>
+            <field name="priority" eval="60"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

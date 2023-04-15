@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="login" name="Portal Login">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<script src="https://cdn.tailwindcss.com"/>
+			<link rel="stylesheet" href="/hl_base/static/src/css/style.css"/>
+		</head>
+
+		<body>
+			<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+				<div class="sm:mx-auto sm:w-full sm:max-w-md">
+					<img class="mx-auto h-25 w-auto"
+					t-att-src="'data:image/png;base64,' + logo" t-att-alt="agent.name"/>
+					<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account
+					</h2>
+				</div>
+
+				<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+					<div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+						<form class="space-y-6" t-att-action="'/' + agent.subdomain + '/login/submit'" method="POST">
+							<div>
+								<label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+								<div class="mt-1">
+									<input id="email" name="email" type="email" autocomplete="email" required="true"
+										t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'" />
+								</div>
+							</div>
+
+							<div>
+								<label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+								<div class="mt-1">
+									<input id="password" name="password" type="password" autocomplete="current-password"
+										required="true"
+										t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm' " />
+								</div>
+							</div>
+
+							<div class="flex items-center justify-between">
+								<div class="flex items-center">
+									<input id="remember-me" name="remember-me" type="checkbox"
+										t-att-class="'h-4 w-4 rounded border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'" />
+									<label for="remember-me" class="ml-2 block text-sm text-gray-900">
+									Remember me</label>
+								</div>
+
+<!--								<div class="text-sm">-->
+<!--									<a href="#" class="font-medium text-green-600 hover:text-green-500">Forgot your-->
+<!--										password?</a>-->
+<!--								</div>-->
+							</div>
+
+							<div>
+								<button href="#" type="submit"
+									t-att-class="'flex w-full justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Sign In</button>
+							</div>
+						</form>
+
+						<div class="mt-6">
+							<div class="relative">
+								<div class="absolute inset-0 flex items-center">
+									<div class="w-full border-t border-gray-300" />
+								</div>
+								<div class="relative flex justify-center text-sm">
+									<span class="bg-white px-2 text-gray-500">Do not have an account ?</span>
+								</div>
+							</div>
+
+							<div class="mt-6">
+								<div>
+									<a t-att-href="'/' + agent.subdomain + '/signup'"
+										t-att-class="'flex w-full justify-center rounded-md bg-white border border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' shadow-sm focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2 hover:bg-gray-50'">
+										Sign Up</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<!--			<script src="/hl_base/static/src/js/login.js" />-->
+		</body>
+	</template>
+</odoo>

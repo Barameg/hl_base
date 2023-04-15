@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="application" name="Student Application">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<script src="https://cdn.tailwindcss.com" />
+			<link rel="stylesheet" href="/hl_base/static/src/css/style.css"/>
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+		</head>
+		<body>
+			<div>
+				<t t-call="hl_base.mobile_sidebar"/>
+				<t t-call="hl_base.sidebar"/>
+
+				<div class="flex flex-1 flex-col md:pl-64">
+					<div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+						<button id="openSidebar" type="button" class="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' md:hidden">
+							<span class="sr-only">Open sidebar</span>
+							<!-- Heroicon name: outline/bars-3-bottom-left -->
+							<svg class="h-6 w-6"
+								xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+							</svg>
+						</button>
+					</div>
+					<main>
+						<div class="py-6">
+							<div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+								<form t-att-action="'/' + agent.subdomain + '/application/submit'" method="POST" class="space-y-8 divide-y divide-gray-200">
+									<nav aria-label="Progress">
+										<ol role="list" class="space-y-4 md:flex md:space-y-0 md:space-x-8">
+											<li class="md:flex-1">
+												<!-- Completed Step -->
+												<a href="#" id="programInformationStep" t-att-class="'group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 1</span>
+													<span class="text-sm font-medium">Program Information</span>
+												</a>
+												<a href="#" id="programInformationStepDisabled" t-att-class="'hidden group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 1</span>
+													<span class="text-sm font-medium">Program Information</span>
+												</a>
+											</li>
+
+											<li class="md:flex-1">
+											<!-- Current Step -->
+											<a href="#" id="personalInformationStepInactive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 2</span>
+												<span class="text-sm font-medium">Personal Information</span>
+											</a>
+											<a href="#" id="personalInformationStepInactiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 2</span>
+												<span class="text-sm font-medium">Personal Information</span>
+											</a>
+											</li>
+											<li class="md:flex-1">
+											<!-- Current Step -->
+											<a href="#" id="contactInformationStepInactive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 3</span>
+												<span class="text-sm font-medium">Contact Information</span>
+											</a>
+											<a href="#" id="contactInformationStepInactiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 3</span>
+												<span class="text-sm font-medium">Contact Information</span>
+											</a>
+											</li>
+											<li class="md:flex-1">
+											<!-- Current Step -->
+											<a href="#" id="contactInformationStepActive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 4</span>
+												<span class="text-sm font-medium">Contact Information</span>
+											</a>
+											<a href="#" id="contactInformationStepActiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 4</span>
+												<span class="text-sm font-medium">Contact Information</span>
+											</a>
+											</li>
+<!-- 
+											<li class="md:flex-1">
+											<a href="#"  id="personalInformationStep" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 4</span>
+												<span class="text-sm font-medium">Application Preview</span>
+											</a>
+											</li> -->
+										</ol>
+									</nav>
+
+									<div id="programInformationForm" class="step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
+										<div>
+											<h3 class="text-lg font-medium leading-6 text-gray-900">Program Information</h3>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+										</div>
+										<div class="space-y-6 sm:space-y-5">
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="university" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">University</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<select id="university" required="true" name="university" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<t t-if="universities">
+															<t t-foreach = "universities" t-as = "university">
+																<option t-att-id="university.id"><t t-esc="university.name"/></option>
+															</t>
+														</t>
+													</select>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="program" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Program</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<select id="program" required="true" name="program" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<t t-if="programs">
+															<t t-foreach = "programs" t-as = "program">
+																<option t-att-class="'hidden' if application.university.id != program.university.id else ''" t-att-id="program.id" t-att-data-country-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" ><t t-esc="program.name"/></option>
+																<!-- <option t-att-id="program.id"  t-att-data-university-id="program.university.id"><t t-esc="program.name"/></option> -->
+															</t>
+														</t>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div id="personalInformationForm" class="hidden step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
+										<div>
+											<h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+										</div>
+										<div class="space-y-6 sm:space-y-5">
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="first_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">First Name</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<!-- <t t-if="application"> -->
+													<input id="first_name" t-att-value="application.first_name if application else ''" required="true" name="first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+													<!-- </t> -->
+													<!-- <t t-else="">
+														<input id="first_name" t-att-value="'NA'" required="true" name="first_name" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm"/>
+													</t> -->
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="middleName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Middle Name</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input id="middle_name" t-att-value="application.middle_name if application else ''" required="true" name="middle_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="lastName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Last Name</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input id="last_name" t-att-value="application.last_name if application else ''" required="true" name="last_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="gender" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Gender</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<div class="space-y-4 pt-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+														<div class="flex items-center">
+															<input id="female" value="f" name="gender" type="radio" t-att-checked="True if application and application.gender == 'f' else False" t-att-class="'h-4 w-4 border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-' + agent.agent_color + '-' + agent.agent_shade"/>
+															<label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
+														</div>
+														<div class="flex items-center">
+															<input id="male" value="m" name="gender" type="radio" t-att-checked="True if application and application.gender == 'm' else False" t-att-class="'h-4 w-4 border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-' + agent.agent_color + '-' + agent.agent_shade"/>
+															<label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="dob" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Date of birth</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input type="date" required="true" id="dob" name="dob" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="marital_status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Marital Status</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<div class="space-y-4 pt-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+														<div class="flex items-center">
+															<input id="divorced" value="d" name="marital_status" type="radio"  t-att-checked="True if application and application.marital_status == 'd' else False" t-att-class="'h-4 w-4 border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-' + agent.agent_color + '-' + agent.agent_shade"/>
+															<label for="divorced" class="ml-3 block text-sm font-medium text-gray-700">Divorced</label>
+														</div>
+														<div class="flex items-center">
+															<input id="married" value="m" name="marital_status" type="radio"  t-att-checked="True if application and application.marital_status == 'm' else False" t-att-class="'h-4 w-4 border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-' + agent.agent_color + '-' + agent.agent_shade "/>
+															<label for="married" class="ml-3 block text-sm font-medium text-gray-700">Married</label>
+														</div>
+														<div class="flex items-center">
+															<input id="single" value="s" name="marital_status" type="radio"  t-att-checked="True if application and application.marital_status == 's' else False" t-att-class="'h-4 w-4 border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-' + agent.agent_color + '-' + agent.agent_shade "/>
+															<label for="single" class="ml-3 block text-sm font-medium text-gray-700">Single</label>
+														</div>
+														<div class="flex items-center">
+															<input id="widow" value="w" name="marital_status" type="radio"  t-att-checked="True if application and application.marital_status == 'w' else False" t-att-class="'h-4 w-4 border-gray-300 text-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-' + agent.agent_color + '-' + agent.agent_shade "/>
+															<label for="widow" class="ml-3 block text-sm font-medium text-gray-700">Widow</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="nationality" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Nationality</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<select id="nationality" required="true" name="nationality" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<t t-if="countries">
+															<t t-foreach = "countries" t-as = "country">
+																<option t-att-id="country.id"  t-att-selected="application.nationality.id == country.id if application else False"><t t-esc="country.name"/></option>
+															</t>
+														</t>
+													</select>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="passport_number" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Nº</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input id="passport_number" required="true" name="passport_number" t-att-value="application.passport_number if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="passport_issue_date" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Issue</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input type="date" required="true" id="passport_issue_date" name="passport_issue_date"  t-att-value="application.passport_issue_date if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="passport_expiry_date" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Expiry</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input type="date" required="true" id="passport_expiry_date" name="passport_expiry_date"  t-att-value="application.passport_expiry_date if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="contactInformationForm" class="hidden step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
+										<div>
+											<h3 class="text-lg font-medium leading-6 text-gray-900">Address Information</h3>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+										</div>
+										<div class="space-y-6 sm:space-y-5">
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="address_line_1" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Address Line 1</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input id="address_line_1" required="true" name="address_line_1" t-att-value="application.address_line_1 if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="address_line_2" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Address Line 2</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input id="address_line_2" required="true" name="address_line_2" t-att-value="application.address_line_1 if application else ''"  t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="city" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">City</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<input id="city" required="true" name="city" t-att-value="application.address_line_1 if application else ''"  t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+												</div>
+											</div>
+											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Country</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<select id="country" required="true" name="country" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<t t-if="countries">
+															<t t-foreach = "countries" t-as = "country">
+																<option t-att-id="country.id" t-att-selected="application.country.id == country.id if application else False"><t t-esc="country.name"/></option>
+															</t>
+														</t>
+													</select>
+												</div>
+											</div>
+											<div id="stateWrapper" class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<label for="state" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">State</label>
+												<div class="mt-1 sm:col-span-2 sm:mt-0">
+													<select id="state" name="state" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<t t-if="states">
+															<t t-foreach="states" t-as = "state">
+																<option t-att-id="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" ><t t-esc="state.name"/></option>
+															</t>
+														</t>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div id="requiredDocumentsForm" class="step hidden space-y-6 pt-8 sm:space-y-5 sm:pt-10">
+										<div>
+											<h3 class="text-lg font-medium leading-6 text-gray-900">Required Documents</h3>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+										</div>
+										<div id="programDocuments" class="space-y-6 sm:space-y-5">
+										</div>
+									</div>
+									<div class="pt-5">
+										<div class="flex justify-end">
+											<button id="cancelApplication" t-att-class="'hidden rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Cancel</button>
+											<button id="previousStepButton" t-att-class="'hidden rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Previous</button>
+											<button id="nextStepButton" t-att-class="'ml-3 inline-flex justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Next</button>
+											<button id="submit" t-att-class="'hidden ml-3 inline-flex justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+			<script src="/hl_base/static/src/js/datapicker.js"/>
+			<script src="/hl_base/static/src/js/application.js"/>
+		</body>
+	</template>
+</odoo>
