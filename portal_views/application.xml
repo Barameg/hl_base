@@ -12,7 +12,6 @@
 			<div>
 				<t t-call="hl_base.mobile_sidebar"/>
 				<t t-call="hl_base.sidebar"/>
-
 				<div class="flex flex-1 flex-col md:pl-64">
 					<div class="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
 						<button id="openSidebar" type="button" class="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' md:hidden">
@@ -37,45 +36,44 @@
 													<span class="text-sm font-medium">Program Information</span>
 												</a>
 												<a href="#" id="programInformationStepDisabled" t-att-class="'hidden group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 1</span>
+													<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 1</span>
 													<span class="text-sm font-medium">Program Information</span>
 												</a>
 											</li>
-
 											<li class="md:flex-1">
-											<!-- Current Step -->
-											<a href="#" id="personalInformationStepInactive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 2</span>
-												<span class="text-sm font-medium">Personal Information</span>
-											</a>
-											<a href="#" id="personalInformationStepInactiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 2</span>
-												<span class="text-sm font-medium">Personal Information</span>
-											</a>
+												<!-- Current Step -->
+												<a href="#" id="personalInformationStepInactive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 2</span>
+													<span class="text-sm font-medium">Personal Information</span>
+												</a>
+												<a href="#" id="personalInformationStepInactiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 2</span>
+													<span class="text-sm font-medium">Personal Information</span>
+												</a>
 											</li>
 											<li class="md:flex-1">
-											<!-- Current Step -->
-											<a href="#" id="contactInformationStepInactive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 3</span>
-												<span class="text-sm font-medium">Contact Information</span>
-											</a>
-											<a href="#" id="contactInformationStepInactiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 3</span>
-												<span class="text-sm font-medium">Contact Information</span>
-											</a>
+												<!-- Current Step -->
+												<a href="#" id="contactInformationStepInactive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 3</span>
+													<span class="text-sm font-medium">Contact Information</span>
+												</a>
+												<a href="#" id="contactInformationStepInactiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 3</span>
+													<span class="text-sm font-medium">Contact Information</span>
+												</a>
 											</li>
 											<li class="md:flex-1">
-											<!-- Current Step -->
-											<a href="#" id="contactInformationStepActive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 4</span>
-												<span class="text-sm font-medium">Contact Information</span>
-											</a>
-											<a href="#" id="contactInformationStepActiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
-												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 4</span>
-												<span class="text-sm font-medium">Contact Information</span>
-											</a>
+												<!-- Current Step -->
+												<a href="#" id="contactInformationStepActive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 4</span>
+													<span class="text-sm font-medium">Contact Information</span>
+												</a>
+												<a href="#" id="contactInformationStepActiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
+													<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 4</span>
+													<span class="text-sm font-medium">Contact Information</span>
+												</a>
 											</li>
-<!-- 
+											<!-- 
 											<li class="md:flex-1">
 											<a href="#"  id="personalInformationStep" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
 												<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 4</span>
@@ -84,7 +82,6 @@
 											</li> -->
 										</ol>
 									</nav>
-
 									<div id="programInformationForm" class="step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
 										<div>
 											<h3 class="text-lg font-medium leading-6 text-gray-900">Program Information</h3>
@@ -97,7 +94,9 @@
 													<select id="university" required="true" name="university" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<t t-if="universities">
 															<t t-foreach = "universities" t-as = "university">
-																<option t-att-id="university.id"><t t-esc="university.name"/></option>
+																<option t-att-id="university.id">
+																	<t t-esc="university.name"/>
+																</option>
 															</t>
 														</t>
 													</select>
@@ -109,7 +108,9 @@
 													<select id="program" required="true" name="program" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<t t-if="programs">
 															<t t-foreach = "programs" t-as = "program">
-																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-id="program.id" t-att-data-country-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" ><t t-esc="program.name"/></option>
+																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-id="program.id" t-att-data-country-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" >
+																	<t t-esc="program.name"/>
+																</option>
 																<!-- <option t-att-id="program.id"  t-att-data-university-id="program.university.id"><t t-esc="program.name"/></option> -->
 															</t>
 														</t>
@@ -118,7 +119,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div id="personalInformationForm" class="hidden step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
 										<div>
 											<h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
@@ -198,7 +198,9 @@
 													<select id="nationality" required="true" name="nationality" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<t t-if="countries">
 															<t t-foreach = "countries" t-as = "country">
-																<option t-att-id="country.id"  t-att-selected="application.nationality.id == country.id if application else False"><t t-esc="country.name"/></option>
+																<option t-att-id="country.id"  t-att-selected="application.nationality.id == country.id if application else False">
+																	<t t-esc="country.name"/>
+																</option>
 															</t>
 														</t>
 													</select>
@@ -254,7 +256,9 @@
 													<select id="country" required="true" name="country" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<t t-if="countries">
 															<t t-foreach = "countries" t-as = "country">
-																<option t-att-id="country.id" t-att-selected="application.country.id == country.id if application else False"><t t-esc="country.name"/></option>
+																<option t-att-id="country.id" t-att-selected="application.country.id == country.id if application else False">
+																	<t t-esc="country.name"/>
+																</option>
 															</t>
 														</t>
 													</select>
@@ -266,7 +270,9 @@
 													<select id="state" name="state" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<t t-if="states">
 															<t t-foreach="states" t-as = "state">
-																<option t-att-id="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" ><t t-esc="state.name"/></option>
+																<option t-att-id="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" >
+																	<t t-esc="state.name"/>
+																</option>
 															</t>
 														</t>
 													</select>
@@ -274,7 +280,6 @@
 											</div>
 										</div>
 									</div>
-
 									<div id="requiredDocumentsForm" class="step hidden space-y-6 pt-8 sm:space-y-5 sm:pt-10">
 										<div>
 											<h3 class="text-lg font-medium leading-6 text-gray-900">Required Documents</h3>
