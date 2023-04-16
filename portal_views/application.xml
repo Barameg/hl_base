@@ -110,7 +110,7 @@
 														<option value="" selected="true"/>
 														<t t-if="programs">
 															<t t-foreach = "programs" t-as = "program">
-																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-id="program.id" t-att-data-country-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" >
+																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-id="program.id" t-att-data-university-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" >
 																	<t t-esc="program.name"/>
 																</option>
 																<!-- <option t-att-id="program.id"  t-att-data-university-id="program.university.id"><t t-esc="program.name"/></option> -->
