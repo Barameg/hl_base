@@ -207,7 +207,9 @@
             // }
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
             Array.from(programDocuments).forEach(inputWrapper =>{
-                console.log(inputWrapper.dataset)
+                if(inputWrapper.dataset.program != event.target.options[event.target.selectedIndex].id){
+                    inputWrapper.classList.add('hidden')
+                }
             })
         }
         if(event.target.matches('input[type="file"]')){
