@@ -92,8 +92,8 @@
 												<label for="university" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">University</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="university" required="true" name="university" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<option value="" selected/>
 														<t t-if="universities">
-															<option value="" selected></option>
 															<t t-foreach = "universities" t-as = "university">
 																<option t-att-id="university.id">
 																	<t t-esc="university.name"/>
@@ -107,8 +107,8 @@
 												<label for="program" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Program</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="program" required="true" name="program" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<option value="" selected/>
 														<t t-if="programs">
-															<option value="" selected></option>
 															<t t-foreach = "programs" t-as = "program">
 																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-id="program.id" t-att-data-country-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" >
 																	<t t-esc="program.name"/>
@@ -198,8 +198,8 @@
 												<label for="nationality" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Nationality</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="nationality" required="true" name="nationality" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<option value="" selected/>
 														<t t-if="countries">
-															<option value="" selected></option>
 															<t t-foreach = "countries" t-as = "country">
 																<option t-att-id="country.id"  t-att-selected="application.nationality.id == country.id if application else False">
 																	<t t-esc="country.name"/>
@@ -257,6 +257,7 @@
 												<label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Country</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="country" required="true" name="country" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<option value="" selected/>
 														<t t-if="countries">
 															<t t-foreach = "countries" t-as = "country">
 																<option t-att-id="country.id" t-att-selected="application.country.id == country.id if application else False">
@@ -271,6 +272,7 @@
 												<label for="state" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">State</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="state" name="state" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
+														<option value="" selected/>
 														<t t-if="states">
 															<t t-foreach="states" t-as = "state">
 																<option t-att-id="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" >
