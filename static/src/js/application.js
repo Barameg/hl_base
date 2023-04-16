@@ -209,6 +209,8 @@
             Array.from(programDocuments).forEach(inputWrapper =>{
                 if(inputWrapper.dataset.program != event.target.options[event.target.selectedIndex].id){
                     inputWrapper.classList.add('hidden')
+                } else {
+                    inputWrapper.classList.remove('hidden')
                 }
             })
         }
