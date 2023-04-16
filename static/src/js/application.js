@@ -192,22 +192,9 @@
         }
         if(event.target.matches('#program')){
             let programsDropdown = event.target
-            // let programDocumentsRequest = await postData('/api/documents', {
-            //     program: programsDropdown.options[programsDropdown.selectedIndex].id
-            // })
-            // let programDocumentsWrapper = document.querySelector('#programDocuments')
-            // programDocumentsWrapper.innerHTML = ''
-            // for (const doc of programDocumentsRequest.result.data.documents) {
-            //     const documentElementHTML = `
-            //     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-            //         <label for="${toCamelCase(doc.name)}" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">${doc.name}</label>
-            //         <input required="true" type="file" name="${toCamelCase(doc.name)}" id="${toCamelCase(doc.name)}" class="block w-full appearance-none rounded-md border border-gray-300 px-3 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="www.example.com">
-            //     </div>`
-            //     programDocumentsWrapper.insertAdjacentHTML('beforeend',documentElementHTML)
-            // }
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
             Array.from(programDocuments).forEach(inputWrapper =>{
-                if(inputWrapper.dataset.program != event.target.options[event.target.selectedIndex].id){
+                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].id){
                     inputWrapper.classList.add('hidden')
                 } else {
                     inputWrapper.classList.remove('hidden')
