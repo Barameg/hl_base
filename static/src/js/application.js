@@ -204,16 +204,18 @@
         if(event.target.matches('input[type="file"]')){
             if(event.target.files.length > 0 ){
                 let exceedsLimit = false
-                if(event.target.files[0].size > docs[event.target.name].allowed_size * 1024 * 1024){
+                let allowedSize = event.target.dataset.allowedSize
+                let allowedTypes = event.target.dataset.allowedTypes
+                if(event.target.files[0].size > allowedSize * 1024 * 1024){
                     exceedsLimit = true
                 }
                 let typeFound = false
-                for(const type of docs[event.target.name].allowed_types.split(',')){
+                for(const type of allowedTypes.split(',')){
                     if(event.target.files[0].type.includes(type.trim())) typeFound = true
                 }
                 if(!typeFound || exceedsLimit){
                     event.target.value = ''
-                    alert(`Only files not exceeding ${docs[event.target.name].allowed_size} MB and of type ${docs[event.target.name].allowed_types} are allowed`)
+                    alert(`Only files not exceeding ${allowedSize} MB and of type ${allowedTypes} are allowed`)
                 }
             }
         }
