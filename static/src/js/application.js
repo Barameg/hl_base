@@ -181,12 +181,19 @@
             console.log('university changed')
             let programsDropdown = document.querySelector('#program')
             let programsOptions = programsDropdown.querySelectorAll('option')
-            Array.from(programsOptions).filter(option => option.dataset.universityId == event.target.options[event.target.selectedIndex].id).forEach(option=>{
-                option.classList.remove('hidden')
+            Array.from(programsOptions).forEach(option=>{
+                if(option.dataset.universityId == event.target.options[event.target.selectedIndex].id){
+                    option.classList.remove('hidden')
+                } else {
+                    option.classList.add('hidden')
+                }
             })
-            Array.from(programsOptions).filter(option => option.dataset.universityId != event.target.options[event.target.selectedIndex].id).forEach(option=>{
-                option.classList.add('hidden')
-            })
+            // Array.from(programsOptions).filter(option => option.dataset.universityId == event.target.options[event.target.selectedIndex].id).forEach(option=>{
+            //     option.classList.remove('hidden')
+            // })
+            // Array.from(programsOptions).filter(option => option.dataset.universityId != event.target.options[event.target.selectedIndex].id).forEach(option=>{
+            //     option.classList.add('hidden')
+            // })
             const universityProgramOptions = Array.from(programsOptions).filter(option => !option.classList.contains('hidden'))
             programsDropdown.selectedIndex = universityProgramOptions.length ? universityProgramOptions[0].index : -1
         }
