@@ -276,6 +276,14 @@ class ApplicationController(http.Controller):
         response = Response()
         cookies = http.request.httprequest.cookies
         partners = request.env['res.partner'].sudo()
+        countries = request.env['res.country'].sudo()
+        states = request.env['res.country.state'].sudo()
+        universities = partners.search([
+            ('is_university', '=', True)
+        ])
+        programs = request.env['university.program'].sudo()
+        documents = request.env['university.program.document'].sudo()
+        applications = request.env['partner.application'].sudo()
 
         agent_uuid = cookies.get('agent_uuid')
         student_session = cookies.get('student_session')
@@ -321,7 +329,85 @@ class ApplicationController(http.Controller):
                 response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
                 response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
                 return response
+
+            country = countries.search([
+                ('id', '=', kw.get('country'))
+            ])
+            university = universities.search([
+                ('id', '=', kw.get('university'))
+            ])
+            nationality = countries.search([
+                ('id', '=', kw.get('nationality'))
+            ])
+
+            if not country or not university or not nationality:
+                response = request.redirect('/%s/application' % subdomain)
+                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
+                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                return response
+
+            if country.state_ids and not kw.get('state'):
+                response = request.redirect('/%s/application' % subdomain)
+                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
+                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                return response
+
+            state = states.search([
+                ('id', '=', kw.get('state'))
+            ])
             
+            if country.state_ids and not state:
+                response = request.redirect('/%s/application' % subdomain)
+                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
+                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                return response
+
+            student = partners.search([
+                ('agent_uuid', '=', agent_uuid),
+                ('student_session', '=', student_session),
+            ])
+            
+            if not student:
+                response = request.redirect('/%s/login' % subdomain)
+                response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
+                response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
+                return response
+            
+            application = applications.create({
+                'university': university.id,
+                'partner': student.id,
+                'first_name': kw.get('first_name'),
+                'middle_name': kw.get('middle_name'),
+                'last_name': kw.get('last_name'),
+                'gender': kw.get('gender'),
+                'email': kw.get('email'),
+                'phone': kw.get('phone'),
+                'mobile': kw.get('mobile'),
+                'dob': kw.get('dob'),
+                # father_first_name = fields.Char()
+                # father_last_name = fields.Char()
+                # mother_first_name = fields.Char()
+                # mother_last_name = fields.Char()
+                # marital_status = fields.Selection([
+                #     ('m', 'Married'),
+                #     ('s', 'Single'),
+                #     ('d', 'Divorced'),
+                #     ('w', 'Widow')
+                # ])
+                'nationality': kw.get('nationality'),
+                'passport_number': kw.get('passport_number'),
+                'passport_issue_date': kw.get('passport_issue_date'),
+                'passport_expiry_date': kw.get('passport_expiry_date'),
+                'contact_number': kw.get('contact_number'),
+                'address_line_1': kw.get('address_line_1'),
+                'address_line_2': kw.get('address_line_2'),
+                'city': kw.get('city'),
+                'state': state.id,
+                'zipcode': kw.get('zipcode'),
+                'country': country.id,
+                'university': university.id,
+                'program': program.id,
+            })
             response = request.redirect('/%s/dashboard' % subdomain)
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
