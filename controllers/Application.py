@@ -273,8 +273,57 @@ class ApplicationController(http.Controller):
 
     @http.route('/<string:subdomain>/application/submit', type='http', auth='none', website=True, csrf=False)
     def application_submit(self, subdomain, **kw):
+        response = Response()
         cookies = http.request.httprequest.cookies
+        partners = request.env['res.partner'].sudo()
+
         agent_uuid = cookies.get('agent_uuid')
         student_session = cookies.get('student_session')
-        email = cookies.get('email')
-        print(kw)
+        verificationEmail = cookies.get('verificationEmail')
+
+        agent = partners.search([
+            ('subdomain', '=', subdomain)
+        ], limit=1)
+
+        if not agent:
+            # redirect to agent not found 
+            return "Agent not found"
+
+        if verificationEmail:
+            for cookie in cookies:
+                response.delete_cookie(cookie)
+            response = request.redirect('/%s/signupVerification' % subdomain)
+            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            return response
+
+        if agent_uuid and student_session:
+            required_fields = [
+                'university',
+                'program',
+                'first_name',
+                'middle_name',
+                'last_name',
+                'gender',
+                'dob',
+                'marital_status',
+                'nationality',
+                'passport_number',
+                'passport_issue_date',
+                'passport_expiry_date',
+                'address_line_1',
+                'address_line_2',
+                'city',
+                'country',
+            ]
+
+            if any([not kw.get(required_field) for required_field in required_fields]):
+                response = request.redirect('/%s/application' % subdomain)
+                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
+                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                return response
+            
+            response = request.redirect('/%s/dashboard' % subdomain)
+            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
+            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            return response
+
