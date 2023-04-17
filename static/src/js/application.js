@@ -166,9 +166,9 @@
         event.target.classList.add('disabled')
         let form = event.target.closest('form')
         if(form.checkValidity()){
-            let first_name = document.querySelector('#firstName').value
-            let middle_name = document.querySelector('#middleName').value
-            let last_name = document.querySelector('#lastName').value
+            let first_name = document.querySelector('#first_name').value
+            let middle_name = document.querySelector('#middle_name').value
+            let last_name = document.querySelector('#last_name').value
             let gender = document.querySelector('input[name="gender"]:checked').value
             let dob = document.querySelector('#dob').value
             // father_first_name = fields.Char()
