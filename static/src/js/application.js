@@ -179,8 +179,8 @@
             let nationalityElement = document.querySelector('#nationality')
             let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
             let passport_number = document.querySelector('#passport_number').value
-            let passport_issue_date = document.querySelector('#passport_issue').value
-            let passport_expiry_date = document.querySelector('#passport_expiry').value
+            let passport_issue_date = document.querySelector('#passport_issue_date').value
+            let passport_expiry_date = document.querySelector('#passport_expiry_date').value
             let contact_number = document.querySelector('#nationality').value
             let address_line_1 = document.querySelector('#address_line_1').value
             let address_line_2 = document.querySelector('#address_line_2').value
