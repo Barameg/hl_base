@@ -124,7 +124,7 @@
                     // mother_first_name: fields.Char()
                     // mother_last_name: fields.Char()
                     marital_status: marital_status,
-                    nationality: nationality,
+                    nationality: parseInt(nationality),
                     passport_number: passport_number,
                     passport_issue_date: passport_issue_date,
                     passport_expiry_date: passport_expiry_date,
@@ -134,9 +134,9 @@
                     city: city,
                     state: state,
                     // zipcode: zipcode,
-                    country: country,
-                    university: university,
-                    program: program
+                    country: parseInt(country),
+                    university: parseInt(university),
+                    program: parseInt(program)
                 }
                 const formData = new FormData();
                 formData.append('jsonData', JSON.stringify(jsonData));
