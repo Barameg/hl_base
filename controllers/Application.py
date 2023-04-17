@@ -336,6 +336,11 @@ class ApplicationController(http.Controller):
             university = universities.search([
                 ('id', '=', kw.get('university'))
             ])
+            
+            program = programs.search([
+                ('id', '=', kw.get('program'))
+            ])
+            
             nationality = countries.search([
                 ('id', '=', kw.get('nationality'))
             ])
