@@ -167,6 +167,14 @@
         if(event.target.matches('#country')){
             let statesDropdown = document.querySelector('#state')
             let statesOptions = statesDropdown.querySelectorAll('option')
+            Array.from(statesOptions).forEach(option=>{
+                if(option.dataset.countryId == event.target.options[event.target.selectedIndex].dataset.id){
+                    option.classList.remove('hidden')
+                } else {
+                    option.classList.add('hidden')
+                }
+            })
+
             Array.from(statesOptions).filter(option => option.dataset.countryId == event.target.options[event.target.selectedIndex].id).forEach(option=>{
                 option.classList.remove('hidden')
             })
@@ -182,7 +190,7 @@
             let programsDropdown = document.querySelector('#program')
             let programsOptions = programsDropdown.querySelectorAll('option')
             Array.from(programsOptions).forEach(option=>{
-                if(option.dataset.universityId == event.target.options[event.target.selectedIndex].id){
+                if(option.dataset.universityId == event.target.options[event.target.selectedIndex].dataset.id){
                     option.classList.remove('hidden')
                 } else {
                     option.classList.add('hidden')
