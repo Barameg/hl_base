@@ -227,13 +227,17 @@
                 university: parseInt(university),
                 program: parseInt(program)
             }
-            const formData = new FormData();
-            formData.append('jsonData', JSON.stringify(jsonData));
-
-            let docs = document.querySelectorAll('input[type="file"]')
-            for(const doc of docs){
-                formData.append(camelToSpace(doc.id), doc.files[0]);
+            // const formData = new FormData();
+            // formData.append('jsonData', JSON.stringify(jsonData));
+            const formData = new URLSearchParams();
+            for(const [key, value] of Object.entries(jsonData)){
+                formData.append(key, value)
             }
+            console.log(formData)
+            // let docs = document.querySelectorAll('input[type="file"]')
+            // for(const doc of docs){
+            //     formData.append(camelToSpace(doc.id), doc.files[0]);
+            // }
 
             await postForm(event.target.getAttribute('action'), formData)
             // let applicationRequest = await postForm('/application/submit', formData)
