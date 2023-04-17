@@ -235,7 +235,7 @@
                 formData.append(camelToSpace(doc.id), doc.files[0]);
             }
 
-            await postForm('/application/submit', formData)
+            await postForm(event.target.getAttribute('action'), formData)
             // let applicationRequest = await postForm('/application/submit', formData)
             // if(applicationRequest.success ){
             //     window.location.href = '/dashboard'
