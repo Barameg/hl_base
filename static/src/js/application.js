@@ -88,7 +88,7 @@
                 // mother_last_name = fields.Char()
                 let marital_status = document.querySelector('input[name="marital_status"]:checked').value
                 let nationalityElement = document.querySelector('#nationality')
-                let nationality = nationalityElement.options[nationalityElement.selectedIndex].id
+                let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
                 let passport_number = document.querySelector('#passport_number').value
                 let passport_issue_date = document.querySelector('#passport_issue').value
                 let passport_expiry_date = document.querySelector('#passport_expiry').value
@@ -99,17 +99,17 @@
                 let stateElement = document.querySelector('#state')
                 let state;
                 try {
-                    state = stateElement.options[stateElement.selectedIndex].id
+                    state = stateElement.options[stateElement.selectedIndex].dataset.id
                 } catch(e){
                     state = ''
                 }
                 // let zipcode = document.querySelector('#zipcode').value
                 let countryElement = document.querySelector('#country')
-                let country = countryElement.options[countryElement.selectedIndex].id
+                let country = countryElement.options[countryElement.selectedIndex].dataset.id
                 let universityElement = document.querySelector('#university')
-                let university = universityElement.options[universityElement.selectedIndex].id
+                let university = universityElement.options[universityElement.selectedIndex].dataset.id
                 let programElement = document.querySelector('#program')
-                let program = programElement.options[programElement.selectedIndex].id
+                let program = programElement.options[programElement.selectedIndex].dataset.id
                 const urlParams = new URLSearchParams(window.location.search);
                 const applicationId = urlParams.get("id");
                 let jsonData = {
