@@ -235,13 +235,14 @@
                 formData.append(camelToSpace(doc.id), doc.files[0]);
             }
 
-            let applicationRequest = await postForm('/api/saveApplication', formData)
-            if(applicationRequest.success ){
-                window.location.href = '/dashboard'
-            } else {
-                alert(applicationRequest.message)
-                event.target.classList.remove('disabled')
-            }
+            await postForm('/application/submit', formData)
+            // let applicationRequest = await postForm('/application/submit', formData)
+            // if(applicationRequest.success ){
+            //     window.location.href = '/dashboard'
+            // } else {
+            //     alert(applicationRequest.message)
+            //     event.target.classList.remove('disabled')
+            // }
         } else {
             form.reportValidity()
             event.target.classList.remove('disabled')
