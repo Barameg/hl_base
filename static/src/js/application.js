@@ -72,7 +72,7 @@
             window.location.href = '/dashboard'
 
         }
-        if (event.target.matches('#saveApplication')) {
+        // if (event.target.matches('#saveApplication')) {
         //     event.preventDefault()
         //     event.target.classList.add('disabled')
         //     let form = event.target.closest('form')
