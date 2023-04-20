@@ -303,7 +303,7 @@
             console.log(programDocuments, "program documents")
             
             Array.from(programDocuments).forEach(inputWrapper =>{
-                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].id){
+                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id){
                     inputWrapper.classList.add('hidden')
                 } else {
                     inputWrapper.classList.remove('hidden')
@@ -315,7 +315,7 @@
             let programsDropdown = event.target
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
             Array.from(programDocuments).forEach(inputWrapper =>{
-                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].id){
+                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id){
                     inputWrapper.classList.add('hidden')
                 } else {
                     inputWrapper.classList.remove('hidden')
