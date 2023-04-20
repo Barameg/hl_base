@@ -271,7 +271,7 @@ class ApplicationController(http.Controller):
         return response
 
     @http.route('/<string:subdomain>/application/delete/<string:application_id>', type='http', auth='none', website=True, csrf=False)
-    def application_submit(self, subdomain, application_id, **kw):
+    def application_delete(self, subdomain, application_id, **kw):
         response = Response()
         cookies = http.request.httprequest.cookies
 
