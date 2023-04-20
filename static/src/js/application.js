@@ -239,14 +239,14 @@
             //     formData.append(camelToSpace(doc.id), doc.files[0]);
             // }
 
-            await postForm(event.target.getAttribute('action'), formData)
+            let applicationRequest = await postData(event.target.getAttribute('action'), formData)
             // let applicationRequest = await postForm('/application/submit', formData)
-            // if(applicationRequest.success ){
-            //     window.location.href = '/dashboard'
-            // } else {
-            //     alert(applicationRequest.message)
-            //     event.target.classList.remove('disabled')
-            // }
+            if(applicationRequest.success ){
+                window.location.href = '/dashboard'
+            } else {
+                alert(applicationRequest.message)
+                event.target.classList.remove('disabled')
+            }
         } else {
             form.reportValidity()
             event.target.classList.remove('disabled')
@@ -296,6 +296,16 @@
             // })
             const universityProgramOptions = Array.from(programsOptions).filter(option => !option.classList.contains('hidden'))
             programsDropdown.selectedIndex = universityProgramOptions.length ? universityProgramOptions[0].index : -1
+
+            let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
+            Array.from(programDocuments).forEach(inputWrapper =>{
+                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].id){
+                    inputWrapper.classList.add('hidden')
+                } else {
+                    inputWrapper.classList.remove('hidden')
+                }
+            })
+
         }
         if(event.target.matches('#program')){
             let programsDropdown = event.target
