@@ -296,8 +296,12 @@
             // })
             const universityProgramOptions = Array.from(programsOptions).filter(option => !option.classList.contains('hidden'))
             programsDropdown.selectedIndex = universityProgramOptions.length ? universityProgramOptions[0].index : -1
+            console.log(programsDropdown.selectedIndex, "this is selected index")
+            console.log(programsDropdown[programsDropdown.selectedIndex].id, "this is selected index id")
 
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
+            console.log(programDocuments, "program documents")
+            
             Array.from(programDocuments).forEach(inputWrapper =>{
                 if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].id){
                     inputWrapper.classList.add('hidden')
