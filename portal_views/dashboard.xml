@@ -75,7 +75,7 @@
 																		<t t-else="">N/A</t>
 																	</td>
 																	<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-																		<t t-if="application.status == new">
+																		<t t-if="application.status == 'new'">
 																			<a t-att-href="'/' + agent.subdomain + '/application/' + application.name" t-att-class="'text-' + agent.agent_color + '-' + agent.agent_secondary_shade + ' hover:text-' + agent.agent_color + '-' + agent.agent_shade ">Delete</a>
 																		</t>
 																	</td>
