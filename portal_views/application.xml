@@ -95,7 +95,7 @@
 														<option data-id="" value="" selected="true"/>
 														<t t-if="universities">
 															<t t-foreach = "universities" t-as = "university">
-																<option t-att-data-id="university.id">
+																<option t-att-data-id="university.id"  t-att-value="university.id">
 																	<t t-esc="university.name"/>
 																</option>
 															</t>
@@ -110,7 +110,7 @@
 														<option data-id="" value="" selected="true"/>
 														<t t-if="programs">
 															<t t-foreach = "programs" t-as = "program">
-																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-data-id="program.id" t-att-data-university-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" >
+																<option t-att-class="'hidden' if application and application.university.id != program.university.id else ''" t-att-value="program.id" t-att-data-id="program.id" t-att-data-university-id="program.university.id" t-att-selected="application.program.id == program.id if application else False" >
 																	<t t-esc="program.name"/>
 																</option>
 																<!-- <option t-att-id="program.id"  t-att-data-university-id="program.university.id"><t t-esc="program.name"/></option> -->
@@ -201,7 +201,7 @@
 														<option data-id="" value="" selected="true"/>
 														<t t-if="countries">
 															<t t-foreach = "countries" t-as = "country">
-																<option t-att-data-id="country.id"  t-att-selected="application.nationality.id == country.id if application else False">
+																<option t-att-data-id="country.id" t-att-value="country.id" t-att-selected="application.nationality.id == country.id if application else False">
 																	<t t-esc="country.name"/>
 																</option>
 															</t>
@@ -260,7 +260,7 @@
 														<option data-id="" value="" selected="true"/>
 														<t t-if="countries">
 															<t t-foreach = "countries" t-as = "country">
-																<option t-att-data-id="country.id" t-att-selected="application.country.id == country.id if application else False">
+																<option t-att-data-id="country.id" t-att-value="country.id" t-att-selected="application.country.id == country.id if application else False">
 																	<t t-esc="country.name"/>
 																</option>
 															</t>
@@ -275,7 +275,7 @@
 														<option data-id="" value="" selected="true"/>
 														<t t-if="states">
 															<t t-foreach="states" t-as = "state">
-																<option t-att-data-id="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" >
+																<option t-att-data-id="state.id" t-att-value="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" >
 																	<t t-esc="state.name"/>
 																</option>
 															</t>
@@ -306,7 +306,7 @@
 											<button id="cancelApplication" t-att-class="'hidden rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Cancel</button>
 											<button id="previousStepButton" t-att-class="'hidden rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Previous</button>
 											<button id="nextStepButton" t-att-class="'ml-3 inline-flex justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Next</button>
-											<button id="submit" t-att-class="'hidden ml-3 inline-flex justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Save</button>
+											<button type="submit" id="submit" t-att-class="'hidden ml-3 inline-flex justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Save</button>
 										</div>
 									</div>
 								</form>
