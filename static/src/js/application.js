@@ -73,184 +73,189 @@
 
         }
         if (event.target.matches('#saveApplication')) {
-            event.preventDefault()
-            event.target.classList.add('disabled')
-            let form = event.target.closest('form')
-            if(form.checkValidity()){
-                let first_name = document.querySelector('#first_name').value
-                let middle_name = document.querySelector('#middle_name').value
-                let last_name = document.querySelector('#last_name').value
-                let gender = document.querySelector('input[name="gender"]:checked').value
-                let dob = document.querySelector('#dob').value
-                // father_first_name = fields.Char()
-                // father_last_name = fields.Char()
-                // mother_first_name = fields.Char()
-                // mother_last_name = fields.Char()
-                let marital_status = document.querySelector('input[name="marital_status"]:checked').value
-                let nationalityElement = document.querySelector('#nationality')
-                let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
-                let passport_number = document.querySelector('#passport_number').value
-                let passport_issue_date = document.querySelector('#passport_issue').value
-                let passport_expiry_date = document.querySelector('#passport_expiry').value
-                let contact_number = document.querySelector('#nationality').value
-                let address_line_1 = document.querySelector('#address_line_1').value
-                let address_line_2 = document.querySelector('#address_line_2').value
-                let city = document.querySelector('#city').value
-                let stateElement = document.querySelector('#state')
-                let state;
-                try {
-                    state = stateElement.options[stateElement.selectedIndex].dataset.id
-                } catch(e){
-                    state = ''
-                }
-                // let zipcode = document.querySelector('#zipcode').value
-                let countryElement = document.querySelector('#country')
-                let country = countryElement.options[countryElement.selectedIndex].dataset.id
-                let universityElement = document.querySelector('#university')
-                let university = universityElement.options[universityElement.selectedIndex].dataset.id
-                let programElement = document.querySelector('#program')
-                let program = programElement.options[programElement.selectedIndex].dataset.id
-                const urlParams = new URLSearchParams(window.location.search);
-                const applicationId = urlParams.get("id");
-                let jsonData = {
-                    id: applicationId ? applicationId : '',
-                    first_name: first_name,
-                    middle_name: middle_name,
-                    last_name: last_name,
-                    gender: gender,
-                    dob:dob,
-                    // father_first_name: fields.Char()
-                    // father_last_name: fields.Char()
-                    // mother_first_name: fields.Char()
-                    // mother_last_name: fields.Char()
-                    marital_status: marital_status,
-                    nationality: parseInt(nationality),
-                    passport_number: passport_number,
-                    passport_issue_date: passport_issue_date,
-                    passport_expiry_date: passport_expiry_date,
-                    // contact_number: contact_number,
-                    address_line_1: address_line_1,
-                    address_line_2: address_line_2,
-                    city: city,
-                    state: state,
-                    // zipcode: zipcode,
-                    country: parseInt(country),
-                    university: parseInt(university),
-                    program: parseInt(program)
-                }
-                const formData = new FormData();
-                formData.append('jsonData', JSON.stringify(jsonData));
+        //     event.preventDefault()
+        //     event.target.classList.add('disabled')
+        //     let form = event.target.closest('form')
+        //     if(form.checkValidity()){
+        //         let first_name = document.querySelector('#first_name').value
+        //         let middle_name = document.querySelector('#middle_name').value
+        //         let last_name = document.querySelector('#last_name').value
+        //         let gender = document.querySelector('input[name="gender"]:checked').value
+        //         let dob = document.querySelector('#dob').value
+        //         // father_first_name = fields.Char()
+        //         // father_last_name = fields.Char()
+        //         // mother_first_name = fields.Char()
+        //         // mother_last_name = fields.Char()
+        //         let marital_status = document.querySelector('input[name="marital_status"]:checked').value
+        //         let nationalityElement = document.querySelector('#nationality')
+        //         let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
+        //         let passport_number = document.querySelector('#passport_number').value
+        //         let passport_issue_date = document.querySelector('#passport_issue').value
+        //         let passport_expiry_date = document.querySelector('#passport_expiry').value
+        //         let contact_number = document.querySelector('#nationality').value
+        //         let address_line_1 = document.querySelector('#address_line_1').value
+        //         let address_line_2 = document.querySelector('#address_line_2').value
+        //         let city = document.querySelector('#city').value
+        //         let stateElement = document.querySelector('#state')
+        //         let state;
+        //         try {
+        //             state = stateElement.options[stateElement.selectedIndex].dataset.id
+        //         } catch(e){
+        //             state = ''
+        //         }
+        //         // let zipcode = document.querySelector('#zipcode').value
+        //         let countryElement = document.querySelector('#country')
+        //         let country = countryElement.options[countryElement.selectedIndex].dataset.id
+        //         let universityElement = document.querySelector('#university')
+        //         let university = universityElement.options[universityElement.selectedIndex].dataset.id
+        //         let programElement = document.querySelector('#program')
+        //         let program = programElement.options[programElement.selectedIndex].dataset.id
+        //         const urlParams = new URLSearchParams(window.location.search);
+        //         const applicationId = urlParams.get("id");
+        //         let jsonData = {
+        //             id: applicationId ? applicationId : '',
+        //             first_name: first_name,
+        //             middle_name: middle_name,
+        //             last_name: last_name,
+        //             gender: gender,
+        //             dob:dob,
+        //             // father_first_name: fields.Char()
+        //             // father_last_name: fields.Char()
+        //             // mother_first_name: fields.Char()
+        //             // mother_last_name: fields.Char()
+        //             marital_status: marital_status,
+        //             nationality: parseInt(nationality),
+        //             passport_number: passport_number,
+        //             passport_issue_date: passport_issue_date,
+        //             passport_expiry_date: passport_expiry_date,
+        //             // contact_number: contact_number,
+        //             address_line_1: address_line_1,
+        //             address_line_2: address_line_2,
+        //             city: city,
+        //             state: state,
+        //             // zipcode: zipcode,
+        //             country: parseInt(country),
+        //             university: parseInt(university),
+        //             program: parseInt(program)
+        //         }
+        //         const formData = new FormData();
+        //         formData.append('jsonData', JSON.stringify(jsonData));
     
-                let docs = document.querySelectorAll('input[type="file"]')
-                for(const doc of docs){
-                    formData.append(camelToSpace(doc.id), doc.files[0]);
-                }
+        //         let docs = document.querySelectorAll('input[type="file"]')
+        //         for(const doc of docs){
+        //             formData.append(camelToSpace(doc.id), doc.files[0]);
+        //         }
     
-                let applicationRequest = await postForm('/api/saveApplication', formData)
-                if(applicationRequest.success ){
-                    window.location.href = '/dashboard'
-                } else {
-                    alert(applicationRequest.message)
-                    event.target.classList.remove('disabled')
-                }
-            } else {
-                form.reportValidity()
-                event.target.classList.remove('disabled')
-            }
-        }
+        //         let applicationRequest = await postForm('/api/saveApplication', formData)
+        //         if(applicationRequest.success ){
+        //             window.location.href = '/dashboard'
+        //         } else {
+        //             alert(applicationRequest.message)
+        //             event.target.classList.remove('disabled')
+        //         }
+        //     } else {
+        //         form.reportValidity()
+        //         event.target.classList.remove('disabled')
+        //     }
+        // }
         
 
     }, false)
     document.addEventListener('submit', async function(event){
-        event.preventDefault()
-        event.target.classList.add('disabled')
-        let form = event.target.closest('form')
-        if(form.checkValidity()){
-            let first_name = document.querySelector('#first_name').value
-            let middle_name = document.querySelector('#middle_name').value
-            let last_name = document.querySelector('#last_name').value
-            let gender = document.querySelector('input[name="gender"]:checked').value
-            let dob = document.querySelector('#dob').value
-            // father_first_name = fields.Char()
-            // father_last_name = fields.Char()
-            // mother_first_name = fields.Char()
-            // mother_last_name = fields.Char()
-            let marital_status = document.querySelector('input[name="marital_status"]:checked').value
-            let nationalityElement = document.querySelector('#nationality')
-            let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
-            let passport_number = document.querySelector('#passport_number').value
-            let passport_issue_date = document.querySelector('#passport_issue_date').value
-            let passport_expiry_date = document.querySelector('#passport_expiry_date').value
-            let contact_number = document.querySelector('#nationality').value
-            let address_line_1 = document.querySelector('#address_line_1').value
-            let address_line_2 = document.querySelector('#address_line_2').value
-            let city = document.querySelector('#city').value
-            let stateElement = document.querySelector('#state')
-            let state;
-            try {
-                state = stateElement.options[stateElement.selectedIndex].dataset.id
-            } catch(e){
-                state = ''
-            }
-            // let zipcode = document.querySelector('#zipcode').value
-            let countryElement = document.querySelector('#country')
-            let country = countryElement.options[countryElement.selectedIndex].dataset.id
-            let universityElement = document.querySelector('#university')
-            let university = universityElement.options[universityElement.selectedIndex].dataset.id
-            let programElement = document.querySelector('#program')
-            let program = programElement.options[programElement.selectedIndex].dataset.id
-            const urlParams = new URLSearchParams(window.location.search);
-            const applicationId = urlParams.get("id");
-            let jsonData = {
-                id: applicationId ? applicationId : '',
-                first_name: first_name,
-                middle_name: middle_name,
-                last_name: last_name,
-                gender: gender,
-                dob:dob,
-                // father_first_name: fields.Char()
-                // father_last_name: fields.Char()
-                // mother_first_name: fields.Char()
-                // mother_last_name: fields.Char()
-                marital_status: marital_status,
-                nationality: parseInt(nationality),
-                passport_number: passport_number,
-                passport_issue_date: passport_issue_date,
-                passport_expiry_date: passport_expiry_date,
-                // contact_number: contact_number,
-                address_line_1: address_line_1,
-                address_line_2: address_line_2,
-                city: city,
-                state: state,
-                // zipcode: zipcode,
-                country: parseInt(country),
-                university: parseInt(university),
-                program: parseInt(program)
-            }
-            // const formData = new FormData();
-            // formData.append('jsonData', JSON.stringify(jsonData));
-            const formData = new URLSearchParams();
-            for(const [key, value] of Object.entries(jsonData)){
-                formData.append(key, value)
-            }
-            console.log(formData)
-            // let docs = document.querySelectorAll('input[type="file"]')
-            // for(const doc of docs){
-            //     formData.append(camelToSpace(doc.id), doc.files[0]);
-            // }
+        // event.preventDefault()
+        // event.target.classList.add('disabled')
+        // let form = event.target.closest('form')
+        // if(form.checkValidity()){
+        //     let first_name = document.querySelector('#first_name').value
+        //     let middle_name = document.querySelector('#middle_name').value
+        //     let last_name = document.querySelector('#last_name').value
+        //     let gender = document.querySelector('input[name="gender"]:checked').value
+        //     let dob = document.querySelector('#dob').value
+        //     // father_first_name = fields.Char()
+        //     // father_last_name = fields.Char()
+        //     // mother_first_name = fields.Char()
+        //     // mother_last_name = fields.Char()
+        //     let marital_status = document.querySelector('input[name="marital_status"]:checked').value
+        //     let nationalityElement = document.querySelector('#nationality')
+        //     let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
+        //     let passport_number = document.querySelector('#passport_number').value
+        //     let passport_issue_date = document.querySelector('#passport_issue_date').value
+        //     let passport_expiry_date = document.querySelector('#passport_expiry_date').value
+        //     let contact_number = document.querySelector('#nationality').value
+        //     let address_line_1 = document.querySelector('#address_line_1').value
+        //     let address_line_2 = document.querySelector('#address_line_2').value
+        //     let city = document.querySelector('#city').value
+        //     let stateElement = document.querySelector('#state')
+        //     let state;
+        //     try {
+        //         state = stateElement.options[stateElement.selectedIndex].dataset.id
+        //     } catch(e){
+        //         state = ''
+        //     }
+        //     // let zipcode = document.querySelector('#zipcode').value
+        //     let countryElement = document.querySelector('#country')
+        //     let country = countryElement.options[countryElement.selectedIndex].dataset.id
+        //     let universityElement = document.querySelector('#university')
+        //     let university = universityElement.options[universityElement.selectedIndex].dataset.id
+        //     let programElement = document.querySelector('#program')
+        //     let program = programElement.options[programElement.selectedIndex].dataset.id
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     const applicationId = urlParams.get("id");
+        //     let jsonData = {
+        //         id: applicationId ? applicationId : '',
+        //         first_name: first_name,
+        //         middle_name: middle_name,
+        //         last_name: last_name,
+        //         gender: gender,
+        //         dob:dob,
+        //         // father_first_name: fields.Char()
+        //         // father_last_name: fields.Char()
+        //         // mother_first_name: fields.Char()
+        //         // mother_last_name: fields.Char()
+        //         marital_status: marital_status,
+        //         nationality: parseInt(nationality),
+        //         passport_number: passport_number,
+        //         passport_issue_date: passport_issue_date,
+        //         passport_expiry_date: passport_expiry_date,
+        //         // contact_number: contact_number,
+        //         address_line_1: address_line_1,
+        //         address_line_2: address_line_2,
+        //         city: city,
+        //         state: state,
+        //         // zipcode: zipcode,
+        //         country: parseInt(country),
+        //         university: parseInt(university),
+        //         program: parseInt(program)
+        //     }
 
-            let applicationRequest = await postData(event.target.getAttribute('action'), formData)
-            // let applicationRequest = await postForm('/application/submit', formData)
-            if(applicationRequest.success ){
-                window.location.href = '/dashboard'
-            } else {
-                alert(applicationRequest.message)
-                event.target.classList.remove('disabled')
-            }
-        } else {
-            form.reportValidity()
-            event.target.classList.remove('disabled')
-        }
+        //     const formData = new FormData();
+        //     formData.append('jsonData', JSON.stringify(jsonData));
+
+        //     // const formData = new URLSearchParams();
+        //     // for(const [key, value] of Object.entries(jsonData)){
+        //     //     formData.append(key, value)
+        //     // }
+        //     // console.log(formData)
+
+        //     // let docs = document.querySelectorAll('input[type="file"]')
+        //     // for(const doc of docs){
+        //     //     formData.append(camelToSpace(doc.id), doc.files[0]);
+        //     // }
+
+        //     //let applicationRequest = await postData(event.target.getAttribute('action'), formData)
+            
+        //     let applicationRequest = await postForm('/application/submit', formData)
+            
+        //     if(applicationRequest.success ){
+        //         window.location.href = '/dashboard'
+        //     } else {
+        //         alert(applicationRequest.message)
+        //         event.target.classList.remove('disabled')
+        //     }
+        // } else {
+        //     form.reportValidity()
+        //     event.target.classList.remove('disabled')
+        // }
     
     })
     document.addEventListener('change', async function (event) {
