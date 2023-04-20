@@ -370,10 +370,9 @@ class ApplicationController(http.Controller):
 
             print(country.state_ids, " ================================ country state ids ")
             student = partners.search([
-                ('agent_uuid', '=', agent_uuid),
+                ('agent', '=', agent.id),
                 ('student_session', '=', student_session),
             ])
-            
             print(student, "=============== here is the student ")
             if not student:
                 response = request.redirect('/%s/login' % subdomain)
