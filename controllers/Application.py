@@ -275,6 +275,7 @@ class ApplicationController(http.Controller):
     def application_submit(self, subdomain, **kw):
         response = Response()
         cookies = http.request.httprequest.cookies
+
         partners = request.env['res.partner'].sudo()
         countries = request.env['res.country'].sudo()
         states = request.env['res.country.state'].sudo()
@@ -367,17 +368,20 @@ class ApplicationController(http.Controller):
                 response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
                 return response
 
+            print(country.state_ids, " ================================ country state ids ")
             student = partners.search([
                 ('agent_uuid', '=', agent_uuid),
                 ('student_session', '=', student_session),
             ])
             
+            print(student, "=============== here is the student ")
             if not student:
                 response = request.redirect('/%s/login' % subdomain)
                 response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
                 response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
                 return response
             
+            print("========================== all good creating application")
             application = applications.create({
                 'university': university.id,
                 'partner': student.id,
