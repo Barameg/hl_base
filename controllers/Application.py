@@ -400,6 +400,9 @@ class ApplicationController(http.Controller):
                 response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
                 return response
 
+            print(country.state_id, "========================= state ides")
+            print(kw.get('state'), "============================ state selected")
+            
             if country.state_ids and not kw.get('state'):
                 response = request.redirect('/%s/application' % subdomain)
                 response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
