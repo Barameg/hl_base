@@ -262,22 +262,19 @@
         // event.preventDefault() 
         // event.stopPropagation()
         if(event.target.matches('#country')){
+
             let statesDropdown = document.querySelector('#state')
             let statesOptions = statesDropdown.querySelectorAll('option')
+
             Array.from(statesOptions).forEach(option=>{
-                if(option.dataset.countryId == event.target.options[event.target.selectedIndex].dataset.id){
+                if(option.dataset.countryId == event.target.options[event.target.selectedIndex].value){
                     option.classList.remove('hidden')
                 } else {
                     option.classList.add('hidden')
                 }
             })
 
-            Array.from(statesOptions).filter(option => option.dataset.countryId == event.target.options[event.target.selectedIndex].id).forEach(option=>{
-                option.classList.remove('hidden')
-            })
-            Array.from(statesOptions).filter(option => option.dataset.countryId != event.target.options[event.target.selectedIndex].id).forEach(option=>{
-                option.classList.add('hidden')
-            })
+            console.log(statesOptions)
             const countryStateOptions = Array.from(statesOptions).filter(option => !option.classList.contains('hidden'))
             statesDropdown.selectedIndex = countryStateOptions.length ? countryStateOptions[0].index : -1
 
@@ -301,11 +298,8 @@
             // })
             const universityProgramOptions = Array.from(programsOptions).filter(option => !option.classList.contains('hidden'))
             programsDropdown.selectedIndex = universityProgramOptions.length ? universityProgramOptions[0].index : -1
-            console.log(programsDropdown.selectedIndex, "this is selected index")
-            console.log(programsDropdown[programsDropdown.selectedIndex].id, "this is selected index id")
 
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
-            console.log(programDocuments, "program documents")
             
             Array.from(programDocuments).forEach(inputWrapper =>{
                 if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id){
