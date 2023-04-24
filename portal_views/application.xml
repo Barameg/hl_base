@@ -292,7 +292,7 @@
 										</div>
 										<div id="programDocuments" class="space-y-6 sm:space-y-5">
 											<t t-foreach = "documents" t-as = "document">
-												<div class="uploadFieldWrapper" t-att-data-program="document.program.id">
+												<div class="uploadFieldWrapper hidden" t-att-data-program="document.program.id">
 													<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" t-att-for="document.uuid">
 														<t t-esc="document.name"/>
 														<t t-if="document.template">
