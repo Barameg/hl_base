@@ -295,7 +295,7 @@
 												<div class="uploadFieldWrapper" t-att-data-program="document.program.id">
 													<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" t-att-for="document.uuid">
 														<t t-esc="document.name"/>
-														<t t-if"document.template">
+														<t t-if="document.template">
 															<span>You can download template from here</span>
 														</t>
 													</label>
