@@ -114,6 +114,7 @@ class UniversityProgramDocument(models.Model):
     allowed_types = fields.Char()
     required = fields.Boolean(default=True)
     program = fields.Many2one('university.program')
+    template = fields.Binary(attachment=False)
 
 
 class ResPartner(models.Model):
