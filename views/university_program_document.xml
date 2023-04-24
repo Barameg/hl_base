@@ -15,6 +15,7 @@
                                 <field name="allowed_size"/>
                                 <field name="allowed_types"/>
                                 <field name="required"/>
+                                <field name="template"/>
                             </group>
                         </group>
                     </sheet>
