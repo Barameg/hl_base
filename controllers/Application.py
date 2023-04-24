@@ -270,6 +270,11 @@ class ApplicationController(http.Controller):
         response.set_data(template)
         return response
 
+    @http.route('/<string:subdomain>/application/delete/<string:document_template_uuid>', type='http', auth='none', website=True, csrf=False)
+    def download_template(self, subdomain, document_template_uuid, **kw):
+        pass
+
+
     @http.route('/<string:subdomain>/application/delete/<string:application_id>', type='http', auth='none', website=True, csrf=False)
     def application_delete(self, subdomain, application_id, **kw):
         response = Response()
@@ -432,6 +437,7 @@ class ApplicationController(http.Controller):
                 return response
             
             print("========================== all good creating application")
+            print(kw, "keywords ======================")
             applications.create({
                 'university': university.id,
                 'partner': student.id,
