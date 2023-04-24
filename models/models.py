@@ -110,11 +110,19 @@ class UniversityProgramDocument(models.Model):
     _description = 'University Program Document'
 
     name = fields.Char()
+    uuid = fields.Char()
     allowed_size = fields.Integer(string='Size in MB')
     allowed_types = fields.Char()
     required = fields.Boolean(default=True)
     program = fields.Many2one('university.program')
     template = fields.Binary(attachment=False)
+
+    @api.model
+    def create(self, values):
+        recs = super(UniversityProgramDocument, self).create(values)
+        for rec in recs:     
+            rec.uuid = uuid.uuid4()
+        return recs
 
 
 class ResPartner(models.Model):
