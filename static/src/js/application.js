@@ -287,7 +287,11 @@
 
             let statesDropdown = document.querySelector('#state')
             let statesOptions = statesDropdown.querySelectorAll('option')
-
+            if(statesOptions.length > 0) {
+                statesDropdown.required = true
+            } else {
+                statesDropdown.required = false
+            }
             Array.from(statesOptions).forEach(option=>{
                 if(option.dataset.countryId == event.target.options[event.target.selectedIndex].value){
                     option.classList.remove('hidden')
