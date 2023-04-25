@@ -21,20 +21,20 @@
             let currentStepSelections = document.querySelectorAll('.step')[currentStep].querySelectorAll('select[required="true"]')
             console.log(currentStepInputs)
             let stepValid = true
-            for(const input of currentStepInputs){
+            for (const input of currentStepInputs) {
                 console.log(input)
-                if(input.value == ''){
+                if (input.value == '') {
                     stepValid = false
                     break
                 }
             }
-            for(const select of currentStepSelections){
-                if(select.value == ''){
+            for (const select of currentStepSelections) {
+                if (select.value == '') {
                     stepValid = false
                     break
                 }
             }
-            if(!stepValid){
+            if (!stepValid) {
                 form.reportValidity()
             } else {
                 let steps = document.querySelectorAll('ol li')
@@ -45,10 +45,10 @@
                 currentStepButtons[1].classList.remove('hidden')
                 currentStep++
                 console.log(currentStep)
-                if(currentStep > 0){
+                if (currentStep > 0) {
                     event.target.previousElementSibling.classList.remove('hidden')
                 }
-                if(currentStep == 3){
+                if (currentStep == 3) {
                     event.target.classList.add('hidden')
                     event.target.nextElementSibling.classList.remove('hidden')
                 }
@@ -68,10 +68,10 @@
             currentStepButtons[1].classList.remove('hidden')
             currentStep--
             console.log(currentStep)
-            if(currentStep == 0){
+            if (currentStep == 0) {
                 event.target.classList.add('hidden')
             }
-            if(currentStep < 3){
+            if (currentStep < 3) {
                 let nextButton = event.target.nextElementSibling
                 nextButton.classList.remove('hidden')
                 nextButton.nextElementSibling.classList.add('hidden')
@@ -94,201 +94,17 @@
             window.location.href = '/dashboard'
 
         }
-        // if (event.target.matches('#saveApplication')) {
-        //     event.preventDefault()
-        //     event.target.classList.add('disabled')
-        //     let form = event.target.closest('form')
-        //     if(form.checkValidity()){
-        //         let first_name = document.querySelector('#first_name').value
-        //         let middle_name = document.querySelector('#middle_name').value
-        //         let last_name = document.querySelector('#last_name').value
-        //         let gender = document.querySelector('input[name="gender"]:checked').value
-        //         let dob = document.querySelector('#dob').value
-        //         // father_first_name = fields.Char()
-        //         // father_last_name = fields.Char()
-        //         // mother_first_name = fields.Char()
-        //         // mother_last_name = fields.Char()
-        //         let marital_status = document.querySelector('input[name="marital_status"]:checked').value
-        //         let nationalityElement = document.querySelector('#nationality')
-        //         let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
-        //         let passport_number = document.querySelector('#passport_number').value
-        //         let passport_issue_date = document.querySelector('#passport_issue').value
-        //         let passport_expiry_date = document.querySelector('#passport_expiry').value
-        //         let contact_number = document.querySelector('#nationality').value
-        //         let address_line_1 = document.querySelector('#address_line_1').value
-        //         let address_line_2 = document.querySelector('#address_line_2').value
-        //         let city = document.querySelector('#city').value
-        //         let stateElement = document.querySelector('#state')
-        //         let state;
-        //         try {
-        //             state = stateElement.options[stateElement.selectedIndex].dataset.id
-        //         } catch(e){
-        //             state = ''
-        //         }
-        //         // let zipcode = document.querySelector('#zipcode').value
-        //         let countryElement = document.querySelector('#country')
-        //         let country = countryElement.options[countryElement.selectedIndex].dataset.id
-        //         let universityElement = document.querySelector('#university')
-        //         let university = universityElement.options[universityElement.selectedIndex].dataset.id
-        //         let programElement = document.querySelector('#program')
-        //         let program = programElement.options[programElement.selectedIndex].dataset.id
-        //         const urlParams = new URLSearchParams(window.location.search);
-        //         const applicationId = urlParams.get("id");
-        //         let jsonData = {
-        //             id: applicationId ? applicationId : '',
-        //             first_name: first_name,
-        //             middle_name: middle_name,
-        //             last_name: last_name,
-        //             gender: gender,
-        //             dob:dob,
-        //             // father_first_name: fields.Char()
-        //             // father_last_name: fields.Char()
-        //             // mother_first_name: fields.Char()
-        //             // mother_last_name: fields.Char()
-        //             marital_status: marital_status,
-        //             nationality: parseInt(nationality),
-        //             passport_number: passport_number,
-        //             passport_issue_date: passport_issue_date,
-        //             passport_expiry_date: passport_expiry_date,
-        //             // contact_number: contact_number,
-        //             address_line_1: address_line_1,
-        //             address_line_2: address_line_2,
-        //             city: city,
-        //             state: state,
-        //             // zipcode: zipcode,
-        //             country: parseInt(country),
-        //             university: parseInt(university),
-        //             program: parseInt(program)
-        //         }
-        //         const formData = new FormData();
-        //         formData.append('jsonData', JSON.stringify(jsonData));
-    
-        //         let docs = document.querySelectorAll('input[type="file"]')
-        //         for(const doc of docs){
-        //             formData.append(camelToSpace(doc.id), doc.files[0]);
-        //         }
-    
-        //         let applicationRequest = await postForm('/api/saveApplication', formData)
-        //         if(applicationRequest.success ){
-        //             window.location.href = '/dashboard'
-        //         } else {
-        //             alert(applicationRequest.message)
-        //             event.target.classList.remove('disabled')
-        //         }
-        //     } else {
-        //         form.reportValidity()
-        //         event.target.classList.remove('disabled')
-        //     }
-        // }
-        
 
     }, false)
-    document.addEventListener('submit', async function(event){
-        // event.preventDefault()
-        // event.target.classList.add('disabled')
-        // let form = event.target.closest('form')
-        // if(form.checkValidity()){
-        //     let first_name = document.querySelector('#first_name').value
-        //     let middle_name = document.querySelector('#middle_name').value
-        //     let last_name = document.querySelector('#last_name').value
-        //     let gender = document.querySelector('input[name="gender"]:checked').value
-        //     let dob = document.querySelector('#dob').value
-        //     // father_first_name = fields.Char()
-        //     // father_last_name = fields.Char()
-        //     // mother_first_name = fields.Char()
-        //     // mother_last_name = fields.Char()
-        //     let marital_status = document.querySelector('input[name="marital_status"]:checked').value
-        //     let nationalityElement = document.querySelector('#nationality')
-        //     let nationality = nationalityElement.options[nationalityElement.selectedIndex].dataset.id
-        //     let passport_number = document.querySelector('#passport_number').value
-        //     let passport_issue_date = document.querySelector('#passport_issue_date').value
-        //     let passport_expiry_date = document.querySelector('#passport_expiry_date').value
-        //     let contact_number = document.querySelector('#nationality').value
-        //     let address_line_1 = document.querySelector('#address_line_1').value
-        //     let address_line_2 = document.querySelector('#address_line_2').value
-        //     let city = document.querySelector('#city').value
-        //     let stateElement = document.querySelector('#state')
-        //     let state;
-        //     try {
-        //         state = stateElement.options[stateElement.selectedIndex].dataset.id
-        //     } catch(e){
-        //         state = ''
-        //     }
-        //     // let zipcode = document.querySelector('#zipcode').value
-        //     let countryElement = document.querySelector('#country')
-        //     let country = countryElement.options[countryElement.selectedIndex].dataset.id
-        //     let universityElement = document.querySelector('#university')
-        //     let university = universityElement.options[universityElement.selectedIndex].dataset.id
-        //     let programElement = document.querySelector('#program')
-        //     let program = programElement.options[programElement.selectedIndex].dataset.id
-        //     const urlParams = new URLSearchParams(window.location.search);
-        //     const applicationId = urlParams.get("id");
-        //     let jsonData = {
-        //         id: applicationId ? applicationId : '',
-        //         first_name: first_name,
-        //         middle_name: middle_name,
-        //         last_name: last_name,
-        //         gender: gender,
-        //         dob:dob,
-        //         // father_first_name: fields.Char()
-        //         // father_last_name: fields.Char()
-        //         // mother_first_name: fields.Char()
-        //         // mother_last_name: fields.Char()
-        //         marital_status: marital_status,
-        //         nationality: parseInt(nationality),
-        //         passport_number: passport_number,
-        //         passport_issue_date: passport_issue_date,
-        //         passport_expiry_date: passport_expiry_date,
-        //         // contact_number: contact_number,
-        //         address_line_1: address_line_1,
-        //         address_line_2: address_line_2,
-        //         city: city,
-        //         state: state,
-        //         // zipcode: zipcode,
-        //         country: parseInt(country),
-        //         university: parseInt(university),
-        //         program: parseInt(program)
-        //     }
-
-        //     const formData = new FormData();
-        //     formData.append('jsonData', JSON.stringify(jsonData));
-
-        //     // const formData = new URLSearchParams();
-        //     // for(const [key, value] of Object.entries(jsonData)){
-        //     //     formData.append(key, value)
-        //     // }
-        //     // console.log(formData)
-
-        //     // let docs = document.querySelectorAll('input[type="file"]')
-        //     // for(const doc of docs){
-        //     //     formData.append(camelToSpace(doc.id), doc.files[0]);
-        //     // }
-
-        //     //let applicationRequest = await postData(event.target.getAttribute('action'), formData)
-            
-        //     let applicationRequest = await postForm('/application/submit', formData)
-            
-        //     if(applicationRequest.success ){
-        //         window.location.href = '/dashboard'
-        //     } else {
-        //         alert(applicationRequest.message)
-        //         event.target.classList.remove('disabled')
-        //     }
-        // } else {
-        //     form.reportValidity()
-        //     event.target.classList.remove('disabled')
-        // }
-    
-    })
     document.addEventListener('change', async function (event) {
         // event.preventDefault() 
         // event.stopPropagation()
-        if(event.target.matches('#country')){
+        if (event.target.matches('#country')) {
 
             let statesDropdown = document.querySelector('#state')
             let statesOptions = statesDropdown.querySelectorAll('option')
-            Array.from(statesOptions).forEach(option=>{
-                if(option.dataset.countryId == event.target.options[event.target.selectedIndex].value){
+            Array.from(statesOptions).forEach(option => {
+                if (option.dataset.countryId == event.target.options[event.target.selectedIndex].value) {
                     option.classList.remove('hidden')
                 } else {
                     option.classList.add('hidden')
@@ -297,7 +113,7 @@
 
             console.log(statesOptions)
             const countryStateOptions = Array.from(statesOptions).filter(option => !option.classList.contains('hidden'))
-            if(countryStateOptions.length > 0) {
+            if (countryStateOptions.length > 0) {
                 statesDropdown.required = true
             } else {
                 statesDropdown.required = false
@@ -305,12 +121,12 @@
             statesDropdown.selectedIndex = countryStateOptions.length ? countryStateOptions[0].index : -1
 
         }
-        if(event.target.matches('#university')){
+        if (event.target.matches('#university')) {
             console.log('university changed')
             let programsDropdown = document.querySelector('#program')
             let programsOptions = programsDropdown.querySelectorAll('option')
-            Array.from(programsOptions).forEach(option=>{
-                if(option.dataset.universityId == event.target.options[event.target.selectedIndex].dataset.id){
+            Array.from(programsOptions).forEach(option => {
+                if (option.dataset.universityId == event.target.options[event.target.selectedIndex].dataset.id) {
                     option.classList.remove('hidden')
                 } else {
                     option.classList.add('hidden')
@@ -326,9 +142,9 @@
             programsDropdown.selectedIndex = universityProgramOptions.length ? universityProgramOptions[0].index : -1
 
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
-            
-            Array.from(programDocuments).forEach(inputWrapper =>{
-                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id){
+
+            Array.from(programDocuments).forEach(inputWrapper => {
+                if (inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id) {
                     inputWrapper.classList.add('hidden')
                 } else {
                     inputWrapper.classList.remove('hidden')
@@ -336,34 +152,34 @@
             })
 
         }
-        if(event.target.matches('#program')){
+        if (event.target.matches('#program')) {
             let programsDropdown = event.target
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
-            Array.from(programDocuments).forEach(inputWrapper =>{
-                if(inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id){
+            Array.from(programDocuments).forEach(inputWrapper => {
+                if (inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id) {
                     inputWrapper.classList.add('hidden')
                 } else {
                     inputWrapper.classList.remove('hidden')
                 }
             })
         }
-        if(event.target.matches('input[type="file"]')){
-            if(event.target.files.length > 0 ){
+        if (event.target.matches('input[type="file"]')) {
+            if (event.target.files.length > 0) {
                 let exceedsLimit = false
                 let allowedSize = event.target.dataset.allowedSize
                 let allowedTypes = event.target.dataset.allowedTypes
-                if(event.target.files[0].size > allowedSize * 1024 * 1024){
+                if (event.target.files[0].size > allowedSize * 1024 * 1024) {
                     exceedsLimit = true
                 }
                 let typeFound = false
                 let types = allowedTypes.split(',')
                 console.log(types)
-                for(const type of types){
-                    if(event.target.files[0].type.includes(type.trim())) typeFound = true
+                for (const type of types) {
+                    if (event.target.files[0].type.includes(type.trim())) typeFound = true
                 }
                 console.log(typeFound)
                 console.log(exceedsLimit)
-                if(!typeFound || exceedsLimit){
+                if (!typeFound || exceedsLimit) {
                     event.target.value = ''
                     alert(`Only files not exceeding ${allowedSize} MB and of type ${allowedTypes} are allowed`)
                 }
