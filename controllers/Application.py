@@ -436,11 +436,7 @@ class ApplicationController(http.Controller):
                 response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
                 return response
             
-            print("========================== all good creating application")
-            print(kw, "keywords ======================")
-            print(request)
-            print(http.request)
-            applications.create({
+            application = applications.create({
                 'university': university.id,
                 'partner': student.id,
                 'first_name': kw.get('first_name'),
@@ -475,6 +471,18 @@ class ApplicationController(http.Controller):
                 'university': university.id,
                 'program': program.id,
             })
+            documents = []
+            for file in request.httprequest.files.values():
+                if file:
+                    print(file.name)
+                    # create an ir.attachment record
+                    document = [0, False, {
+                        'name': file.name,
+                        'type': 'binary',
+                        'datas': base64.b64encode(file.read()),
+                    }]
+                    documents.append(document)
+            application.documents = documents
             response = request.redirect('/%s/dashboard' % subdomain)
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
