@@ -17,35 +17,40 @@
         }
         if (event.target.matches('#nextStepButton')) {
             event.preventDefault()
-            let steps = document.querySelectorAll('ol li')
-            let currentStepButtons = steps[currentStep].querySelectorAll('a')
-            document.querySelectorAll('.step')[currentStep].classList.add('hidden')
             let currentStepInputs = document.querySelectorAll('.step')[currentStep].querySelectorAll('input')
             console.log(currentStepInputs)
+            let stepValid = true
             for(const input of currentStepInputs){
                 console.log(input)
                 if(input.value == ''){
-                    form.reportValidity()
-                    return
+                    stepValid = false
+                    break
                 }
             }
-            console.log(currentStepButtons)
-            currentStepButtons[0].classList.add('hidden')
-            currentStepButtons[1].classList.remove('hidden')
-            currentStep++
-            console.log(currentStep)
-            if(currentStep > 0){
-                event.target.previousElementSibling.classList.remove('hidden')
+            if(!stepValid){
+                form.reportValidity()
+            } else {
+                let steps = document.querySelectorAll('ol li')
+                let currentStepButtons = steps[currentStep].querySelectorAll('a')
+                document.querySelectorAll('.step')[currentStep].classList.add('hidden')
+                console.log(currentStepButtons)
+                currentStepButtons[0].classList.add('hidden')
+                currentStepButtons[1].classList.remove('hidden')
+                currentStep++
+                console.log(currentStep)
+                if(currentStep > 0){
+                    event.target.previousElementSibling.classList.remove('hidden')
+                }
+                if(currentStep == 3){
+                    event.target.classList.add('hidden')
+                    event.target.nextElementSibling.classList.remove('hidden')
+                }
+                currentStepButtons = steps[currentStep].querySelectorAll('a')
+                document.querySelectorAll('.step')[currentStep].classList.remove('hidden')
+                console.log(currentStepButtons)
+                currentStepButtons[0].classList.remove('hidden')
+                currentStepButtons[1].classList.add('hidden')
             }
-            if(currentStep == 3){
-                event.target.classList.add('hidden')
-                event.target.nextElementSibling.classList.remove('hidden')
-            }
-            currentStepButtons = steps[currentStep].querySelectorAll('a')
-            document.querySelectorAll('.step')[currentStep].classList.remove('hidden')
-            console.log(currentStepButtons)
-            currentStepButtons[0].classList.remove('hidden')
-            currentStepButtons[1].classList.add('hidden')
         }
         if (event.target.matches('#previousStepButton')) {
             event.preventDefault()
