@@ -475,13 +475,17 @@ class ApplicationController(http.Controller):
             for file in request.httprequest.files.values():
                 if file:
                     print(file.name)
-                    # create an ir.attachment record
-                    document = [0, False, {
-                        'name': file.name,
-                        'type': 'binary',
-                        'datas': base64.b64encode(file.read()),
-                    }]
-                    documents.append(document)
+                    document = documents.search([
+                        ('uuid', '=', file.name)
+                    ])
+                    if document and file.content_type.split('/')[1] in document.allowed_types and file.content_length * 1024 * 1024 < document.allowed_size * 1024 * 1024:
+                        # create an ir.attachment record
+                        document = [0, False, {
+                            'name': document.name,
+                            'type': 'binary',
+                            'datas': base64.b64encode(file.read()),
+                        }]
+                        documents.append(document)
             application.documents = documents
             response = request.redirect('/%s/dashboard' % subdomain)
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
