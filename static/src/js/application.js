@@ -18,6 +18,13 @@
             event.preventDefault()
             let steps = document.querySelectorAll('ol li')
             let currentStepButtons = steps[currentStep].querySelectorAll('a')
+            let currentStepInputs = steps[currentStep].querySelectorAll('input')
+            for(const input of currentStepInputs){
+                if(input.value == ''){
+                    form.reportValidity()
+                    return
+                }
+            }
             document.querySelectorAll('.step')[currentStep].classList.add('hidden')
             console.log(currentStepButtons)
             currentStepButtons[0].classList.add('hidden')
