@@ -19,7 +19,8 @@
             event.preventDefault()
             let steps = document.querySelectorAll('ol li')
             let currentStepButtons = steps[currentStep].querySelectorAll('a')
-            let currentStepInputs = steps[currentStep].querySelectorAll('input')
+            document.querySelectorAll('.step')[currentStep].classList.add('hidden')
+            let currentStepInputs = document.querySelectorAll('.step')[currentStep].querySelectorAll('input')
             console.log(currentStepInputs)
             for(const input of currentStepInputs){
                 console.log(input)
@@ -28,7 +29,6 @@
                     return
                 }
             }
-            document.querySelectorAll('.step')[currentStep].classList.add('hidden')
             console.log(currentStepButtons)
             currentStepButtons[0].classList.add('hidden')
             currentStepButtons[1].classList.remove('hidden')
