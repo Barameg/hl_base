@@ -2,6 +2,7 @@
     let docs = {}
     let currentStep = 0
     document.addEventListener('click', async function (event) {
+        let form = document.querySelector('form')
         if (event.target.matches('#closeSidebar')) {
             let offCanvasMenuBackdrop = document.querySelector('#offCanvasMenuBackdrop')
             let offCanvasMenu = document.querySelector('#offCanvasMenu')
@@ -19,7 +20,9 @@
             let steps = document.querySelectorAll('ol li')
             let currentStepButtons = steps[currentStep].querySelectorAll('a')
             let currentStepInputs = steps[currentStep].querySelectorAll('input')
+            console.log(currentStepInputs)
             for(const input of currentStepInputs){
+                console.log(input)
                 if(input.value == ''){
                     form.reportValidity()
                     return
