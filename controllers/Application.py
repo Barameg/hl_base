@@ -308,7 +308,6 @@ class ApplicationController(http.Controller):
                     ('uuid', '=', document_template_uuid)
                 ])
                 headers = [
-                    ('Content-Type', 'application/octet-stream'),
                     ('Content-Disposition', http.content_disposition(document.name))
                 ]
                 return Response(base64.b64decode(document.template), headers=headers, direct_passthrough=True)
