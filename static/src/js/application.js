@@ -17,8 +17,8 @@
         }
         if (event.target.matches('#nextStepButton')) {
             event.preventDefault()
-            let currentStepInputs = document.querySelectorAll('.step')[currentStep].querySelectorAll('input')
-            let currentStepSelections = document.querySelectorAll('.step')[currentStep].querySelectorAll('select')
+            let currentStepInputs = document.querySelectorAll('.step')[currentStep].querySelectorAll('input[required="true"]')
+            let currentStepSelections = document.querySelectorAll('.step')[currentStep].querySelectorAll('select[required="true"]')
             console.log(currentStepInputs)
             let stepValid = true
             for(const input of currentStepInputs){
