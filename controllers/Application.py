@@ -438,6 +438,8 @@ class ApplicationController(http.Controller):
             
             print("========================== all good creating application")
             print(kw, "keywords ======================")
+            print(request)
+            print(http.request)
             applications.create({
                 'university': university.id,
                 'partner': student.id,
