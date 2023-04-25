@@ -311,7 +311,7 @@ class ApplicationController(http.Controller):
                     ('Content-Type', 'application/octet-stream'),
                     ('Content-Disposition', http.content_disposition(document.name))
                 ]
-                return Response(document.template, headers=headers, direct_passthrough=True)
+                return Response(base64.b64decode(document.template), headers=headers, direct_passthrough=True)
         response = request.redirect('/%s/login' % subdomain)
         response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
         response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
