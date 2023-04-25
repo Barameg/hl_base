@@ -287,11 +287,6 @@
 
             let statesDropdown = document.querySelector('#state')
             let statesOptions = statesDropdown.querySelectorAll('option')
-            if(statesOptions.length > 0) {
-                statesDropdown.required = true
-            } else {
-                statesDropdown.required = false
-            }
             Array.from(statesOptions).forEach(option=>{
                 if(option.dataset.countryId == event.target.options[event.target.selectedIndex].value){
                     option.classList.remove('hidden')
@@ -302,6 +297,11 @@
 
             console.log(statesOptions)
             const countryStateOptions = Array.from(statesOptions).filter(option => !option.classList.contains('hidden'))
+            if(countryStateOptions.length > 0) {
+                statesDropdown.required = true
+            } else {
+                statesDropdown.required = false
+            }
             statesDropdown.selectedIndex = countryStateOptions.length ? countryStateOptions[0].index : -1
 
         }
