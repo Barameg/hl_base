@@ -336,7 +336,7 @@ class ApplicationController(http.Controller):
             ('is_university', '=', True)
         ])
         programs = request.env['university.program'].sudo()
-        documents = request.env['university.program.document'].sudo()
+        program_documents = request.env['university.program.document'].sudo()
         applications = request.env['partner.application'].sudo()
 
         agent_uuid = cookies.get('agent_uuid')
@@ -475,7 +475,7 @@ class ApplicationController(http.Controller):
             for file in request.httprequest.files.values():
                 if file:
                     print(file.name)
-                    document = documents.search([
+                    document = program_documents.search([
                         ('uuid', '=', file.name)
                     ])
                     if document and file.content_type.split('/')[1] in document.allowed_types and file.content_length * 1024 * 1024 < document.allowed_size * 1024 * 1024:
