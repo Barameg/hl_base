@@ -144,8 +144,11 @@ class UniversityProgramDocument(models.Model):
                     #'application/x-tex',
                 ]
                 mimetypes = ''
-                for doc_type in doc_types:
-                    mimetypes += doc_type + ', '
+                for index, doc_type in enumerate(doc_types):
+                    if index < len(doc_types) -1 :
+                        mimetypes += doc_type + ', '
+                    else:
+                        mimetypes += doc_type
                 rec.allowed_types = mimetypes
             else:
                 img_types = [
@@ -165,8 +168,11 @@ class UniversityProgramDocument(models.Model):
                     # 'image/heic-sequence',
                 ]
                 mimetypes = ''
-                for img_type in img_types:
-                    mimetypes += img_type + ', '
+                for index, img_type in enumerate(img_types):
+                    if index < len(img_types) - 1:
+                        mimetypes += img_type + ', '
+                    else:
+                        mimetypes += img_type
                 rec.allowed_types = mimetypes
             rec.uuid = uuid.uuid4()
         return recs
