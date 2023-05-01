@@ -113,14 +113,61 @@ class UniversityProgramDocument(models.Model):
     uuid = fields.Char()
     allowed_size = fields.Integer(string='Size in MB')
     allowed_types = fields.Char()
+    file_type = fields.Selection([
+        ('doc', 'Document'),
+        ('img', 'Image')
+    ], default='img')
     required = fields.Boolean(default=True)
     program = fields.Many2one('university.program')
-    template = fields.Binary(attachment=False)
+#    template = fields.Binary(attachment=True)
+    template = fields.Many2one('ir.attachment')
 
     @api.model
     def create(self, values):
         recs = super(UniversityProgramDocument, self).create(values)
-        for rec in recs:     
+        for rec in recs:
+            if rec.file_type == 'doc':
+                doc_types = [
+                    'text/plain',
+                    'application/pdf',
+                    'application/msword',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                    'application/vnd.ms-excel',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                    'application/vnd.ms-powerpoint',
+                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                    'application/vnd.oasis.opendocument.text',
+                    'application/vnd.oasis.opendocument.spreadsheet',
+                    'application/vnd.oasis.opendocument.presentation',
+                    'application/rtf',
+                    #'application/x-latex',
+                    #'application/x-tex',
+                ]
+                mimetypes = ''
+                for doc_type in doc_types:
+                    mimetypes += doc_type + ', '
+                rec.allowed_types = mimetypes
+            else:
+                img_types = [
+                    'image/jpeg',
+                    'image/png',
+                    'image/gif',
+                    'image/webp',
+                    'image/svg+xml',
+                    'image/bmp',
+                    'image/tiff',
+                    # 'image/vnd.adobe.photoshop',
+                    #'image/x-icon',
+                    #'image/jp2',
+                    # 'image/vnd.djvu',
+                    # 'image/heic',
+                    # 'image/heif',
+                    # 'image/heic-sequence',
+                ]
+                mimetypes = ''
+                for img_type in img_types:
+                    mimetypes += img_type + ', '
+                rec.allowed_types = mimetypes
             rec.uuid = uuid.uuid4()
         return recs
 
