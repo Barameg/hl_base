@@ -307,10 +307,11 @@ class ApplicationController(http.Controller):
                 document = program_documents.search([
                     ('uuid', '=', document_template_uuid)
                 ])
-                headers = [
-                    ('Content-Disposition', http.content_disposition(document.name))
-                ]
-                return Response(base64.b64decode(document.template), headers=headers, direct_passthrough=True)
+                if document and document.template:
+                    headers = [
+                        ('Content-Disposition', http.content_disposition(document.template.name))
+                    ]
+                    return Response(base64.b64decode(document.template.datas), headers=headers, direct_passthrough=True)
         response = request.redirect('/%s/login' % subdomain)
         response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
         response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)

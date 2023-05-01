@@ -13,7 +13,7 @@
                             <group>
                                 <field name="name"/>
                                 <field name="allowed_size"/>
-                                <field name="allowed_types"/>
+                                <field name="file_type"/>
                                 <field name="required"/>
                                 <field name="template"/>
                             </group>
