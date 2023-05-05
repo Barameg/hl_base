@@ -1,7 +1,7 @@
 <odoo>
     <data>
 
-        <record id='hl_base_partner_application_action_window' model='ir.actions.act_window'>
+        <record id="hl_base_partner_application_action_window" model="ir.actions.act_window">
 			<field name="name">Applications</field>
 			<field name="res_model">partner.application</field>
 			<field name="view_mode">tree,form</field>
