@@ -75,9 +75,14 @@ class PartnerApplication(models.Model):
         recs = super(PartnerApplication, self).create(values)
         for rec in recs:
             if not rec.university:
-                raise Warning(_("University Cannot be empty"))           
+                raise Warning(_("University Cannot be empty"))
+            if rec.documents:
+                rec.documents.write({
+                    'res_model': self._name, 'res_id': rec.id
+                })
             rec.name = uuid.uuid4()
         return recs
+
 
 class ApplicationService(models.Model):
     _name = 'application.service'
