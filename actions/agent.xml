@@ -1,7 +1,7 @@
 <odoo>
     <data>
 
-        <record id='hl_base_agent_action_window' model='ir.actions.act_window'>
+        <record id="hl_base_agent_action_window" model="ir.actions.act_window">
 			<field name="name">Agent</field>
 			<field name="res_model">res.partner</field>
 			<field name="view_mode">tree,form</field>
