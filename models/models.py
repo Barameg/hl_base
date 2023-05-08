@@ -13,10 +13,10 @@ DEFAULT_CRYPT_CONTEXT = CryptContext(
 )
 
 
-class IrAttachment(models.Model):
-    _inherit = 'ir.attachment'
-
-    partner_application = fields.Many2one('partner.application')
+# class IrAttachment(models.Model):
+#     _inherit = 'ir.attachment'
+#
+#     partner_application = fields.Many2one('partner.application')
 
 
 class PartnerApplication(models.Model):
@@ -27,7 +27,7 @@ class PartnerApplication(models.Model):
     name = fields.Char()
     partner = fields.Many2one('res.partner')
     service = fields.Many2one('application.service')
-    documents = fields.One2many('ir.attachment', 'partner_application')
+    documents = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', _name)])
     description = fields.Text()
     first_name = fields.Char(string='First Name')
     middle_name = fields.Char(string='Middle Name')
@@ -81,6 +81,10 @@ class PartnerApplication(models.Model):
                     'res_model': self._name, 'res_id': rec.id
                 })
             rec.name = uuid.uuid4()
+            # rec.documents.write({
+            #     'res_id': rec.id,
+            #     'res_model': self._name
+            # })
         return recs
 
 
