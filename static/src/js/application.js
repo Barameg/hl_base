@@ -100,25 +100,21 @@
         // event.preventDefault() 
         // event.stopPropagation()
         if (event.target.matches('#country')) {
+            let statesResponse = await fetch(`/api/listStates?country=${event.target.value}`)
+            let statesContent = await statesResponse.text()
+
+            let states = JSON.parse(statesContent)
 
             let statesDropdown = document.querySelector('#state')
-            let statesOptions = statesDropdown.querySelectorAll('option')
-            Array.from(statesOptions).forEach(option => {
-                if (option.dataset.countryId == event.target.options[event.target.selectedIndex].value) {
-                    option.classList.remove('hidden')
-                } else {
-                    option.classList.add('hidden')
-                }
-            })
+            statesDropdown.innerHTML = ''
 
-            console.log(statesOptions)
-            const countryStateOptions = Array.from(statesOptions).filter(option => !option.classList.contains('hidden'))
-            if (countryStateOptions.length > 0) {
-                statesDropdown.required = true
-            } else {
-                statesDropdown.required = false
+            for(const state of states){
+                let stateOption = document.createElement('option')
+                stateOption.setAttribute('data-id', state.id)
+                stateOption.setAttribute('value', state.id)
+                stateOption.innerText = state.name
+                statesDropdown.append(stateOption)
             }
-            statesDropdown.selectedIndex = countryStateOptions.length ? countryStateOptions[0].index : -1
 
         }
         if (event.target.matches('#university')) {
