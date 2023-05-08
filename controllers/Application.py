@@ -512,7 +512,6 @@ class ApplicationController(http.Controller):
                 'state': state.id,
                 'zipcode': kw.get('zipcode'),
                 'country': country.id,
-                'university': university.id,
                 'program': program.id,
             })
             documents = []
@@ -528,6 +527,8 @@ class ApplicationController(http.Controller):
                             'name': document.name,
                             'type': 'binary',
                             'datas': base64.b64encode(file.read()),
+                            'res_id': application.id,
+                            'res_model': 'partner.application'
                         }]
                         documents.append(document)
             application.documents = documents

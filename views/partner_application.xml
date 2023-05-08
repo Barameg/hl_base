@@ -51,7 +51,7 @@
                                 </group>
                             </page>
                             <page name="documents" string="Documents">
-                                <field name="documents" context="{'default_partner_application': active_id}" domain="[('partner_application', '=', active_id)]">
+                                <field name="documents" context="{'default_res_id': active_id}" domain="[('res_id', '=', active_id)]">
                                     <kanban edit="false" import="false">
                     <field name="id"/>
                     <field name="mimetype"/>
