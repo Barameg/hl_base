@@ -271,16 +271,16 @@
 											<div id="stateWrapper" class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
 												<label for="state" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">State</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
-													<select id="state" name="state" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
-														<option data-id="" value="" selected="true"/>
+													<select id="state" name="state" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+														<!-- <option data-id="" value="" selected="true"/>
 														<t t-if="states">
 															<t t-foreach="states" t-as = "state">
 																<option t-att-data-id="state.id" t-att-value="state.id" t-att-data-country-id="state.country_id.id" t-att-selected="application.state.id == state.id if application else False" >
 																	<t t-esc="state.name"/>
 																</option>
 															</t>
-														</t>
-													</select>
+														</t> -->
+													<!-- </select> -->
 												</div>
 											</div>
 										</div>

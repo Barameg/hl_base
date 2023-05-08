@@ -537,3 +537,11 @@ class ApplicationController(http.Controller):
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
             return response
 
+    @http.route('/api/listStates', type='http', auth='none', website=True, csrf=False)
+    def list_states(self, **kw):
+        country = kw.get('country')
+        states = request.env['res.country.state'].sudo()
+        country_states = states.search([
+            ('country_id', '=', int(country))
+        ])
+        return json.dumps(country_states.mapped(lambda state: {'id': state.id, 'name':state.name}))
