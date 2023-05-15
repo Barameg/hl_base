@@ -383,7 +383,7 @@ class ApplicationController(http.Controller):
         ]
 
         if any([not kw.get(required_field) for required_field in required_fields]):
-            response = request.redirect('/%s/application' % subdomain)
+            response = request.redirect('/%s/dashboard' % subdomain)
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
             return response
@@ -402,26 +402,27 @@ class ApplicationController(http.Controller):
         nationality = countries.search([
             ('id', '=', kw.get('nationality'))
         ])
-
-        if not country or not university or not nationality:
-            response = request.redirect('/%s/application' % subdomain)
+        print(country, university, program, nationality)
+        if not country or not university or not nationality or not program:
+            response = request.redirect('/%s/dashboard' % subdomain)
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
             return response
 
+
         if not kw.get('state'):
             if country.state_ids:
-                response = request.redirect('/%s/application' % subdomain)
+                response = request.redirect('/%s/dashboard' % subdomain)
                 response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
                 response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
                 return response
 
         state = states.search([
-            ('id', '=', kw.get('state'))
+            ('id', '=', kw.get('state') if kw.get('state') else 0)
         ])
 
         if country.state_ids and not state:
-            response = request.redirect('/%s/application' % subdomain)
+            response = request.redirect('/%s/dashboard' % subdomain)
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
             return response
@@ -470,11 +471,30 @@ class ApplicationController(http.Controller):
                     'address_line_1': kw.get('address_line_1'),
                     'address_line_2': kw.get('address_line_2'),
                     'city': kw.get('city'),
-                    'state': state.id,
+                    'state': state.id if state else False,
                     'zipcode': kw.get('zipcode'),
                     'country': country.id,
                     'program': program.id,
                 })
+                documents = []
+                for file in request.httprequest.files.values():
+                    if file:
+                        print(file.name)
+                        document = program_documents.search([
+                            ('uuid', '=', file.name)
+                        ])
+                        if document and file.content_type.split('/')[1] in document.allowed_types and file.content_length * 1024 * 1024 < document.allowed_size * 1024 * 1024:
+                            # create an ir.attachment record
+                            document = [0, False, {
+                                'name': document.name,
+                                'type': 'binary',
+                                'datas': base64.b64encode(file.read()),
+                                'res_id': application.id,
+                                'res_model': 'partner.application'
+                            }]
+                            documents.append(document)
+                application.documents = documents
+
                 response = request.redirect('/%s/dashboard' % subdomain)
                 response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
                 response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
@@ -505,7 +525,7 @@ class ApplicationController(http.Controller):
                 'address_line_1': kw.get('address_line_1'),
                 'address_line_2': kw.get('address_line_2'),
                 'city': kw.get('city'),
-                'state': state.id,
+                'state': state.id if state else False,
                 'zipcode': kw.get('zipcode'),
                 'country': country.id,
                 'program': program.id,
