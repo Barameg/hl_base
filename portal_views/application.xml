@@ -302,7 +302,7 @@
 																<span>You can download template <a t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade" t-att-href="'/' + agent.subdomain + '/template/' + document.uuid">from here</a></span>
 															</t>
 														</label>
-														<input t-att-name="document.uuid" t-att-data-allowed-size="document.allowed_size" t-att-data-allowed-types="document.allowed_types" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/>
+														<input t-att-name="document.uuid" t-att-required="document.required" t-att-data-allowed-size="document.allowed_size" t-att-data-allowed-types="document.allowed_types" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/>
 													</div>
 												</t>											
 											</t>
@@ -315,7 +315,7 @@
 																<span>You can download template <a t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade" t-att-href="'/' + agent.subdomain + '/template/' + document.uuid">from here</a></span>
 															</t>
 														</label>
-														<input t-att-name="document.uuid" t-att-data-allowed-size="document.allowed_size" t-att-data-allowed-types="document.allowed_types" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/>
+														<input t-att-name="document.uuid"  t-att-required="document.required" t-att-data-allowed-size="document.allowed_size" t-att-data-allowed-types="document.allowed_types" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/>
 													</div>
 												</t>
 											</t>
