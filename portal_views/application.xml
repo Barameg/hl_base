@@ -128,7 +128,7 @@
 										</div>
 										<div class="space-y-6 sm:space-y-5">
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="first_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">First Name <span>(Required)<//span></label>
+												<label for="first_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">First Name <span>(Required)</span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<!-- <t t-if="application"> -->
 													<input id="first_name" t-att-value="application.first_name if application else ''" required="true" name="first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
