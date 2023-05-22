@@ -128,7 +128,7 @@
 										</div>
 										<div class="space-y-6 sm:space-y-5">
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="first_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">First Name</label>
+												<label for="first_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">First Name <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<!-- <t t-if="application"> -->
 													<input id="first_name" t-att-value="application.first_name if application else ''" required="true" name="first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
@@ -141,17 +141,17 @@
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
 												<label for="middleName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Middle Name</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
-													<input id="middle_name" t-att-value="application.middle_name if application else ''" required="true" name="middle_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+													<input id="middle_name" t-att-value="application.middle_name if application else ''" name="middle_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="lastName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Last Name</label>
+												<label for="lastName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Last Name <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input id="last_name" t-att-value="application.last_name if application else ''" required="true" name="last_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="gender" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Gender</label>
+												<label for="gender" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Gender <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<div class="space-y-4 pt-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
 														<div class="flex items-center">
@@ -166,13 +166,13 @@
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="dob" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Date of birth</label>
+												<label for="dob" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Date of birth <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input  t-att-value="application.dob if application else ''" type="date" required="true" id="dob" name="dob" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="marital_status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Marital Status</label>
+												<label for="marital_status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Marital Status <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<div class="space-y-4 pt-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
 														<div class="flex items-center">
@@ -195,7 +195,7 @@
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="nationality" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Nationality</label>
+												<label for="nationality" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Nationality <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="nationality" required="true" name="nationality" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<option data-id="" value="" selected="true"/>
@@ -210,19 +210,19 @@
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="passport_number" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Nº</label>
+												<label for="passport_number" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Nº <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input id="passport_number" required="true" name="passport_number" t-att-value="application.passport_number if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="passport_issue_date" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Issue</label>
+												<label for="passport_issue_date" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Issue <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input type="date" required="true" id="passport_issue_date" name="passport_issue_date"  t-att-value="application.passport_issue_date if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="passport_expiry_date" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Expiry</label>
+												<label for="passport_expiry_date" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Passport Expiry <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input type="date" required="true" id="passport_expiry_date" name="passport_expiry_date"  t-att-value="application.passport_expiry_date if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
@@ -236,7 +236,7 @@
 										</div>
 										<div class="space-y-6 sm:space-y-5">
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="address_line_1" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Address Line 1</label>
+												<label for="address_line_1" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Address Line 1 <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input id="address_line_1" required="true" name="address_line_1" t-att-value="application.address_line_1 if application else ''" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
@@ -244,17 +244,17 @@
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
 												<label for="address_line_2" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Address Line 2</label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
-													<input id="address_line_2" required="true" name="address_line_2" t-att-value="application.address_line_1 if application else ''"  t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+													<input id="address_line_2" name="address_line_2" t-att-value="application.address_line_1 if application else ''"  t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="city" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">City</label>
+												<label for="city" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">City <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<input id="city" required="true" name="city" t-att-value="application.address_line_1 if application else ''"  t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
 												</div>
 											</div>
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Country</label>
+												<label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Country <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="country" required="true" name="country" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<option data-id="" value="" selected="true"/>
@@ -269,7 +269,7 @@
 												</div>
 											</div>
 											<div id="stateWrapper" class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="state" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">State</label>
+												<label for="state" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">State <span>(Required)<span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">
 													<select id="state" name="state" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'">
 														<t t-if="application and application.state">
