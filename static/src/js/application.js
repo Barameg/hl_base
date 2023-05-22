@@ -181,7 +181,13 @@
                 }
             }
         }
-
+        if(event.target.matches('#passport_issue_date')){
+            var passport_issue_date = new Date(event.target.value);
+            var passport_expiry_date = new Date(passport_issue_date.getFullYear() + 10, passport_issue_date.getMonth(), passport_issue_date.getDate());
+            var formattedDate = passport_expiry_date.toISOString().split('T')[0];
+            var passport_expiry_date_input = document.querySelectorAll('#passport_expiry_date')
+            passport_expiry_date_input.value = formattedDate
+        }
     })
 
     function toCamelCase(str) {
