@@ -127,29 +127,66 @@
 											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
 										</div>
 										<div class="space-y-6 sm:space-y-5">
-											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="first_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">First Name <span>(Required)</span></label>
-												<div class="mt-1 sm:col-span-2 sm:mt-0">
-													<!-- <t t-if="application"> -->
-													<input id="first_name" t-att-value="application.first_name if application else ''" required="true" name="first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
-													<!-- </t> -->
-													<!-- <t t-else="">
-														<input id="first_name" t-att-value="'NA'" required="true" name="first_name" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm"/>
-													</t> -->
+											<div class="sm:grid sm:grid-cols-2 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<div class="sm:grid sm:grid-cols-1">
+													<label for="first_name" class="block text-sm font-medium text-gray-700 pb-5">First Name <span>(Required)</span></label>
+													<div class="mt-1 sm:col-span-1 sm:mt-0">
+														<!-- <t t-if="application"> -->
+														<input id="first_name" t-att-value="application.first_name if application else ''" required="true" name="first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+														<!-- </t> -->
+														<!-- <t t-else="">
+															<input id="first_name" t-att-value="'NA'" required="true" name="first_name" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm"/>
+														</t> -->
+													</div>												
+												</div>
+												<div class="sm:grid sm:grid-cols-1">
+													<label for="lastName" class="block text-sm font-medium text-gray-700 pb-5">Last Name <span>(Required)</span></label>
+													<div class="mt-1 sm:col-span-1 sm:mt-0">
+														<input id="last_name" t-att-value="application.last_name if application else ''" required="true" name="last_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+													</div>
 												</div>
 											</div>
-											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="middleName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Middle Name</label>
-												<div class="mt-1 sm:col-span-2 sm:mt-0">
-													<input id="middle_name" t-att-value="application.middle_name if application else ''" name="middle_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+
+											<div class="sm:grid sm:grid-cols-2 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<div class="sm:grid sm:grid-cols-1">
+													<label for="first_name" class="block text-sm font-medium text-gray-700 pb-5">Mother's First Name <span>(Required)</span></label>
+													<div class="mt-1 sm:col-span-1 sm:mt-0">
+														<!-- <t t-if="application"> -->
+														<input id="first_name" t-att-value="application.mother_first_name if application else ''" required="true" name="mother_first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+														<!-- </t> -->
+														<!-- <t t-else="">
+															<input id="first_name" t-att-value="'NA'" required="true" name="first_name" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm"/>
+														</t> -->
+													</div>												
+												</div>
+												<div class="sm:grid sm:grid-cols-1">
+													<label for="lastName" class="block text-sm font-medium text-gray-700 pb-5">Mother's Last Name <span>(Required)</span></label>
+													<div class="mt-1 sm:col-span-1 sm:mt-0">
+														<input id="last_name" t-att-value="application.mother_last_name if application else ''" required="true" name="mother_last_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+													</div>
 												</div>
 											</div>
-											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-												<label for="lastName" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Last Name <span>(Required)</span></label>
-												<div class="mt-1 sm:col-span-2 sm:mt-0">
-													<input id="last_name" t-att-value="application.last_name if application else ''" required="true" name="last_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+
+											<div class="sm:grid sm:grid-cols-2 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+												<div class="sm:grid sm:grid-cols-1">
+													<label for="first_name" class="block text-sm font-medium text-gray-700 pb-5">Father's First Name <span>(Required)</span></label>
+													<div class="mt-1 sm:col-span-1 sm:mt-0">
+														<!-- <t t-if="application"> -->
+														<input id="first_name" t-att-value="application.father_first_name if application else ''" required="true" name="father_first_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+														<!-- </t> -->
+														<!-- <t t-else="">
+															<input id="first_name" t-att-value="'NA'" required="true" name="first_name" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm"/>
+														</t> -->
+													</div>												
+												</div>
+												<div class="sm:grid sm:grid-cols-1">
+													<label for="lastName" class="block text-sm font-medium text-gray-700 pb-5">Father's Last Name <span>(Required)</span></label>
+													<div class="mt-1 sm:col-span-1 sm:mt-0">
+														<input id="last_name" t-att-value="application.father_last_name if application else ''" required="true" name="father_last_name" t-att-class="'block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' sm:text-sm'"/>
+													</div>
 												</div>
 											</div>
+
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
 												<label for="gender" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Gender <span>(Required)</span></label>
 												<div class="mt-1 sm:col-span-2 sm:mt-0">

@@ -362,12 +362,16 @@ class ApplicationController(http.Controller):
             response = request.redirect('/%s/signupVerification' % subdomain)
             response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
             return response
-
+        print(kw)
         required_fields = [
             'university',
             'program',
             'first_name',
             'last_name',
+            'mother_first_name',
+            'mother_last_name',
+            'father_first_name',
+            'father_last_name',
             'gender',
             'dob',
             'marital_status',
@@ -406,7 +410,6 @@ class ApplicationController(http.Controller):
             response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
             response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
             return response
-
 
         if not kw.get('state'):
             if country.state_ids:
@@ -453,8 +456,11 @@ class ApplicationController(http.Controller):
                     'university': university.id,
                     'partner': student.id,
                     'first_name': kw.get('first_name'),
-                    'middle_name': kw.get('middle_name') if kw.get('middle_name') else '',
                     'last_name': kw.get('last_name'),
+                    'mother_first_name': kw.get('mother_first_name'),
+                    'mother_last_name': kw.get('mother_last_name'),
+                    'father_first_name': kw.get('father_first_name'),
+                    'father_last_name': kw.get('father_last_name'),
                     'gender': kw.get('gender'),
                     'email': kw.get('email'),
                     'phone': kw.get('phone'),
@@ -503,17 +509,16 @@ class ApplicationController(http.Controller):
                 'university': university.id,
                 'partner': student.id,
                 'first_name': kw.get('first_name'),
-                'middle_name': kw.get('middle_name') if kw.get('middle_name') else '',
                 'last_name': kw.get('last_name'),
+                'mother_first_name': kw.get('mother_first_name'),
+                'mother_last_name': kw.get('mother_last_name'),
+                'father_first_name': kw.get('father_first_name'),
+                'father_last_name': kw.get('father_last_name'),
                 'gender': kw.get('gender'),
                 'email': kw.get('email'),
                 'phone': kw.get('phone'),
                 'mobile': kw.get('mobile'),
                 'dob': kw.get('dob'),
-                # father_first_name = fields.Char()
-                # father_last_name = fields.Char()
-                # mother_first_name = fields.Char()
-                # mother_last_name = fields.Char()
                 'marital_status': kw.get('marital_status'),
                 'nationality': kw.get('nationality'),
                 'passport_number': kw.get('passport_number'),
