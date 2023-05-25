@@ -159,6 +159,7 @@
                 }
             })
         }
+        
         if (event.target.matches('input[type="file"]')) {
             if (event.target.files.length > 0) {
                 let exceedsLimit = false
@@ -181,6 +182,7 @@
                 }
             }
         }
+
         if(event.target.matches('#passport_issue_date')){
             var passport_issue_date = new Date(event.target.value);
             var passport_expiry_date = new Date(passport_issue_date.getFullYear() + 10, passport_issue_date.getMonth(), passport_issue_date.getDate());
