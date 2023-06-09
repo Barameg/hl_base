@@ -119,45 +119,72 @@
         }
         if (event.target.matches('#university')) {
             console.log('university changed')
+
             let programsDropdown = document.querySelector('#program')
-            let programsOptions = programsDropdown.querySelectorAll('option')
-            Array.from(programsOptions).forEach(option => {
-                if (option.dataset.universityId == event.target.options[event.target.selectedIndex].dataset.id) {
-                    option.classList.remove('hidden')
-                } else {
-                    option.classList.add('hidden')
-                }
-            })
-            // Array.from(programsOptions).filter(option => option.dataset.universityId == event.target.options[event.target.selectedIndex].id).forEach(option=>{
-            //     option.classList.remove('hidden')
-            // })
-            // Array.from(programsOptions).filter(option => option.dataset.universityId != event.target.options[event.target.selectedIndex].id).forEach(option=>{
-            //     option.classList.add('hidden')
-            // })
-            const universityProgramOptions = Array.from(programsOptions).filter(option => !option.classList.contains('hidden'))
-            programsDropdown.selectedIndex = universityProgramOptions.length ? universityProgramOptions[0].index : -1
+            programsDropdown.innerHTML = ''
 
-            let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
+            let programsResponse = await fetch(`/api/listPrograms?university=${event.target.value}`)
+            let programsContent = await programsResponse.text()
+            let programs = JSON.parse(programsContent)
 
-            Array.from(programDocuments).forEach(inputWrapper => {
-                if (inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id) {
-                    inputWrapper.classList.add('hidden')
-                } else {
-                    inputWrapper.classList.remove('hidden')
+
+            for await (const [key, program] of Object.entries(programs)){
+                if(key == programs.length){
+                    let programOption = document.createElement('option')
+                    programOption.setAttribute('data-id', program.id)
+                    programOption.setAttribute('value', program.id)
+                    programOption.innerText = program.name
+                    programsDropdown.append(programOption)
                 }
-            })
+                let programOption = document.createElement('option')
+                programOption.setAttribute('data-id', program.id)
+                programOption.setAttribute('value', program.id)
+                programOption.innerText = program.name
+                programsDropdown.append(programOption)
+            }
+            let program = programsDropdown[0].dataset.id
+            let documentsResponse = await fetch(`/api/listDocuments?program=${program}`)
+            let documentsContent = await documentsResponse.text()
+            let documents = JSON.parse(documentsContent)
+            let documentsWrapper = document.querySelector('#programDocuments')
+            documentsWrapper.innerHTML = ''
+
+            for(const document of documents){
+                let htmlContent = `
+                    <div class="uploadFieldWrapper" data-program="${program}">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="${document.uuid}">
+                            ${document.name} ${document.template ? 'You can download template <a class="text-sm font-medium text-current group-hover:text-current" href="/template/' + document.uuid + '">from here</a>' : ''}
+                        </label>
+                        <input name="${document.uuid}" required="${document.required}" data-allowed-size="${document.allowed_size}" data-allowed-types="${document.allowed_types}" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="${document.uuid}" type="file"/>
+                    </div>`
+                documentsWrapper.insertAdjacentHTML('afterbegin', htmlContent)
+            }
 
         }
         if (event.target.matches('#program')) {
+            console.log('program changed')
+            console.log(event.target)
             let programsDropdown = event.target
             let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
-            Array.from(programDocuments).forEach(inputWrapper => {
-                if (inputWrapper.dataset.program != programsDropdown[programsDropdown.selectedIndex].dataset.id) {
-                    inputWrapper.classList.add('hidden')
-                } else {
-                    inputWrapper.classList.remove('hidden')
-                }
-            })
+
+            let documentsResponse = await fetch(`/api/listDocuments?program=${event.target.value}`)
+            let documentsContent = await documentsResponse.text()
+
+            let documents = JSON.parse(documentsContent)
+            console.log(documents)
+            let documentsWrapper = document.querySelector('#programDocuments')
+            documentsWrapper.innerHTML = ''
+
+            for(const document of documents){
+                let htmlContent = `
+                    <div class="uploadFieldWrapper" data-program="${program}">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="${document.uuid}">
+                            ${document.name} ${document.template ? 'You can download template <a class="text-sm font-medium text-current group-hover:text-current" href="/template/' + document.uuid + '">from here</a>' : ''}
+                        </label>
+                        <input name="${document.uuid}" required="${document.required}" data-allowed-size="${document.allowed_size}" data-allowed-types="${document.allowed_types}" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="${document.uuid}" type="file"/>
+                    </div>`
+                documentsWrapper.insertAdjacentHTML('afterbegin', htmlContent)
+            }
         }
         
         if (event.target.matches('input[type="file"]')) {

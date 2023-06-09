@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="invoice_email_template" model="mail.template">
+            <field name="name">Welcome Demo</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="partner_to">${object.company_id.id | safe}</field>
+            <field name="email_to">${(not object.partner_id and object.email_from)|safe}</field>
+            <field name="body_html">
+                <![CDATA[
+                    <p>Hi ${object.partner_id.name},</p>
+                    <br/>
+                    <p>Thank you for choosing
+                    % if object.partner_id.agent:
+                        ${object.partner_id.agent.name}
+                    % else:
+                        ${object.company_id.name}
+                    % endif
+                    to help guide you on your study abroad journey. We really appreciate your decision to choose us.</p>
+                    <p>I am ${object.user_id.name}, Admissions officer at
+                     % if object.partner_id.agent:
+                        ${object.partner_id.agent.name}
+                    % else:
+                        ${object.company_id.name}
+                    % endif
+                     and I will be helping with all your further steps in the admission process.</p>
+                    <p>Studying abroad can be a daunting task, which is why we strive to make the process as seamless and stress-free as possible. I appreciate your choice of the
+                    % for program in object.programs:
+                        ${program.name} programme,
+                    % endfor
+                    and I strongly believe it's a great choice. I will be guiding you through the tuition fees structure for the ${object.program_duration} program in this email.</p>
+                    <br/>
+                    % for program in object.programs:
+                        <p><strong>${program.name} Tuition Fees Structure:</strong></p>
+                        <ul>
+                            % for cost in program.costs:
+                                <li>${cost.name}, ${cost.amount}</li>
+                            % endfor
+                        </ul>
+                    % endfor
+                    <p>To initiate the admission process, please execute the first payment of €500. If you have any queries or concerns, please do not hesitate to contact us. Our team is always ready to assist you and provide any information you may need.</p>
+                    <p>Waiting for your payment confirmation.</p>
+                    <br/>
+                    <p>Best regards,</p>
+                    <p>${object.user_id.name}</p>
+                    <p>Admissions officer</p>
+                    <p>
+                        % if object.partner_id.agent:
+                            ${object.partner_id.agent.name}
+                        % else:
+                            ${object.company_id.name}
+                        % endif
+                    </p>
+                ]]>
+            </field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

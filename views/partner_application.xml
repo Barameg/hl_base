@@ -113,8 +113,8 @@
                         </t>
                     </templates>
                 </kanban>
-                                </field>
-                            </page>
+                    </field>
+                        </page>
                             <page name="notes" string="Notes">
 
                             </page>

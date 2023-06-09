@@ -19,7 +19,7 @@
 
 				<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 					<div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-						<form class="space-y-6" t-att-action="'/' +agent.subdomain + '/signup/submit'" method="POST">
+						<form class="space-y-6" action="/signup/submit" method="POST">
 							<div>
 								<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
 								<div class="mt-1">
@@ -49,7 +49,7 @@
 							</div>
 
 							<div>
-								<button type="submit" t-att-href="'/' + agent.subdomain + '/signup/submit'"
+								<button type="submit" href="/signup/submit"
 									t-att-class="'flex w-full justify-center rounded-md border border-transparent bg-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-' + agent.agent_color + '-' + agent.agent_shade + ' focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2'">Sign Up</button>
 							</div>
 						</form>
@@ -66,7 +66,7 @@
 
 							<div class="mt-6">
 								<div>
-									<a t-att-href="'/' + agent.subdomain + '/login'"
+									<a href="/login"
 										t-att-class="'flex w-full justify-center rounded-md bg-white border border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 px-4 text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' shadow-sm focus:outline-none focus:ring-2 focus:ring-' + agent.agent_color + '-' + agent.agent_shade + ' focus:ring-offset-2 hover:bg-gray-50'">
 										Sign in</a>
 								</div>

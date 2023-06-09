@@ -3,7 +3,7 @@
 from passlib.context import CryptContext
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request, Response, redirect_with_hash
 from odoo.osv import expression
 import json
 from xml.sax.saxutils import escape
@@ -28,8 +28,11 @@ def generate_timestamp():
 
 
 class ApplicationController(http.Controller):
-    @http.route('/<string:subdomain>/application', type='http', auth='none', website=True, csrf=False)
-    def application(self, subdomain, **kw):
+    @http.route('/application', type='http', auth='none', website=True, csrf=False)
+    def application(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+        
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -50,8 +53,8 @@ class ApplicationController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
@@ -79,18 +82,18 @@ class ApplicationController(http.Controller):
                 'programs': programs,
                 'documents': documents,
             }   
-            response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-#            response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
-            response.set_cookie('email', expires=0, path='/%s/' % subdomain)
+            response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+#            response.set_cookie('application_uuid', expires=0, path='/')
+            response.set_cookie('student_session', student.student_session, path='/')
+            response.set_cookie('email', expires=0, path='/')
             template = request.env['ir.ui.view']._render_template("hl_base.application", data)
             response.set_data(template)
             return response
         for cookie in cookies:
             response.delete_cookie(cookie)
-        response = request.redirect('/%s/login' % subdomain)
-        # response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-        # response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+        response = redirect_with_hash('/login')
+        # response.set_cookie('agent_uuid', agent_uuid, path='/')
+        # response.set_cookie('student_session', student_session, path='/')
         return response
     
 
@@ -111,10 +114,10 @@ class ApplicationController(http.Controller):
         #         'programs': programs
         #     } 
         #     response = Response()
-        #     response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-        #     response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
-        #     response.set_cookie('email', expires=0, path='/%s/' % subdomain)
-        #     response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
+        #     response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+        #     response.set_cookie('student_session', student.student_session, path='/')
+        #     response.set_cookie('email', expires=0, path='/')
+        #     response.set_cookie('application_uuid', expires=0, path='/')
         #     template = request.env['ir.ui.view']._render_template("hl_base.application", data)
         #     response.set_data(template)
         #     return response
@@ -136,16 +139,19 @@ class ApplicationController(http.Controller):
         # }
         # print(application.name)
         # response = Response()
-        # response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-        # response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
-        # response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
-        # response.set_cookie('email', expires=0, path='/%s/' % subdomain)
+        # response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+        # response.set_cookie('student_session', student.student_session, path='/')
+        # response.set_cookie('application_uuid', expires=0, path='/')
+        # response.set_cookie('email', expires=0, path='/')
         # template = request.env['ir.ui.view']._render_template("hl_base.application", data)
         # response.set_data(template)
         # return response
 
-    @http.route('/<string:subdomain>/application/edit/<string:application_uuid>', type='http', auth='none', website=True, csrf=False)
-    def application_edit(self, subdomain, application_uuid, **kw):
+    @http.route('/application/edit/<string:application_uuid>', type='http', auth='none', website=True, csrf=False)
+    def application_edit(self, application_uuid, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -165,8 +171,8 @@ class ApplicationController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
@@ -180,18 +186,18 @@ class ApplicationController(http.Controller):
                 if not student:
                     for cookie in cookies:
                         response.delete_cookie(cookie)
-                    response = request.redirect('/%s/login' % subdomain)
+                    response = redirect_with_hash('/login')
                     return response
 
                 application = applications.search([
                     ('partner', '=', student.id),
                     ('name', '=', application_uuid)
                 ])
-
+                print(application, 'this is the application')
                 if not application:
-                    response = request.redirect('/%s/dashboard' % subdomain)
-                    response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-                    response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                    response = redirect_with_hash('/dashboard')
+                    response.set_cookie('agent_uuid', agent_uuid, path='/')
+                    response.set_cookie('student_session', student_session, path='/')
                     return response 
                 
                 universities = partners.search([
@@ -212,29 +218,32 @@ class ApplicationController(http.Controller):
                     'logo': agent.image_128.decode() if agent.image_128 else '',
                     'agent': partners.browse(agent.id),
                     'student': partners.browse(student.id),
-                    'application': applications.browse(application.id),
+                    'application': application,
                     'universities': universities,
                     'countries': countries,
                     'states': states,
                     'programs': programs,
                     'documents': documents
                 }
+                print('rendering application')
                 response = Response()
-                response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-                response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
-                response.set_cookie('application_uuid', application_uuid, path='/%s/' % subdomain)
-                response.set_cookie('email', expires=0, path='/%s/' % subdomain)
                 template = request.env['ir.ui.view']._render_template("hl_base.application", data)
+                response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+                response.set_cookie('student_session', student.student_session, path='/')
+                response.set_cookie('application_uuid', application_uuid, path='/')
                 response.set_data(template)
                 return response
         else:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/login' % subdomain)
+            response = redirect_with_hash('/login')
             return response
         
-    @http.route('/<string:subdomain>/template/<string:document_template_uuid>', type='http', auth='none', website=True, csrf=False)
-    def download_template(self, subdomain, document_template_uuid, **kw):
+    @http.route('/template/<string:document_template_uuid>', type='http', auth='none', website=True, csrf=False)
+    def download_template(self, document_template_uuid, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         response = Response()
         cookies = http.request.httprequest.cookies
 
@@ -256,8 +265,8 @@ class ApplicationController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
         
         if agent_uuid and student_session:
@@ -275,13 +284,16 @@ class ApplicationController(http.Controller):
                         ('Content-Disposition', http.content_disposition(document.template.name))
                     ]
                     return Response(base64.b64decode(document.template.datas), headers=headers, direct_passthrough=True)
-        response = request.redirect('/%s/login' % subdomain)
-        response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
-        response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
+        response = redirect_with_hash('/login')
+        response.set_cookie('agent_uuid', expires=0, path='/')
+        response.set_cookie('student_session', expires=0, path='/')
         return response
 
-    @http.route('/<string:subdomain>/application/delete/<string:application_id>', type='http', auth='none', website=True, csrf=False)
-    def application_delete(self, subdomain, application_id, **kw):
+    @http.route('/application/delete/<string:application_id>', type='http', auth='none', website=True, csrf=False)
+    def application_delete(self, application_id, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         response = Response()
         cookies = http.request.httprequest.cookies
 
@@ -303,8 +315,8 @@ class ApplicationController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
         
         if agent_uuid and student_session:
@@ -319,17 +331,20 @@ class ApplicationController(http.Controller):
                 ])
                 if application:
                     application.unlink()
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
-        response = request.redirect('/%s/login' % subdomain)
-        response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
-        response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
+        response = redirect_with_hash('/login')
+        response.set_cookie('agent_uuid', expires=0, path='/')
+        response.set_cookie('student_session', expires=0, path='/')
         return response
 
-    @http.route('/<string:subdomain>/application/submit', type='http', auth='none', website=True, csrf=False)
-    def application_submit(self, subdomain, **kw):
+    @http.route('/application/submit', type='http', auth='none', website=True, csrf=False)
+    def application_submit(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -359,8 +374,8 @@ class ApplicationController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
         print(kw)
         required_fields = [
@@ -385,9 +400,9 @@ class ApplicationController(http.Controller):
         ]
 
         if any([not kw.get(required_field) for required_field in required_fields]):
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         country = countries.search([
@@ -406,16 +421,16 @@ class ApplicationController(http.Controller):
         ])
         print(country, university, program, nationality)
         if not country or not university or not nationality or not program:
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         if not kw.get('state'):
             if country.state_ids:
-                response = request.redirect('/%s/dashboard' % subdomain)
-                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                response = redirect_with_hash('/dashboard')
+                response.set_cookie('agent_uuid', agent_uuid, path='/')
+                response.set_cookie('student_session', student_session, path='/')
                 return response
 
         state = states.search([
@@ -423,9 +438,9 @@ class ApplicationController(http.Controller):
         ])
 
         if country.state_ids and not state:
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         if agent_uuid and student_session:
@@ -435,9 +450,9 @@ class ApplicationController(http.Controller):
             ])
 
             if not student:
-                response = request.redirect('/%s/login' % subdomain)
-                response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
-                response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
+                response = redirect_with_hash('/login')
+                response.set_cookie('agent_uuid', expires=0, path='/')
+                response.set_cookie('student_session', expires=0, path='/')
                 return response
 
             if application_uuid:
@@ -445,12 +460,11 @@ class ApplicationController(http.Controller):
                     ('name', '=', application_uuid)
                 ])
                 if not application:
-                    pass
-                    # response = request.redirect('/%s/dashboard' % subdomain)
-                    # response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-                    # response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
-                    # response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
-                    # return response
+                    response = redirect_with_hash('/dashboard')
+                    response.set_cookie('agent_uuid', agent_uuid, path='/')
+                    response.set_cookie('student_session', student_session, path='/')
+                    response.set_cookie('application_uuid', expires=0, path='/')
+                    return response
 
                 application.write({
                     'university': university.id,
@@ -499,10 +513,10 @@ class ApplicationController(http.Controller):
                             documents.append(document)
                 application.documents = documents
 
-                response = request.redirect('/%s/dashboard' % subdomain)
-                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
-                response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
+                response = redirect_with_hash('/dashboard')
+                response.set_cookie('agent_uuid', agent_uuid, path='/')
+                response.set_cookie('student_session', student_session, path='/')
+                response.set_cookie('application_uuid', expires=0, path='/')
                 return response
 
             application = applications.create({
@@ -552,17 +566,30 @@ class ApplicationController(http.Controller):
                         }]
                         documents.append(document)
             application.documents = documents
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
-        response = request.redirect('/%s/login' % subdomain)
-        response.set_cookie('agent_uuid', expires=0, path='/%s/' % subdomain)
-        response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
-        response.set_cookie('verificationEmail', expires=0, path='/%s/' % subdomain)
-        response.set_cookie('application_uuid', expires=0, path='/%s/' % subdomain)
+        response = redirect_with_hash('/login')
+        response.set_cookie('agent_uuid', expires=0, path='/')
+        response.set_cookie('student_session', expires=0, path='/')
+        response.set_cookie('verificationEmail', expires=0, path='/')
+        response.set_cookie('application_uuid', expires=0, path='/')
         return response
+
+    @http.route('/api/listPrograms', type='http', auth='none', website=True, csrf=False)
+    def list_programs(self, **kw):
+        university = kw.get('university')
+        programs = request.env['university.program'].sudo()
+        university_programs = programs.search([
+            ('university', '=', int(university))
+        ])
+        result = list(map(lambda program: {
+            'id': program.id,
+            'name': program.name,
+        }, university_programs))
+        return json.dumps(result)
 
     @http.route('/api/listStates', type='http', auth='none', website=True, csrf=False)
     def list_states(self, **kw):
@@ -572,3 +599,20 @@ class ApplicationController(http.Controller):
             ('country_id', '=', int(country))
         ])
         return json.dumps(country_states.mapped(lambda state: {'id': state.id, 'name':state.name}))
+
+    @http.route('/api/listDocuments', type='http', auth='none', website=True, csrf=False)
+    def list_documents(self, **kw):
+        program = kw.get('program')
+        documents = request.env['university.program.document'].sudo()
+        program_documents = documents.search([
+            ('program', '=', int(program))
+        ])
+        return json.dumps(program_documents.mapped(lambda document: {
+            'id': document.id,
+            'name':document.name,
+            'uuid': document.uuid,
+            'template': document.uuid if document.template else False,
+            'required': document.required,
+            'allowed_size': document.allowed_size,
+            'allowed_types': document.allowed_types,
+        }))

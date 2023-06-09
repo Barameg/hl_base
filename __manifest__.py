@@ -23,7 +23,8 @@
     'depends': [
         'base',
         'sale',
-        'portal'
+        'portal',
+        'account'
     ],
 
     # always loaded
@@ -39,6 +40,7 @@
         'views/university.xml',
         'views/university_program.xml',
         'views/university_program_document.xml',
+        'views/invoice_email_template.xml',
         'portal_views/sidebar.xml',
         'portal_views/mobile_sidebar.xml',
         'portal_views/login.xml',

@@ -26,8 +26,11 @@ def generate_timestamp():
 
 class SignupController(http.Controller):
 
-    @http.route('/<string:subdomain>/signup', type='http', auth='public', website=True)
-    def signup_form(self, subdomain, **kw):
+    @http.route('/signup', type='http', auth='public', website=True)
+    def signup_form(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         response = Response()
         cookies = http.request.httprequest.cookies
         partners = request.env['res.partner'].sudo()
@@ -47,16 +50,16 @@ class SignupController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         data = {
@@ -65,12 +68,15 @@ class SignupController(http.Controller):
         }
         template = request.env['ir.ui.view']._render_template("hl_base.signup", data)
         response.set_data(template)
-        response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+        response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
         return response
 
 
-    @http.route('/<string:subdomain>/signup/submit', type='http', auth='none', website=True, csrf=False)
-    def signup_submit(self, subdomain, **kw):
+    @http.route('/signup/submit', type='http', auth='none', website=True, csrf=False)
+    def signup_submit(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -94,16 +100,16 @@ class SignupController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         student = partners.search([
@@ -115,7 +121,7 @@ class SignupController(http.Controller):
             return 'student exist redirect to error page'
 
         student = partners.signup(name, email, password, agent.id)
-        response = request.redirect('/%s/signupVerification' % subdomain)
-        response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-        response.set_cookie('verificationEmail', student.email, path='/%s/' % subdomain)
+        response = redirect_with_hash('/signupVerification')
+        response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+        response.set_cookie('verificationEmail', student.email, path='/')
         return response

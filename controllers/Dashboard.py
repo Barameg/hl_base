@@ -3,7 +3,7 @@
 from passlib.context import CryptContext
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request, Response, redirect_with_hash
 from odoo.osv import expression
 import json
 from xml.sax.saxutils import escape
@@ -25,8 +25,11 @@ def generate_timestamp():
 
 
 class DashboardController(http.Controller):
-    @http.route('/<string:subdomain>', type='http', auth='none', website=True, csrf=False)
-    def main(self, subdomain, **kw):
+    @http.route('/', type='http', auth='none', website=True, csrf=False)
+    def main(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+        
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -46,35 +49,81 @@ class DashboardController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         for cookie in cookies:
             response.delete_cookie(cookie)
-        response = request.redirect('/%s/login' % subdomain)
-        response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+        response = redirect_with_hash('/login')
+        response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
         return response
 
     @http.route([
-        '/<string:subdomain>/<string:anything>',
-        '/<string:subdomain>/dashboard/<string:anything>',
-        '/<string:subdomain>/login/<string:anything>',
-        '/<string:subdomain>/login/submit/<string:anything>',
-        '/<string:subdomain>/signup/<string:anything>',
-        '/<string:subdomain>/signup/submit/<string:anything>',
-        '/<string:subdomain>/signupVerification/<string:anything>',
-        '/<string:subdomain>/signupVerification/submit/<string:anything>',
+        '/<path:anything>',
+        '/dashboard/<path:anything>',
+        '/login/<path:anything>',
+        '/login/submit/<path:anything>',
+        '/signup/<path:anything>',
+        '/signup/submit/<path:anything>',
+        '/signupVerification/<path:anything>',
+        '/signupVerification/submit/<path:anything>',
     ], type='http', auth='none', website=True, csrf=False)
-    def redirect(self, subdomain, anything, **kw):
+    def block_request(self, anything, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
+        cookies = http.request.httprequest.cookies
+        response = Response()
+
+        agent_uuid = cookies.get('agent_uuid')
+        student_session = cookies.get('student_session')
+        verificationEmail = cookies.get('verificationEmail')
+
+        partners = request.env['res.partner'].sudo()
+        agent = partners.search([
+            ('subdomain', '=', subdomain)
+        ], limit=1)
+
+        if not agent:
+            # redirect to agent not found 
+            return "Agent not found"
+
+        return '404 page'
+        # if verificationEmail:
+        #     for cookie in cookies:
+        #         response.delete_cookie(cookie)
+        #     response = redirect_with_hash('/signupVerification')
+        #     response.set_cookie('verificationEmail', verificationEmail, path='/')
+        #     return response
+        #
+        # if agent_uuid and student_session:
+        #     for cookie in cookies:
+        #         response.delete_cookie(cookie)
+        #     response = redirect_with_hash('/dashboard')
+        #     response.set_cookie('agent_uuid', agent_uuid, path='/')
+        #     response.set_cookie('student_session', student_session, path='/')
+        #     return response
+        #
+        # for cookie in cookies:
+        #     response.delete_cookie(cookie)
+        # # redirect to dashboard page
+        # response = redirect_with_hash('/login')
+        # return response
+
+    @http.route('/dashboard', type='http', auth='public', website=True, csrf=False)
+    def dashboard(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -94,47 +143,8 @@ class DashboardController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
-            return response
-
-        if agent_uuid and student_session:
-            for cookie in cookies:
-                response.delete_cookie(cookie)
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
-            return response
-
-        for cookie in cookies:
-            response.delete_cookie(cookie)
-        # redirect to dashboard page
-        response = request.redirect('/%s/login' % subdomain)
-        return response
-
-    @http.route('/<string:subdomain>/dashboard', type='http', auth='public', website=True, csrf=False)
-    def dashboard(self, subdomain, **kw):
-        cookies = http.request.httprequest.cookies
-        response = Response()
-
-        agent_uuid = cookies.get('agent_uuid')
-        student_session = cookies.get('student_session')
-        verificationEmail = cookies.get('verificationEmail')
-
-        partners = request.env['res.partner'].sudo()
-        agent = partners.search([
-            ('subdomain', '=', subdomain)
-        ], limit=1)
-
-        if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
-
-        if verificationEmail:
-            for cookie in cookies:
-                response.delete_cookie(cookie)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
-            response = request.redirect('/%s/signupVerification' % subdomain)
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
+            response = redirect_with_hash('/signupVerification')
             return response
 
         if agent_uuid and student_session:
@@ -150,8 +160,8 @@ class DashboardController(http.Controller):
                 }
                 for cookie in cookies:
                     response.delete_cookie(cookie)
-                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-                response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+                response.set_cookie('agent_uuid', agent_uuid, path='/')
+                response.set_cookie('student_session', student_session, path='/')
                 template = request.env['ir.ui.view']._render_template("hl_base.dashboard", data)
                 response.set_data(template)
                 return response
@@ -159,11 +169,14 @@ class DashboardController(http.Controller):
         for cookie in cookies:
             response.delete_cookie(cookie)
         # redirect to dashboard page
-        response = request.redirect('/%s/login' % subdomain)
+        response = redirect_with_hash('/login')
         return response
 
-    @http.route('/<string:subdomain>/logout', type='http', auth='public', website=True, csrf=False)
-    def logout(self, subdomain, **kw):
+    @http.route('/logout', type='http', auth='public', website=True, csrf=False)
+    def logout(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -180,8 +193,8 @@ class DashboardController(http.Controller):
             # redirect to agent not found 
             return "Agent not found"
 
+        response = redirect_with_hash('/login')
         # redirect to dashboard page
-        response = request.redirect('/%s/login' % subdomain)
-        response.set_cookie('student_session', expires=0, path='/%s/' % subdomain)
-        response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+        for cookie in cookies:
+            response.delete_cookie(cookie)
         return response
