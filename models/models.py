@@ -112,6 +112,87 @@ class UniversityProgram(models.Model):
     coordinator = fields.Many2one('res.partner')
     university = fields.Many2one('res.partner')
     documents = fields.One2many('university.program.document', 'program')
+    costs = fields.One2many('university.program.cost', 'program')
+
+    @api.model
+    def create(self, vals_list):
+        recs = super(UniversityProgram, self).create(vals_list)
+        products = self.env['product.template']
+        for rec in recs:
+            list_price = 0.00
+            productsToCreate = []
+            if rec.costs:
+                for cost in rec.costs:
+                    list_price += cost.amount
+                    productsToCreate.append({
+                        'default_code': uuid.uuid4(),
+                        'name': f'{cost.name} {rec.name}',
+                        'list_price': cost.amount,
+                        'type': 'service',
+                        'hl_program': rec.id
+                    })
+            products.create(productsToCreate)
+        return recs
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    hl_program = fields.Many2one('university.program')
+
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+
+    programs = fields.Many2many('university.program')
+
+    def email_invoice(self):
+        template = self.env.ref('hl_base.invoice_email_template')  # Replace 'module_name' with the actual module name containing the template
+
+        email_values = {
+            'email_from': self.env.user.email or '',
+            'email_to': self.partner_id.email or '',
+            'subject': 'Test Mail',
+        }
+        attachments = self.env['ir.attachment']
+        attachment = attachments.search([
+            ('res_id', '=', self.id),
+            ('res_model', '=', 'account.move'),
+        ])
+        print(attachment)
+        if attachment:
+            # Append the attachment to the email values
+            email_values['attachment_ids'] = [(4, attachment.id, 0)]
+        template.send_mail(self.id, email_values=email_values)
+
+        # mail_values = {
+        #     'email_to': self.partner_id.email,
+        #     'subject': 'Welcome to our site!',
+        #     'body_html': f'<p>Dear {self.partner_id.name},</p><p>Welcome to our site! your verification code is {self.partner_id} </p>',
+        #     'body': f'Dear {self.partner_id.name}, Welcome to our site! your verification code is {self.partner_id}',
+        # }
+        #
+        # mail_id = self.env['mail.mail'].create(mail_values)
+        # mail_id.send()
+
+    @api.model
+    def create(self, vals_list):
+        recs = super(AccountMove, self).create(vals_list)
+        for rec in recs:
+            linesWithPrograms = rec.line_ids.filtered(lambda line: line if line.product_id.hl_program else None)
+            programs = linesWithPrograms.mapped(lambda line: line.product_id.hl_program)
+            rec.programs = [[6,0,programs.mapped(lambda program: program.id)]]
+            rec.email_invoice()
+        return recs
+
+
+class UniversityProgramCost(models.Model):
+    _name = 'university.program.cost'
+    _description = 'University Program Cost'
+
+    name = fields.Char()
+    program = fields.Many2one('university.program')
+    amount = fields.Float(default=0.00)
 
 
 class UniversityProgramDocument(models.Model):

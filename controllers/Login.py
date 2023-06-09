@@ -3,7 +3,7 @@
 from passlib.context import CryptContext
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request, Response, redirect_with_hash
 from odoo.osv import expression
 import json
 from xml.sax.saxutils import escape
@@ -29,10 +29,20 @@ def generate_timestamp():
 
 
 class LoginController(http.Controller):
-    @http.route('/<string:subdomain>/login', type='http', auth='public', website=True)
-    def login_form(self, subdomain, **kw):
+    @http.route('/test', type='http', auth='public', website=True)
+    def test(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+        return 'hello'
+
+    @http.route('/login', type='http', auth='public', website=True)
+    def login_form(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
+        
         response = Response()
         cookies = http.request.httprequest.cookies
+
         partners = request.env['res.partner'].sudo()
 
         agent_uuid = cookies.get('agent_uuid')
@@ -50,16 +60,16 @@ class LoginController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         data = {
@@ -68,12 +78,14 @@ class LoginController(http.Controller):
         }
         template = request.env['ir.ui.view']._render_template("hl_base.login", data)
         response.set_data(template)
-        response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+        response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
         return response
 
+    @http.route('/login/submit', type='http', auth='none', website=True, csrf=False)
+    def login_submit(self, **kw):
+        host = http.request.httprequest.environ.get('SERVER_NAME')
+        subdomain = host.split('.')[0]
 
-    @http.route('/<string:subdomain>/login/submit', type='http', auth='none', website=True, csrf=False)
-    def login_submit(self, subdomain, **kw):
         cookies = http.request.httprequest.cookies
         response = Response()
 
@@ -96,16 +108,16 @@ class LoginController(http.Controller):
         if verificationEmail:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/signupVerification' % subdomain)
-            response.set_cookie('verificationEmail', verificationEmail, path='/%s/' % subdomain)
+            response = redirect_with_hash('/signupVerification')
+            response.set_cookie('verificationEmail', verificationEmail, path='/')
             return response
 
         if agent_uuid and student_session:
             for cookie in cookies:
                 response.delete_cookie(cookie)
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent_uuid, path='/')
+            response.set_cookie('student_session', student_session, path='/')
             return response
 
         if email and password:
@@ -115,8 +127,8 @@ class LoginController(http.Controller):
             ], limit=1)
             if not student:
                 response = Response()
-                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
-                response = request.redirect('/%s/login' % subdomain)
+                response.set_cookie('agent_uuid', agent_uuid, path='/')
+                response = redirect_with_hash('/login')
                 return response
 
             valid, replacement = DEFAULT_CRYPT_CONTEXT.verify_and_update(
@@ -125,14 +137,14 @@ class LoginController(http.Controller):
             )
             if not valid:
                 response = Response()
-                response = request.redirect('/%s/login' % subdomain)
-                response.set_cookie('agent_uuid', agent_uuid, path='/%s/' % subdomain)
+                response = redirect_with_hash('/login')
+                response.set_cookie('agent_uuid', agent_uuid, path='/')
                 return response
 
             if not student.accountVerified:
-                response = request.redirect('/%s/signupVerification' % subdomain)
-                response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-                response.set_cookie('verificationEmail', student.email, path='/%s/' % subdomain)
+                response = redirect_with_hash('/signupVerification')
+                response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+                response.set_cookie('verificationEmail', student.email, path='/')
                 return response
             
             response = Response()
@@ -141,12 +153,12 @@ class LoginController(http.Controller):
                 (random.choice(source) for _ in range(32))
             )
             student.student_session = new_session
-            response = request.redirect('/%s/dashboard' % subdomain)
-            response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
-            response.set_cookie('student_session', student.student_session, path='/%s/' % subdomain)
+            response = redirect_with_hash('/dashboard')
+            response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
+            response.set_cookie('student_session', student.student_session, path='/')
             return response
 
-        response = request.redirect('/%s/login' % subdomain)
-        response.set_cookie('agent_uuid', agent.agent_uuid, path='/%s/' % subdomain)
+        response = redirect_with_hash('/login')
+        response.set_cookie('agent_uuid', agent.agent_uuid, path='/')
         return response
 
