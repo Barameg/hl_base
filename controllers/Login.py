@@ -31,13 +31,13 @@ def generate_timestamp():
 class LoginController(http.Controller):
     @http.route('/test', type='http', auth='public', website=True)
     def test(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
         return 'hello'
 
     @http.route('/login', type='http', auth='public', website=True)
     def login_form(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
         
         response = Response()
@@ -83,7 +83,7 @@ class LoginController(http.Controller):
 
     @http.route('/login/submit', type='http', auth='none', website=True, csrf=False)
     def login_submit(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies

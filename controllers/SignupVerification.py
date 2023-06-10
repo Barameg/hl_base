@@ -3,7 +3,7 @@
 from passlib.context import CryptContext
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request, Response, redirect_with_hash
 from odoo.osv import expression
 import json
 from xml.sax.saxutils import escape
@@ -27,7 +27,7 @@ def generate_timestamp():
 class SignupVerificationController(http.Controller):
     @http.route('/signupVerification', type='http', auth='public', website=True)
     def signupVerification(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies
@@ -75,7 +75,7 @@ class SignupVerificationController(http.Controller):
 
     @http.route('/signupVerification/submit', type='http', auth='none', website=True, csrf=False)
     def submit(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         response = Response()
@@ -145,7 +145,7 @@ class SignupVerificationController(http.Controller):
 
     @http.route('/verificationError', type='http', auth='none', website=True, csrf=False)
     def verificationError(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         response = Response()
@@ -193,7 +193,7 @@ class SignupVerificationController(http.Controller):
 
     @http.route('/verificationSuccess', type='http', auth='none', website=True, csrf=False)
     def verificationSuccess(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         response = Response()
