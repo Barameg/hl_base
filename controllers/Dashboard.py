@@ -27,7 +27,7 @@ def generate_timestamp():
 class DashboardController(http.Controller):
     @http.route('/', type='http', auth='none', website=True, csrf=False)
     def main(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
         
         cookies = http.request.httprequest.cookies
@@ -78,7 +78,7 @@ class DashboardController(http.Controller):
         '/signupVerification/submit/<path:anything>',
     ], type='http', auth='none', website=True, csrf=False)
     def block_request(self, anything, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies
@@ -121,7 +121,7 @@ class DashboardController(http.Controller):
 
     @http.route('/dashboard', type='http', auth='public', website=True, csrf=False)
     def dashboard(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies
@@ -174,7 +174,7 @@ class DashboardController(http.Controller):
 
     @http.route('/logout', type='http', auth='public', website=True, csrf=False)
     def logout(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies

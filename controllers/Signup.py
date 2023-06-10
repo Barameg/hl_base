@@ -3,7 +3,7 @@
 from passlib.context import CryptContext
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request, Response, redirect_with_hash
 from odoo.osv import expression
 import json
 from xml.sax.saxutils import escape
@@ -28,7 +28,7 @@ class SignupController(http.Controller):
 
     @http.route('/signup', type='http', auth='public', website=True)
     def signup_form(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         response = Response()
@@ -74,7 +74,7 @@ class SignupController(http.Controller):
 
     @http.route('/signup/submit', type='http', auth='none', website=True, csrf=False)
     def signup_submit(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies

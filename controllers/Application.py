@@ -30,7 +30,7 @@ def generate_timestamp():
 class ApplicationController(http.Controller):
     @http.route('/application', type='http', auth='none', website=True, csrf=False)
     def application(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
         
         cookies = http.request.httprequest.cookies
@@ -149,7 +149,7 @@ class ApplicationController(http.Controller):
 
     @http.route('/application/edit/<string:application_uuid>', type='http', auth='none', website=True, csrf=False)
     def application_edit(self, application_uuid, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies
@@ -241,7 +241,7 @@ class ApplicationController(http.Controller):
         
     @http.route('/template/<string:document_template_uuid>', type='http', auth='none', website=True, csrf=False)
     def download_template(self, document_template_uuid, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         response = Response()
@@ -291,7 +291,7 @@ class ApplicationController(http.Controller):
 
     @http.route('/application/delete/<string:application_id>', type='http', auth='none', website=True, csrf=False)
     def application_delete(self, application_id, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         response = Response()
@@ -342,7 +342,7 @@ class ApplicationController(http.Controller):
 
     @http.route('/application/submit', type='http', auth='none', website=True, csrf=False)
     def application_submit(self, **kw):
-        host = http.request.httprequest.environ.get('SERVER_NAME')
+        host = http.request.httprequest.environ.get('HTTP_HOST')
         subdomain = host.split('.')[0]
 
         cookies = http.request.httprequest.cookies
