@@ -61,7 +61,7 @@
 																<tr>
 																	<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 																		<t t-if="application.first_name">
-																			<t t-esc="application.name"/>
+																			<t t-esc="application.first_name + ' ' + application.last_name"/>
 																		</t>
 																		<t t-else="">N/A</t>
 																	</td>
@@ -123,7 +123,7 @@
 				</div>
 			</div>
 
-
+			<script src="/hl_base/static/src/js/dashboard.js"/>
 		</body>
 	</template>
 </odoo>
