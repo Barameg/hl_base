@@ -258,7 +258,7 @@
     let programsDropdown = document.querySelector('#program')
     if(program.value != ''){
         let programDocuments = document.querySelectorAll('.uploadFieldWrapper')
-        let documentsResponse = await fetch(`/api/listDocuments?program=${event.target.value}`)
+        let documentsResponse = await fetch(`/api/listDocuments?program=${programsDropdown.value}`)
         let documentsContent = await documentsResponse.text()
 
         let documents = JSON.parse(documentsContent)
