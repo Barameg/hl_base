@@ -43,8 +43,9 @@ class DashboardController(http.Controller):
         ], limit=1)
 
         if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
+            template = request.env['ir.ui.view']._render_template("hl_base.404")
+            response.set_data(template)
+            return response
 
         if verificationEmail:
             for cookie in cookies:
@@ -94,10 +95,13 @@ class DashboardController(http.Controller):
         ], limit=1)
 
         if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
+            template = request.env['ir.ui.view']._render_template("hl_base.404")
+            response.set_data(template)
+            return response
 
-        return '404 page'
+        template = request.env['ir.ui.view']._render_template("hl_base.404")
+        response.set_data(template)
+        return response
         # if verificationEmail:
         #     for cookie in cookies:
         #         response.delete_cookie(cookie)
@@ -137,8 +141,9 @@ class DashboardController(http.Controller):
         ], limit=1)
 
         if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
+            template = request.env['ir.ui.view']._render_template("hl_base.404")
+            response.set_data(template)
+            return response
 
         if verificationEmail:
             for cookie in cookies:
@@ -190,8 +195,9 @@ class DashboardController(http.Controller):
         ], limit=1)
 
         if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
+            template = request.env['ir.ui.view']._render_template("hl_base.404")
+            response.set_data(template)
+            return response
 
         response = redirect_with_hash('/login')
         # redirect to dashboard page
