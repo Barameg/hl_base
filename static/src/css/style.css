@@ -91,3 +91,10 @@
 #closeSidebar * {
     pointer-events: none;
 }
+
+.uploadFieldWrapper label{
+    pointer-events: none;
+}
+.uploadFieldWrapper label a {
+    pointer-events: all;
+}
