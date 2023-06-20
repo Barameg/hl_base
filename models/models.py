@@ -152,7 +152,7 @@ class AccountMove(models.Model):
         email_values = {
             'email_from': self.env.user.email or '',
             'email_to': self.partner_id.email or '',
-            'subject': 'Test Mail',
+            'subject': self.name,
         }
         attachments = self.env['ir.attachment']
         attachment = attachments.search([
