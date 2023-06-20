@@ -44,8 +44,9 @@ class SignupController(http.Controller):
         ], limit=1)
         
         if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
+            template = request.env['ir.ui.view']._render_template("hl_base.404")
+            response.set_data(template)
+            return response
 
         if verificationEmail:
             for cookie in cookies:
@@ -94,8 +95,9 @@ class SignupController(http.Controller):
         ], limit=1)
 
         if not agent:
-            # redirect to agent not found 
-            return "Agent not found"
+            template = request.env['ir.ui.view']._render_template("hl_base.404")
+            response.set_data(template)
+            return response
 
         if verificationEmail:
             for cookie in cookies:

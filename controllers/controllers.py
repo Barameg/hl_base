@@ -67,6 +67,7 @@ class AgencyPortal(CustomerPortal):
             else:
                 return 'invalid data'
         else:
+            response = Response()
             agents = agents.search([
                 ('subdomain', '=', subdomain)
             ], limit=1)
@@ -74,13 +75,14 @@ class AgencyPortal(CustomerPortal):
                 data = {
                     'agent': agents.browse(agent.id),
                 }
-                response = Response()
                 response.set_cookie('agent_uuid', agent.agent_uuid)
                 template = request.env['ir.ui.view']._render_template("hl_base.login", data)
                 response.set_data(template)
                 return response
             else:
-                return 'not found'
+                template = request.env['ir.ui.view']._render_template("hl_base.404")
+                response.set_data(template)
+                return response
 
     @http.route('/<string:subdomain>/login', type='http', auth='none', website=True, csrf=False)
     def agency_portal(self, subdomain, **kw):
@@ -115,6 +117,7 @@ class AgencyPortal(CustomerPortal):
             else:
                 return 'invalid data'
         else:
+            response = Response()
             agents = agents.search([
                 ('subdomain', '=', subdomain)
             ], limit=1)
@@ -128,7 +131,9 @@ class AgencyPortal(CustomerPortal):
                 response.set_data(template)
                 return response
             else:
-                return 'not found'
+                template = request.env['ir.ui.view']._render_template("hl_base.404")
+                response.set_data(template)
+                return response
 
 
 class StudentPortal(CustomerPortal):
