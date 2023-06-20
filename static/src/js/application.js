@@ -265,12 +265,14 @@
         console.log(documents)
         let documentsWrapper = document.querySelector('#programDocuments')
         documentsWrapper.innerHTML = ''
-
+        let submitButton = document.querySelector('#submit')
+        let bg = Array.from(submitButton.classList).find(className => className.startsWith('bg-'));
+        let textColor = bg.replace('bg', 'text')
         for(const document of documents){
             let htmlContent = `
                 <div class="uploadFieldWrapper" data-program="${program}">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="${document.uuid}">
-                        ${document.name} ${document.template ? 'You can download template <a class="text-sm font-medium text-current group-hover:text-current" href="/template/' + document.uuid + '">from here</a>' : ''}
+                        ${document.name} ${document.template ? `You can download template <a class="text-sm font-medium ${textColor} group-hover:text-current" href="/template/` + document.uuid + `">from here</a>` : ''}
                     </label>
                     <input name="${document.uuid}" required="${document.required}" data-allowed-size="${document.allowed_size}" data-allowed-types="${document.allowed_types}" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="${document.uuid}" type="file"/>
                 </div>`
