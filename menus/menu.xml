@@ -6,6 +6,7 @@
 		<menuitem name="Master Data" id="hl_manage_master_data_menu" parent="hl_management_root_menu" sequence="2"/>
 		<menuitem name="Services" id="hl_manage_services_menu" parent="hl_manage_master_data_menu" action="hl_base_application_service_action_window" sequence="1"/>
 		<menuitem name="Universities" id="hl_manage_universities_menu" parent="hl_manage_master_data_menu" action="hl_base_university_action_window" sequence="1"/>
+		<menuitem name="Programs" id="hl_manage_programs_menu" parent="hl_manage_master_data_menu" action="hl_base_university_program_action_window" sequence="1"/>
 		<menuitem name="Countries" id="hl_manage_countries_menu" parent="hl_manage_master_data_menu" action="hl_base_country_action_window" sequence="1"/>
 		<menuitem name="Agents" id="hl_manage_agents_menu" parent="hl_management_root_menu" action="hl_base_agent_action_window" sequence="1"/>
 <!--		<menuitem name="Products" id="salla_products" parent="manage_salla_products" action="salla_products_action_window" sequence="1"/>-->

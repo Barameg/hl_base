@@ -41,6 +41,7 @@
         'views/university_program.xml',
         'views/university_program_document.xml',
         'views/invoice_email_template.xml',
+        'views/whatsapp_wizard.xml',
         'portal_views/not_found.xml',
         'portal_views/sidebar.xml',
         'portal_views/mobile_sidebar.xml',

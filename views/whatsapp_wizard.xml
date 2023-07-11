@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="view_whatsapp_wizard_form" model="ir.ui.view">
+            <field name="name">whatsapp.wizard.form</field>
+            <field name="model">whatsapp.wizard</field>
+            <field name="arch" type="xml">
+                <form string="whatsapp Wizard">
+                    <group>
+                        <field name="template_id"/>
+                    </group>
+                    <footer>
+                        <button name="preview_message" string="Preview" type="object" class="btn-primary"/>
+                        <button name="send_message" string="Send" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
