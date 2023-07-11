@@ -137,6 +137,7 @@
                     <field name="university"/>
                     <field name="program"/>
                     <field name="create_date"/>
+                    <button type="object" string="Send Message" name="open_whatsapp_wizard"/>
                 </tree>
             </field>
         </record>

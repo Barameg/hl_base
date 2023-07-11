@@ -5,3 +5,4 @@ from . import Signup
 from . import SignupVerification
 from . import Dashboard
 from . import Application
+from . import UploadPrograms

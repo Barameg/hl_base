@@ -5,8 +5,6 @@
 			<field name="name">University</field>
 			<field name="res_model">university.program</field>
 			<field name="view_mode">tree,form</field>
-			<field name="domain">[('university', '=', active_id)]</field>
-			<field name="context">{'default_university': active_id}</field>
 			<field name="limit">20</field>
 		</record>
 
