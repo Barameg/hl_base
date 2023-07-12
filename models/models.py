@@ -273,6 +273,7 @@ class UniversityProgramDocument(models.Model):
     ], default='img')
     required = fields.Boolean(default=True)
     program = fields.Many2one('university.program')
+    university = fields.Many2one('university', related='program.university')
 #    template = fields.Binary(attachment=True)
     template = fields.Many2one('ir.attachment')
 
