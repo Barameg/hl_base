@@ -40,6 +40,7 @@
         'views/university.xml',
         'views/university_program.xml',
         'views/university_program_document.xml',
+        'views/university_program_cost.xml',
         'views/invoice_email_template.xml',
         'views/whatsapp_wizard.xml',
         'portal_views/not_found.xml',
