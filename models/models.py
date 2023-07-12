@@ -504,109 +504,20 @@ class ResPartner(models.Model):
                 '2nd payment -  Pre-Departure & Tuition fees': '€7,245.00',
                 '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'}}
 
-        lithuanian_pricings_dict = {'IP Leiria - Master Computer engg & mobile computing (2y | Leiria)': {
-            '1st payment - Enrollment & Admission': '€1,060.00',
-            '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-            '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IPCA -  Master AI (2y | Barcelos)': {'1st payment - Enrollment & Admission': '€585.00',
-                                                  '2nd payment -  Pre-Departure & Tuition fees': '€7,745.00',
-                                                  '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IP Leiria - Master International Business (2y)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IP Portalegre - Master Informatics (2 y | Portalegre)': {
-                '1st payment - Enrollment & Admission': '€530.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€13,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'IP Portalegre - Technologies for Environmental Recovery and Energy Production (2y)': {
-                '1st payment - Enrollment & Admission': '€530.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€13,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'IP Portalegre - Master Digital Identity Design (2 y | Portalegre)': {
-                '1st payment - Enrollment & Admission': '€530.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€13,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'Atlântica - Master Management (2y | Lisbon)': {
-                '1st payment - Enrollment & Admission': '€1,040.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€18,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'Atlântica - PG Specialisation Safety Management (1y | Lisbon)': {
-                '1st payment - Enrollment & Admission': '€1,040.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'Atlântica - PG Management of Sports Organizations (1y | Lisbon)': {
-                '1st payment - Enrollment & Admission': '€1,040.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'IP Leiria - Master Sustainable Tourism Management (2y | Leiria)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'ISAG - Master Business Management (1,5 y | Porto)': {
-                '1st payment - Enrollment & Admission': '€1,205.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€12,672.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'Santa Maria - Master in Physiotherapy (1,5 y | Porto)': {
-                '1st payment - Enrollment & Admission': '€1,000.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€8,500.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€1,900.00'},
-            'IP Leiria - Master Civil Engineering – Building Construction (2y | Leiria)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IP Leiria - Master Electrical and Electronic Engineering (2y | Leiria)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IP Leiria - Master Graphic Design (2y | Leiria)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IP Leiria - Master Product Design Engineering (2y | Leiria)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€10,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'IP Portalegre - PG Informatics (1 y | Portalegre)': {
-                '1st payment - Enrollment & Admission': '€530.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€8,745.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,860.00'},
-            'University of Porto - Masters Mechanical Engineering (2y | Porto)': {
-                '1st payment - Enrollment & Admission': '€555.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€16,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'},
-            'University of Portucalense - Bachelor Hospitality Management (1st year, 3 yrs total)': {
-                '1st payment - Enrollment & Admission': '€1,252.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€9,445.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,860.00'},
-            'University of Portucalense -  Masters Tourism and Hospitality (2y | Porto)': {
-                '1st payment - Enrollment & Admission': '€1,252.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€15,061.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,360.00'},
-            'University of Minho - Masters Structural Analysis of Monuments and Historical Construction (1y | Guimarães)': {
-                '1st payment - Enrollment & Admission': '€750.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€13,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,860.00'},
-            'Universidade Europeia - PG Game Design (1y | Lisbon)': {
-                '1st payment - Enrollment & Admission': '€1,055.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€7,610.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,860.00'},
-            "Universidade Catholica Portuguesa - International Bachelor's in Business administration (1st year, 3 yrs total)": {
-                '1st payment - Enrollment & Admission': '€1,055.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€11,075.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,460.00'},
-            'University of Lisbon - Master Biopharmaceutical Sciences (2y | Lisbon)': {
-                '1st payment - Enrollment & Admission': '€575.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€11,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,860.00'},
-            'University of Lisbon - Master Medicinal and biopharmaceutical chemistry (2y | Lisbon)': {
-                '1st payment - Enrollment & Admission': '€575.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€11,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€2,860.00'},
-            'IP Leiria - Bachelor Games and Multimedia (1st year, 3 yrs total)': {
-                '1st payment - Enrollment & Admission': '€1,060.00',
-                '2nd payment -  Pre-Departure & Tuition fees': '€7,245.00',
-                '3rd payment - Post Landing, Customer Care & Development': '€3,480.00'}}
+        lithuanian_pricings_dict = {
+            'LSU - Master Tourism and Sports Management (2y)': {'1st payment - Enrollment & Admission': '€680.00',
+                                                                '2nd payment -  Pre-Departure & Tuition fees': '€12,527.00',
+                                                                '3rd payment - Post Landing, Customer Care & Development': '€4,180.00'},
+            'LSU - Master Physiotherapy (2y)': {'1st payment - Enrollment & Admission': '€680.00',
+                                                '2nd payment -  Pre-Departure & Tuition fees': '€12,527.00',
+                                                '3rd payment - Post Landing, Customer Care & Development': '€3,680.00'},
+            'LSU - Bachelor Physiotherapy (1st year, 4 yrs total)': {'1st payment - Enrollment & Admission': '€680.00',
+                                                                     '2nd payment -  Pre-Departure & Tuition fees': '€7,769.00',
+                                                                     '3rd payment - Post Landing, Customer Care & Development': '€2,840.00'},
+            'LSU - Bachelor Tourism and Sports Management (1st year, 3 yrs total)': {
+                '1st payment - Enrollment & Admission': '€680.00',
+                '2nd payment -  Pre-Departure & Tuition fees': '€6,949.00',
+                '3rd payment - Post Landing, Customer Care & Development': '€2,840.00'}}
 
         spanish_pricings_dict = {'Squad coding school - Full Stack webdevelopment with PHP Laravel (9m | Barcelona)': {
             '1st payment - Enrollment & Admission': '€550.00',
