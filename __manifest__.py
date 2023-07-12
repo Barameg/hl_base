@@ -61,6 +61,7 @@
         'actions/university.xml',
         'actions/university_program.xml',
         'actions/university_program_document.xml',
+        'actions/university_program_cost.xml',
         'menus/menu.xml'
     ],
     # only loaded in demonstration mode

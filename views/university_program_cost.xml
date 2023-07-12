@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hl_base_university_program_cost_form_view">
+            <field name="name">hl_base_university_program_cost_form_view</field>
+            <field name="model">university.program.cost</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button type="object" string="Test Token"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="amount"/>
+                                <field name="program" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hl_base_university_program_cost_tree_view">
+            <field name="name">hl_base_university_program_cost_tree_view</field>
+            <field name="model">university.program.cost</field>
+            <field name="priority" eval="60"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
