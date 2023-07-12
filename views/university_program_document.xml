@@ -29,6 +29,8 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="program"/>
+                    <field name="allowed_size"/>
                 </tree>
             </field>
         </record>
