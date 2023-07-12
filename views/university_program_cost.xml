@@ -28,6 +28,8 @@
                 <tree>
                     <field name="name"/>
                     <field name="amount"/>
+                    <field name="program"/>
+                    <field name="university"/>
                 </tree>
             </field>
         </record>

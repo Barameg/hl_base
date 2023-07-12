@@ -256,6 +256,7 @@ class UniversityProgramCost(models.Model):
 
     name = fields.Char()
     program = fields.Many2one('university.program')
+    university = fields.Many2one(related='program.university')
     amount = fields.Float(default=0.00)
 
 
