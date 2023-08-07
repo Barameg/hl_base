@@ -66,11 +66,11 @@
 												<!-- Current Step -->
 												<a href="#" id="contactInformationStepActive" t-att-class="'hidden group flex flex-col border-l-4 border-' + agent.agent_color + '-' + agent.agent_shade + ' py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
 													<span t-att-class="'text-sm font-medium text-' + agent.agent_color + '-' + agent.agent_shade + ' group-hover:text-' + agent.agent_color + '-' + agent.agent_shade">Step 4</span>
-													<span class="text-sm font-medium">Contact Information</span>
+													<span class="text-sm font-medium">Required Documents</span>
 												</a>
 												<a href="#" id="contactInformationStepActiveDisabled" t-att-class="'group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-' + agent.agent_color + '-' + agent.agent_shade + ' md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0'">
 													<span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step 4</span>
-													<span class="text-sm font-medium">Contact Information</span>
+													<span class="text-sm font-medium">Required Documents</span>
 												</a>
 											</li>
 											<!-- 
@@ -327,7 +327,7 @@
 									<div id="requiredDocumentsForm" class="step hidden space-y-6 pt-8 sm:space-y-5 sm:pt-10">
 										<div>
 											<h3 class="text-lg font-medium leading-6 text-gray-900">Required Documents</h3>
-											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Upload program documents below, you can download template document as a reference if available.</p>
 										</div>
 										<div id="programDocuments" class="space-y-6 sm:space-y-5">
 
