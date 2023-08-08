@@ -85,7 +85,7 @@
 									<div id="programInformationForm" class="step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
 										<div>
 											<h3 class="text-lg font-medium leading-6 text-gray-900">Program Information</h3>
-											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Select desired university and program.</p>
 										</div>
 										<div class="space-y-6 sm:space-y-5">
 											<div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
@@ -124,7 +124,7 @@
 									<div id="personalInformationForm" class="hidden step space-y-6 pt-8 sm:space-y-5 sm:pt-10">
 										<div>
 											<h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-											<p class="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+											<p class="mt-1 max-w-2xl text-sm text-gray-500">Fill in your personal details</p>
 										</div>
 										<div class="space-y-6 sm:space-y-5">
 											<div class="sm:grid sm:grid-cols-2 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
