@@ -95,7 +95,9 @@
 														<option data-id="" value="" selected="true"/>
 														<t t-if="universities">
 															<t t-foreach = "universities" t-as = "university">
-																<option t-att-data-id="university.id"  t-att-value="university.id" t-att-selected="'true' if application and application.university.id == university.id else 'false'">
+																<option t-att-data-id="university.id"  t-att-value="university.id" 
+																	        t-att-selected="university.id == application.university.id and 'selected' or ''">
+>
 																	<t t-esc="university.name"/>
 																</option>
 															</t>
