@@ -14,6 +14,26 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+class StudentsController(http.Controller):
+    @http.route('/upload_students', type='http', auth='none', website=True, csrf=False)
+    def upload_students(self, **kw):
+        host = http.request.httprequest.environ.get('HTTP_HOST')
+        programs = {}
+        universities = {}
+        for file in request.httprequest.files.values():
+            if file.name == 'students':
+                csv_data = file.read().decode('utf-8')  # Read the file content
+                csv_reader = csv.reader(csv_data.splitlines())  # Create a CSV reader
+                header = next(csv_reader)  # Read the first row as the header
+                for row in csv_reader:
+                    student = http.request.env['res.partner'].sudo().search([
+                        'name', '=', row[1]
+                    ])
+                    if student:
+                        student.write({
+                            'phone': row[2],
+                            'email': row[3]
+                        })
 
 class ApplicationController(http.Controller):
     @http.route('/upload_programs', type='http', auth='none', website=True, csrf=False)
