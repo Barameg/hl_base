@@ -27,7 +27,7 @@ class StudentsController(http.Controller):
                 header = next(csv_reader)  # Read the first row as the header
                 for row in csv_reader:
                     student = http.request.env['res.partner'].sudo().search([
-                        'name', '=', row[1]
+                        ('name', '=', row[1])
                     ])
                     if student:
                         student.write({
