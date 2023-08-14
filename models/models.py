@@ -102,12 +102,12 @@ class UniversityProgramDocument(models.Model):
 
     name = fields.Char()
     uuid = fields.Char()
-    allowed_size = fields.Integer(string='Size in MB')
+    allowed_size = fields.Integer(string='Size in MB', default=5)
     allowed_types = fields.Char()
     file_type = fields.Selection([
         ('doc', 'Document'),
         ('img', 'Image')
-    ], default='img')
+    ])
     required = fields.Boolean(default=True)
     program = fields.Many2one('university.program')
     university = fields.Many2one(related='program.university')
