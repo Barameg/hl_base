@@ -201,11 +201,12 @@
                 for (const type of types) {
                     if (event.target.files[0].type.includes(type.trim())) typeFound = true
                 }
-                console.log(typeFound)
-                console.log(exceedsLimit)
-                if (!typeFound || exceedsLimit) {
+
+//                if (!typeFound || exceedsLimit) {
+                if (exceedsLimit) {
                     event.target.value = ''
-                    alert(`Only files not exceeding ${allowedSize} MB and of type ${allowedTypes} are allowed`)
+//                    alert(`Only files not exceeding ${allowedSize} MB and of type ${allowedTypes} are allowed`)
+                    alert(`Only files not exceeding ${allowedSize} MB.`)
                 }
             }
         }
